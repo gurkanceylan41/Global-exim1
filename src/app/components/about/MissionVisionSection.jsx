@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+"use client";
+
+import { useState } from "react";
 import { FaStar, FaQuoteLeft } from "react-icons/fa";
 import { tabs } from "@/app/data/aboutData";
 
-const MissionVisionSection = () => {
+export default function MissionVisionSection() {
   const [activeTab, setActiveTab] = useState("mission");
 
   return (
@@ -67,6 +69,4 @@ const MissionVisionSection = () => {
       </div>
     </div>
   );
-};
-
-export default MissionVisionSection;
+}

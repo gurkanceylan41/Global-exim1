@@ -1,6 +1,3 @@
-"use client";
-
-import React, { useState } from "react";
 import {
   FaPhone,
   FaEnvelope,
@@ -13,7 +10,13 @@ import {
   FaArrowRight,
 } from "react-icons/fa";
 
-const ContactPage = () => {
+export const metadata = {
+  title: "İletişim - Global Exim",
+  description: "Global Exim ile iletişime geçin. Telefon, WhatsApp, e-posta veya ofisimizi ziyaret ederek bize ulaşabilirsiniz.",
+  keywords: "iletişim, Global Exim, telefon, e-posta, WhatsApp, adres",
+};
+
+export default function ContactPage() {
   const contactCards = [
     {
       icon: FaPhone,
@@ -122,40 +125,6 @@ const ContactPage = () => {
                 </span>
               </span>
             </h1>
-
-            <style jsx>{`
-              @keyframes gradient {
-                0%,
-                100% {
-                  background-position: 0% center;
-                }
-                50% {
-                  background-position: 100% center;
-                }
-              }
-
-              @keyframes shine {
-                0% {
-                  transform: translateX(-100%);
-                  opacity: 0;
-                }
-                50% {
-                  opacity: 1;
-                }
-                100% {
-                  transform: translateX(100%);
-                  opacity: 0;
-                }
-              }
-
-              .animate-gradient {
-                animation: gradient 4s ease infinite;
-              }
-
-              .animate-shine {
-                animation: shine 3s ease-in-out infinite;
-              }
-            `}</style>
 
             <p className="text-xl text-slate-400 max-w-2xl mx-auto">
               Size en uygun kanaldan ulaşın. Profesyonel ekibimiz size yardımcı
@@ -309,6 +278,4 @@ const ContactPage = () => {
       </div>
     </div>
   );
-};
-
-export default ContactPage;
+}

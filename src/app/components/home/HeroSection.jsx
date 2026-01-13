@@ -1,17 +1,9 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import { FaArrowRight, FaGlobe, FaShippingFast, FaAward } from "react-icons/fa";
+import ScrollButton from "./ScrollButton";
 
-const HeroSection = () => {
-  const scrollToContent = () => {
-    window.scrollTo({
-      top: window.innerHeight,
-      behavior: "smooth",
-    });
-  };
-
+export default function HeroSection() {
   return (
     <section className="relative w-full h-screen min-h-[600px]">
       {/* Background Image */}
@@ -44,40 +36,6 @@ const HeroSection = () => {
             <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent blur-xl animate-shine"></span>
           </span>
         </h1>
-
-        <style jsx>{`
-          @keyframes gradient {
-            0%,
-            100% {
-              background-position: 0% center;
-            }
-            50% {
-              background-position: 100% center;
-            }
-          }
-
-          @keyframes shine {
-            0% {
-              transform: translateX(-100%);
-              opacity: 0;
-            }
-            50% {
-              opacity: 1;
-            }
-            100% {
-              transform: translateX(100%);
-              opacity: 0;
-            }
-          }
-
-          .animate-gradient {
-            animation: gradient 4s ease infinite;
-          }
-
-          .animate-shine {
-            animation: shine 3s ease-in-out infinite;
-          }
-        `}</style>
 
         <p className="text-lg md:text-2xl lg:text-3xl font-light mb-4 max-w-3xl animate-fade-in-up animation-delay-200">
           Küresel Ticaretin Güvenilir Ortağı
@@ -128,19 +86,9 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Scroll Indicator - Tıklanabilir */}
-        <button
-          onClick={scrollToContent}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer group focus:outline-none"
-          aria-label="Aşağı kaydır"
-        >
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center p-2 group-hover:border-[#53B6F0] transition-colors duration-300">
-            <div className="w-1 h-3 bg-white/50 rounded-full animate-scroll group-hover:bg-[#53B6F0] transition-colors duration-300" />
-          </div>
-        </button>
+        {/* Scroll Indicator - Client Component */}
+        <ScrollButton />
       </div>
     </section>
   );
-};
-
-export default HeroSection;
+}

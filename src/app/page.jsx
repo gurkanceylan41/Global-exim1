@@ -1,25 +1,19 @@
-"use client";
-
-import Link from "next/link";
-import Image from "next/image";
-import {
-  FaArrowRight,
-  FaGlobe,
-  FaShippingFast,
-  FaAward,
-  TrendingUp,
-} from "react-icons/fa";
-
-import AboutPage from "./components/home/AboutSection";
+import AboutSection from "./components/home/AboutSection";
 import HeroSection from "./components/home/HeroSection";
 
-const Home = () => {
+export const metadata = {
+  title: "Global Exim - Küresel Ticaretin Güvenilir Ortağı",
+  description:
+    "70+ ülkeye ihracat yapan, kaliteli gofret ve bisküvi üreticisi. Uluslararası ticarette güvenilir iş ortağınız.",
+  keywords:
+    "ihracat, ithalat, gofret, bisküvi, uluslararası ticaret, Global Exim",
+};
+
+export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <AboutPage />
+      <AboutSection />
     </>
   );
-};
-
-export default Home;
+}
