@@ -1,3 +1,12 @@
+/**
+ * Contact Page
+ *
+ * Contact information page with multiple contact methods,
+ * office information, social media links, and embedded map.
+ */
+
+import { setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import {
   FaPhone,
   FaEnvelope,
@@ -10,48 +19,69 @@ import {
   FaArrowRight,
 } from "react-icons/fa";
 
-export const metadata = {
-  title: "İletişim - Global Exim",
-  description: "Global Exim ile iletişime geçin. Telefon, WhatsApp, e-posta veya ofisimizi ziyaret ederek bize ulaşabilirsiniz.",
-  keywords: "iletişim, Global Exim, telefon, e-posta, WhatsApp, adres",
-};
+/**
+ * Generate page-specific metadata for SEO
+ */
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "contact.metadata" });
 
-export default function ContactPage() {
+  return {
+    title: t("title"),
+    description: t("description"),
+    keywords: t("keywords"),
+  };
+}
+
+/**
+ * Contact Page Component
+ */
+export default async function ContactPage({ params }) {
+  const { locale } = await params;
+
+  // Enable static rendering for this locale
+  setRequestLocale(locale);
+
+  // Get translations
+  const t = await getTranslations("contact");
+
+  // Contact cards configuration
   const contactCards = [
     {
       icon: FaPhone,
-      title: "Telefon",
+      titleKey: "cards.phone.title",
       value: "+90 536 885 46 19",
-      subtitle: "Pazartesi-Cuma, 09:00-18:00",
+      subtitleKey: "cards.phone.subtitle",
       link: "tel:+905368854619",
       gradient: "from-blue-500 to-blue-600",
     },
     {
       icon: FaWhatsapp,
-      title: "WhatsApp",
+      titleKey: "cards.whatsapp.title",
       value: "+90 536 885 46 19",
-      subtitle: "7/24 Anında Yanıt",
+      subtitleKey: "cards.whatsapp.subtitle",
       link: "https://wa.me/905368854619",
       gradient: "from-green-500 to-green-600",
     },
     {
       icon: FaEnvelope,
-      title: "E-posta",
+      titleKey: "cards.email.title",
       value: "info@globalexim.com",
-      subtitle: "24 Saat İçinde Dönüş",
+      subtitleKey: "cards.email.subtitle",
       link: "mailto:info@globalexim.com",
       gradient: "from-purple-500 to-purple-600",
     },
     {
       icon: FaMapMarkerAlt,
-      title: "Adres",
-      value: "Körfez, İzmit",
-      subtitle: "Kocaeli, Türkiye",
+      titleKey: "cards.address.title",
+      value: t("cards.address.value"),
+      subtitleKey: "cards.address.subtitle",
       link: "https://maps.google.com/?q=Körfez+İzmit+Kocaeli",
       gradient: "from-orange-500 to-red-500",
     },
   ];
 
+  // Social links configuration
   const socialLinks = [
     {
       icon: FaWhatsapp,
@@ -70,40 +100,39 @@ export default function ContactPage() {
       hoverColor: "hover:scale-105",
     },
     {
-      icon: () => (
-        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-        </svg>
-      ),
+      icon: null, // Custom X icon
       name: "X (Twitter)",
       handle: "@globalexim",
       link: "https://x.com/globalexim",
       color: "bg-black",
       hoverColor: "hover:bg-gray-800 hover:scale-105",
+      isCustomIcon: true,
     },
   ];
 
+  // Office information configuration
   const offices = [
     {
       icon: FaBuilding,
-      title: "Merkez Ofis",
-      address: "Körfez Mahallesi, Çizmeci TIME",
-      city: "İzmit, Kocaeli",
-      country: "Türkiye",
+      titleKey: "offices.headquarters.title",
+      addressKey: "offices.headquarters.address",
+      cityKey: "offices.headquarters.city",
+      countryKey: "offices.headquarters.country",
     },
     {
       icon: FaGlobe,
-      title: "Küresel Hizmet",
-      address: "70+ Ülkeye İhracat",
-      city: "Uluslararası Ticaret",
-      country: "Dünya Çapında",
+      titleKey: "offices.global.title",
+      addressKey: "offices.global.address",
+      cityKey: "offices.global.city",
+      countryKey: "offices.global.country",
     },
   ];
 
   return (
     <div className="w-full min-h-screen bg-gradient-to-b from-slate-950 to-slate-900">
-      {/* Hero Section - STANDARDIZED pt-32 pb-12 */}
+      {/* Hero Section */}
       <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        {/* Background Effects */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-20 w-96 h-96 bg-[#53B6F0] rounded-full blur-3xl"></div>
           <div className="absolute bottom-20 right-20 w-96 h-96 bg-cyan-500 rounded-full blur-3xl"></div>
@@ -111,24 +140,26 @@ export default function ContactPage() {
 
         <div className="relative max-w-7xl mx-auto px-6 pt-32 pb-12">
           <div className="text-center space-y-6">
+            {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-800/50 backdrop-blur-sm rounded-full border border-slate-700">
               <div className="w-2 h-2 bg-[#53B6F0] rounded-full animate-pulse"></div>
               <span className="text-slate-300 text-sm font-medium">
-                Bize Ulaşın
+                {t("hero.badge")}
               </span>
             </div>
 
+            {/* Title */}
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white">
               <span className="relative inline-block">
                 <span className="bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
-                  İletişime Geçin
+                  {t("hero.title")}
                 </span>
               </span>
             </h1>
 
+            {/* Subtitle */}
             <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-              Size en uygun kanaldan ulaşın. Profesyonel ekibimiz size yardımcı
-              olmak için hazır.
+              {t("hero.subtitle")}
             </p>
           </div>
         </div>
@@ -157,16 +188,16 @@ export default function ContactPage() {
                 <card.icon className="w-7 h-7 text-white" />
               </div>
               <h3 className="text-white font-bold text-lg mb-1">
-                {card.title}
+                {t(card.titleKey)}
               </h3>
               <p className="text-[#53B6F0] font-semibold mb-1">{card.value}</p>
-              <p className="text-slate-400 text-sm">{card.subtitle}</p>
+              <p className="text-slate-400 text-sm">{t(card.subtitleKey)}</p>
             </a>
           ))}
         </div>
       </div>
 
-      {/* Main Content Grid - py-24 standardized */}
+      {/* Main Content Grid */}
       <div className="py-24 px-6 bg-slate-900">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -174,7 +205,7 @@ export default function ContactPage() {
             <div className="bg-slate-800/80 backdrop-blur-sm border border-slate-700 rounded-3xl p-6 shadow-xl">
               <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
                 <FaBuilding className="text-[#53B6F0]" />
-                Ofislerimiz
+                {t("offices.title")}
               </h3>
               <div className="space-y-4">
                 {offices.map((office, index) => (
@@ -188,14 +219,14 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <h4 className="text-white font-bold mb-1">
-                          {office.title}
+                          {t(office.titleKey)}
                         </h4>
                         <p className="text-slate-400 text-sm">
-                          {office.address}
+                          {t(office.addressKey)}
                         </p>
-                        <p className="text-slate-400 text-sm">{office.city}</p>
+                        <p className="text-slate-400 text-sm">{t(office.cityKey)}</p>
                         <p className="text-slate-500 text-xs mt-1">
-                          {office.country}
+                          {t(office.countryKey)}
                         </p>
                       </div>
                     </div>
@@ -207,7 +238,7 @@ export default function ContactPage() {
             {/* Social Media */}
             <div className="bg-slate-800/80 backdrop-blur-sm border border-slate-700 rounded-3xl p-6 shadow-xl">
               <h3 className="text-xl font-bold text-white mb-6">
-                Sosyal Medya
+                {t("social.title")}
               </h3>
               <div className="space-y-3">
                 {socialLinks.map((social, index) => (
@@ -218,8 +249,10 @@ export default function ContactPage() {
                     rel="noopener noreferrer"
                     className={`flex items-center gap-4 p-4 rounded-xl ${social.color} ${social.hoverColor} text-white transition-all duration-300 shadow-lg`}
                   >
-                    {typeof social.icon === "function" ? (
-                      <social.icon />
+                    {social.isCustomIcon ? (
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                      </svg>
                     ) : (
                       <social.icon className="w-5 h-5" />
                     )}
@@ -239,7 +272,7 @@ export default function ContactPage() {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
               <h2 className="text-2xl font-bold text-white flex items-center gap-3">
                 <FaMapMarkerAlt className="text-[#53B6F0]" />
-                Konumumuz
+                {t("map.title")}
               </h2>
               <a
                 href="https://maps.google.com/?q=Körfez+İzmit+Kocaeli"
@@ -248,10 +281,11 @@ export default function ContactPage() {
                 className="inline-flex items-center gap-2 px-6 py-3 bg-[#53B6F0] hover:bg-cyan-500 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg"
               >
                 <FaMapMarkerAlt />
-                Yol Tarifi Al
+                {t("map.directions")}
               </a>
             </div>
 
+            {/* Embedded Map */}
             <div className="w-full h-96 bg-slate-900/60 rounded-2xl overflow-hidden border border-slate-700">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1!2d29.8!3d40.76!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQ1JzM2LjAiTiAyOcKwNDgnMDAuMCJF!5e0!3m2!1str!2str!4v1234567890"
@@ -261,15 +295,16 @@ export default function ContactPage() {
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Global Exim Konumu"
+                title={t("map.iframeTitle")}
               ></iframe>
             </div>
 
+            {/* Appointment Notice */}
             <div className="mt-6 bg-gradient-to-r from-[#53B6F0]/10 to-cyan-500/10 border border-[#53B6F0]/30 rounded-xl p-4">
               <div className="flex items-center justify-center gap-2 text-slate-300 text-sm">
                 <FaCheckCircle className="text-[#53B6F0]" />
                 <span>
-                  Ofisimizi ziyaret etmek isterseniz lütfen önceden randevu alın
+                  {t("map.notice")}
                 </span>
               </div>
             </div>

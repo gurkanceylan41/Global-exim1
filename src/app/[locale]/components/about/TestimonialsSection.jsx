@@ -1,8 +1,32 @@
+/**
+ * Testimonials Section
+ *
+ * Customer testimonials displayed in a grid layout
+ * with star ratings and customer information.
+ */
+
+"use client";
+
 import React from "react";
 import { FaHeart, FaStar, FaQuoteLeft } from "react-icons/fa";
-import { testimonials } from "@/app/data/aboutData";
+import { useTranslations } from "next-intl";
 
 const TestimonialsSection = () => {
+  // Get translations
+  const t = useTranslations("about.testimonials");
+
+  // Get testimonials array from translations
+  const getTestimonials = () => {
+    try {
+      const items = t.raw("items");
+      return Array.isArray(items) ? items : [];
+    } catch {
+      return [];
+    }
+  };
+
+  const testimonials = getTestimonials();
+
   return (
     <div className="py-32 px-6 bg-gradient-to-b from-slate-900 to-slate-950 relative overflow-hidden">
       {/* Background Effects */}
@@ -11,43 +35,50 @@ const TestimonialsSection = () => {
       </div>
 
       <div className="relative max-w-7xl mx-auto">
+        {/* Section Header */}
         <div className="text-center mb-20">
           <div className="inline-flex items-center gap-2 px-5 py-2 bg-amber-500/10 backdrop-blur-xl rounded-full border border-amber-500/30 mb-8">
             <FaHeart className="w-4 h-4 text-amber-400" />
             <span className="text-sm text-slate-300 font-semibold">
-              Müşteri Yorumları
+              {t("badge")}
             </span>
           </div>
           <h2 className="text-5xl md:text-6xl font-black text-white mb-6">
-            Müşterilerimiz{" "}
+            {t("title")}{" "}
             <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
-              Ne Diyor?
+              {t("titleHighlight")}
             </span>
           </h2>
           <p className="text-slate-400 text-xl">
-            Başarı hikayelerimiz ve geri bildirimler
+            {t("subtitle")}
           </p>
         </div>
 
+        {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <div key={index} className="group relative">
+              {/* Hover glow effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+
+              {/* Card content */}
               <div className="relative bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-3xl p-8 hover:bg-slate-900/70 hover:border-blue-500/50 transition-all duration-300 h-full flex flex-col">
-                {/* Stars */}
+                {/* Star Rating */}
                 <div className="flex gap-1 mb-6">
-                  {[...Array(testimonial.rating)].map((_, i) => (
+                  {[...Array(5)].map((_, i) => (
                     <FaStar key={i} className="w-5 h-5 text-amber-400" />
                   ))}
                 </div>
 
-                {/* Quote */}
+                {/* Quote Icon */}
                 <FaQuoteLeft className="w-8 h-8 text-blue-400/30 mb-4" />
+
+                {/* Testimonial Text */}
                 <p className="text-slate-300 leading-relaxed mb-8 flex-grow">
                   {testimonial.text}
                 </p>
 
-                {/* Author */}
+                {/* Author Info */}
                 <div className="border-t border-slate-800 pt-6">
                   <div className="font-bold text-white text-lg mb-1">
                     {testimonial.name}

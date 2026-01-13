@@ -1,0 +1,352 @@
+{
+  "metadata": {
+    "title": "Global Exim - Küresel Ticaretin Güvenilir Ortağı",
+    "titleTemplate": "{title} | Global Exim",
+    "description": "Global Exim - 70+ ülkeye ihracat yapan, kaliteli gofret ve bisküvi üreticisi. Uluslararası ticarette güvenilir iş ortağınız.",
+    "keywords": "ihracat, ithalat, gofret, bisküvi, uluslararası ticaret, Global Exim, Türkiye"
+  },
+  "navigation": {
+    "home": "Ana Sayfa",
+    "about": "Hakkımızda",
+    "products": "Ürünler",
+    "contact": "İletişim",
+    "openMenu": "Menüyü Aç",
+    "closeMenu": "Menüyü Kapat"
+  },
+  "languageSwitcher": {
+    "label": "Dil",
+    "turkish": "Türkçe",
+    "russian": "Русский"
+  },
+  "home": {
+    "hero": {
+      "title": "Global Exim",
+      "tagline": "Küresel Ticaretin Güvenilir Ortağı",
+      "description": "Kaliteli ürünler, güçlü hizmet anlayışı ve profesyonel yaklaşımla uluslararası ticarette fark yaratıyoruz.",
+      "ctaProducts": "Ürünlerimizi Keşfedin",
+      "ctaContact": "İletişime Geçin",
+      "stats": {
+        "countries": "Ülkeye İhracat",
+        "deliveries": "Başarılı Teslimat",
+        "experience": "Yıllık Deneyim"
+      }
+    },
+    "about": {
+      "badge": "Global Exim Hakkında",
+      "title": "Uluslararası Ticarette",
+      "titleHighlight": "Güvenilir Partneriniz",
+      "description": "{years} yıldır uluslararası ticarette köprü kuruyoruz. {countries} ülkede faaliyet göstererek işinizi dünya pazarlarına taşıyoruz.",
+      "years": "15 yıldır",
+      "countries": "70+ ülkede",
+      "cta": "Daha Fazla Bilgi",
+      "stats": {
+        "customers": "Mutlu Müşteri",
+        "countries": "Ülke",
+        "experience": "Yıl Deneyim"
+      },
+      "bottomStats": {
+        "shipments": "Başarılı Sevkiyat",
+        "satisfaction": "Müşteri Memnuniyeti",
+        "network": "Global Ağ",
+        "industryExp": "Sektör Deneyimi"
+      },
+      "highlights": {
+        "reliability": {
+          "title": "Güvenilirlik",
+          "description": "ISO 9001 sertifikalı kalite güvencesi"
+        },
+        "innovation": {
+          "title": "İnovasyon",
+          "description": "Teknoloji odaklı çözümler"
+        },
+        "customerFocus": {
+          "title": "Müşteri Odaklılık",
+          "description": "7/24 profesyonel destek"
+        },
+        "excellence": {
+          "title": "Mükemmellik",
+          "description": "En yüksek hizmet standartları"
+        }
+      }
+    }
+  },
+  "about": {
+    "metadata": {
+      "title": "Hakkımızda",
+      "description": "2010'dan bu yana 70+ ülkeye ihracat yapan Global Exim hakkında bilgi edinin. Misyonumuz, vizyonumuz ve değerlerimiz.",
+      "keywords": "Global Exim, hakkımızda, ihracat şirketi, Türkiye, uluslararası ticaret"
+    },
+    "hero": {
+      "badge": "15 Yıldır Güvenilir İş Ortağınız",
+      "title": "Global Exim",
+      "description": "{years} uluslararası ticarette güvenin ve mükemmelliğin adresi",
+      "years": "15 yıldır"
+    },
+    "stats": {
+      "countries": "Ülke",
+      "customers": "Mutlu Müşteri",
+      "shipments": "Başarılı Sevkiyat",
+      "experience": "Yıl Deneyim"
+    },
+    "mission": {
+      "badge": "Kimiz & Değerlerimiz",
+      "title": "Bizim",
+      "titleHighlight": "Hikayemiz",
+      "subtitle": "İlkelerimiz ve değerlerimizle yarattığımız fark",
+      "tabs": {
+        "mission": {
+          "label": "Misyon",
+          "content": "Uluslararası ticarette güvenilir köprü olmak, müşterilerimize en yüksek kalitede hizmet sunarak küresel pazarlarda büyümelerine destek sağlamak. Sürdürülebilir ticaret anlayışı ile sektörde öncü olmayı hedefliyoruz."
+        },
+        "vision": {
+          "label": "Vizyon",
+          "content": "2030 yılına kadar 100'den fazla ülkeye hizmet veren, teknoloji odaklı çözümleri ile sektörde referans alınan küresel bir ticaret şirketi olmak. Dijital dönüşüm ve inovasyon ile geleceği şekillendirmek."
+        },
+        "values": {
+          "label": "Değerler",
+          "content": "Dürüstlük, şeffaflık, müşteri memnuniyeti, sürekli gelişim ve çevreye saygı. Bu değerler doğrultusunda tüm iş süreçlerimizi yönetiyor ve uzun vadeli iş ortaklıkları kuruyoruz."
+        }
+      }
+    },
+    "values": {
+      "badge": "Değerlerimiz",
+      "title": "Temel",
+      "titleHighlight": "Değerlerimiz",
+      "subtitle": "Başarımızın ardındaki prensipler ve ilkeler",
+      "items": {
+        "reliability": {
+          "title": "Güvenilirlik",
+          "description": "ISO 9001 sertifikalı kalite yönetim sistemi ile müşterilerimize güven veriyoruz"
+        },
+        "innovation": {
+          "title": "İnovasyon",
+          "description": "Teknoloji odaklı çözümler ile dijital dönüşümde öncüyüz"
+        },
+        "customerFocus": {
+          "title": "Müşteri Odaklılık",
+          "description": "7/24 destek ve özel çözümlerle yanınızdayız"
+        },
+        "excellence": {
+          "title": "Mükemmellik",
+          "description": "En yüksek standartlarda hizmet kalitesi sunuyoruz"
+        }
+      }
+    },
+    "timeline": {
+      "badge": "Tarihçemiz",
+      "title": "Bizim",
+      "titleHighlight": "Yolculuğumuz",
+      "subtitle": "15 yıllık başarı ve büyüme hikayemiz",
+      "items": {
+        "2010": {
+          "title": "Kuruluş",
+          "description": "Global Exim, Türkiye'de uluslararası ticaret vizyonuyla kuruldu. İlk adımları attık ve temellerimizi oluşturduk.",
+          "achievements": ["İlk ofis", "Kurucu ekip"]
+        },
+        "2015": {
+          "title": "Büyüme Dönemi",
+          "description": "50+ ülkeye hizmet veren güçlü bir yapıya kavuştuk. Bölgesel liderliğimizi pekiştirdik.",
+          "achievements": ["50+ ülke", "500+ müşteri"]
+        },
+        "2020": {
+          "title": "Dijital Dönüşüm",
+          "description": "E-ticaret ve dijital platformlarda yeni hizmetler başlattık. Teknolojiye yatırım yaptık.",
+          "achievements": ["Dijital platform", "Online hizmetler"]
+        },
+        "2025": {
+          "title": "Lider Pozisyon",
+          "description": "70+ ülkede faaliyet gösteren sektör lideri konumundayız. Geleceğe güvenle bakıyoruz.",
+          "achievements": ["70+ ülke", "1000+ müşteri"]
+        }
+      }
+    },
+    "whyUs": {
+      "badge": "Neden Bizi Seçmelisiniz?",
+      "title": "Başarınız İçin",
+      "titleHighlight": "Güvenilir Ortak",
+      "subtitle": "15 yıllık deneyimimiz ve uzmanlığımızla işinizi uluslararası pazarlarda büyütmenize yardımcı oluyoruz.",
+      "partnerCount": "Mutlu İş Ortağı",
+      "certifications": {
+        "iso": "ISO 9001",
+        "eco": "Çevre Dostu"
+      },
+      "features": {
+        "payment": "Güvenli ve hızlı ödeme sistemleri",
+        "network": "70+ ülkede global ağ ve lojistik altyapı",
+        "support": "7/24 profesyonel müşteri desteği",
+        "pricing": "Rekabetçi fiyatlar ve şeffaf maliyet yapısı"
+      }
+    },
+    "testimonials": {
+      "badge": "Müşteri Yorumları",
+      "title": "Müşterilerimiz",
+      "titleHighlight": "Ne Diyor?",
+      "subtitle": "Başarı hikayelerimiz ve geri bildirimler",
+      "items": [
+        {
+          "name": "Ahmet Yılmaz",
+          "position": "CEO, TechCorp",
+          "text": "Global Exim ile çalışmak işimizi uluslararası pazarlara taşımamızı kolaylaştırdı. Profesyonel ekip ve hızlı çözümler."
+        },
+        {
+          "name": "Ayşe Demir",
+          "position": "İhracat Müdürü, ExportPro",
+          "text": "15 yıldır güvendiğimiz iş ortağımız. Her zaman yanımızdalar ve sorunlarımıza anında çözüm buluyorlar."
+        },
+        {
+          "name": "Mehmet Kaya",
+          "position": "Lojistik Direktörü, FastShip",
+          "text": "Kaliteli hizmet, zamanında teslimat ve rekabetçi fiyatlar. Global Exim'i herkese tavsiye ediyorum."
+        }
+      ]
+    },
+    "cta": {
+      "badge": "Başlayalım",
+      "title": "Hemen",
+      "titleHighlight": "İletişime Geçin",
+      "subtitle": "Uluslararası ticaret yolculuğunuzda size nasıl yardımcı olabileceğimizi konuşalım",
+      "button": "İletişime Geçin"
+    }
+  },
+  "products": {
+    "metadata": {
+      "title": "Ürünler",
+      "description": "Global Exim ürün katalogu. Gofret, bisküvi ve doğal kuru meyve çeşitlerimizi keşfedin. 70+ ülkeye ihracat.",
+      "keywords": "gofret, bisküvi, kuru meyve, Wafer Master, ihracat ürünleri, Global Exim"
+    },
+    "header": {
+      "badge": "Ürünlerimiz",
+      "title": "Ürün Katalogu",
+      "subtitle": "70'den fazla ülkeye ihracat yapan kaliteli gofret ve bisküvi üreticisi"
+    },
+    "search": {
+      "placeholder": "Ürün ara... (İsim, marka veya kod)"
+    },
+    "categories": {
+      "all": "Tümü",
+      "waferRoll": "Rulo Gofretler",
+      "wafer": "Gofretler",
+      "biscuit": "Bisküviler",
+      "dried": "Doğal Kuru Meyve"
+    },
+    "categoryNames": {
+      "waferRoll": "Rulo Gofret",
+      "wafer": "Gofret",
+      "biscuit": "Bisküvi",
+      "dried": "Doğal Kuru Meyve"
+    },
+    "labels": {
+      "code": "Kod",
+      "weight": "Ağırlık",
+      "units": "Koli/Kutu"
+    },
+    "emptyState": "Aradığınız kriterlere uygun ürün bulunamadı.",
+    "productNames": {
+      "1215": "Kakaolu Fındık Kremalı Rulo Gofret",
+      "1802": "Kakaolu Fındık Kremalı Rulo Gofret",
+      "1220": "Kakaolu Fındık Kremalı Rulo Gofret",
+      "1390": "Kakaolu Fındık Kremalı Rulo Gofret",
+      "1490": "Kakaolu Fındık Kremalı Rulo Gofret",
+      "1267": "Çikolata Kremalı Rulo Gofret",
+      "1395": "Çikolata Kremalı Rulo Gofret",
+      "1228": "Çikolata Kremalı Rulo Gofret",
+      "1892": "Vanilya Kremalı Rulo Gofret",
+      "1882": "Çilek Aromalı Rulo Gofret",
+      "1872": "Cappuccino Kremalı Rulo Gofret",
+      "1822": "Yer Fıstığı Kremalı Rulo Gofret",
+      "1358": "Hindistan Cevizi Aromalı Hindistan Cevizi Parçacıklı Sütlü Çikolata Kaplamalı",
+      "1092": "Çikolata Kremalı Rulo Gofret",
+      "1351": "Çikolata Kremalı Sütlü Çikolata Kaplamalı Gofret",
+      "5115": "Çikolata Kremalı Gofret",
+      "5125": "Fındık Kremalı Gofret",
+      "5135": "Sütlü & Vanilya Kremalı Gofret",
+      "5145": "Kakao Kremalı Gofret",
+      "5155": "Çilek Kremalı Gofret",
+      "5323": "Çikolata Kremalı Gofret",
+      "5329": "Yer Fıstığı Kremalı Gofret",
+      "5590": "Fındık Kremalı Gofret",
+      "5580": "Çikolata Kremalı Gofret",
+      "5570": "Sütlü & Vanilya Kremalı Gofret",
+      "1048": "Kakaolu Fındık Kremalı Gofret",
+      "1049": "Çikolata Kremalı Gofret",
+      "1701": "Çikolata Kremalı Gofret",
+      "1037": "Çikolata Kremalı Gofret",
+      "1035": "Kakaolu Fındık Kremalı Gofret",
+      "5760": "Antep Fıstığı Kremalı Sütlü Çikolatalı Kaplamalı Gofret",
+      "4010": "Sütlü Çikolatalı Sütlü Kremalı Bisküvi",
+      "4200": "Beyaz Çikolatalı Fındık Kremalı Bisküvi",
+      "4220": "Beyaz Çikolatalı Yer Fıstığı Kremalı Bisküvi",
+      "2680": "Kakao Kaplamalı Hindistan Cevizi Aroma Kremalı Hindistan Cevizli Bisküvi",
+      "2129": "Kakao Kaplamalı Çilek Aroma Kremalı Çilekli Bisküvi",
+      "2158": "Kakao Kaplamalı Hindistan Cevizi Aroma Kremalı Hindistan Cevizli Bisküvi",
+      "2355": "Kakao Kaplamalı Vanilya Kremalı Kakaolu Bisküvi",
+      "1212": "Çikolata Kremalı Rulo Gofret",
+      "1213": "Çilek Aromalı Rulo Gofret",
+      "1010": "Kuru Kayısı",
+      "1011": "Kuru Üzüm",
+      "1111": "Kuru İncir"
+    }
+  },
+  "contact": {
+    "metadata": {
+      "title": "İletişim",
+      "description": "Global Exim ile iletişime geçin. Telefon, WhatsApp, e-posta veya ofisimizi ziyaret ederek bize ulaşabilirsiniz.",
+      "keywords": "iletişim, Global Exim, telefon, e-posta, WhatsApp, adres"
+    },
+    "hero": {
+      "badge": "Bize Ulaşın",
+      "title": "İletişime Geçin",
+      "subtitle": "Size en uygun kanaldan ulaşın. Profesyonel ekibimiz size yardımcı olmak için hazır."
+    },
+    "cards": {
+      "phone": {
+        "title": "Telefon",
+        "subtitle": "Pazartesi-Cuma, 09:00-18:00"
+      },
+      "whatsapp": {
+        "title": "WhatsApp",
+        "subtitle": "7/24 Anında Yanıt"
+      },
+      "email": {
+        "title": "E-posta",
+        "subtitle": "24 Saat İçinde Dönüş"
+      },
+      "address": {
+        "title": "Adres",
+        "value": "Körfez, İzmit",
+        "subtitle": "Kocaeli, Türkiye"
+      }
+    },
+    "offices": {
+      "title": "Ofislerimiz",
+      "headquarters": {
+        "title": "Merkez Ofis",
+        "address": "Körfez Mahallesi, Çizmeci TIME",
+        "city": "İzmit, Kocaeli",
+        "country": "Türkiye"
+      },
+      "global": {
+        "title": "Küresel Hizmet",
+        "address": "70+ Ülkeye İhracat",
+        "city": "Uluslararası Ticaret",
+        "country": "Dünya Çapında"
+      }
+    },
+    "social": {
+      "title": "Sosyal Medya"
+    },
+    "map": {
+      "title": "Konumumuz",
+      "directions": "Yol Tarifi Al",
+      "iframeTitle": "Global Exim Konumu",
+      "notice": "Ofisimizi ziyaret etmek isterseniz lütfen önceden randevu alın"
+    }
+  },
+  "common": {
+    "learnMore": "Daha Fazla",
+    "viewAll": "Tümünü Gör",
+    "loading": "Yükleniyor...",
+    "error": "Bir hata oluştu",
+    "retry": "Tekrar Dene"
+  }
+}
