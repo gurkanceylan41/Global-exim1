@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Global Exim - Küresel Ticaretin Güvenilir Ortağı",
-    "titleTemplate": "{title} | Global Exim",
+    "titleTemplate": "%s | Global Exim",
     "description": "Global Exim - 70+ ülkeye ihracat yapan, kaliteli gofret ve bisküvi üreticisi. Uluslararası ticarette güvenilir iş ortağınız.",
     "keywords": "ihracat, ithalat, gofret, bisküvi, uluslararası ticaret, Global Exim, Türkiye"
   },
@@ -79,7 +79,7 @@
     "hero": {
       "badge": "15 Yıldır Güvenilir İş Ortağınız",
       "title": "Global Exim",
-      "description": "{years} uluslararası ticarette güvenin ve mükemmelliğin adresi",
+      "descriptionText": "uluslararası ticarette güvenin ve mükemmelliğin adresi",
       "years": "15 yıldır"
     },
     "stats": {

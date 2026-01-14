@@ -56,9 +56,7 @@ const HeroSection = () => {
           {/* Description */}
           <p className="text-xl md:text-2xl text-slate-400 max-w-4xl mx-auto font-light leading-relaxed">
             <span className="text-slate-300 font-semibold">{t("hero.years")}</span>{" "}
-            {t.rich("hero.description", {
-              years: () => null
-            }).props?.children?.[1] || "uluslararası ticarette güvenin ve mükemmelliğin adresi"}
+            {t("hero.descriptionText")}
           </p>
 
           {/* Stats Grid */}
