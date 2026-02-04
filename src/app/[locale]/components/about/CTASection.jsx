@@ -1,67 +1,127 @@
 /**
  * CTA (Call to Action) Section
  *
- * Contact call-to-action with gradient background
- * and prominent button.
+ * Minimal contact call-to-action with clean typography
+ * and scroll-triggered animations.
  */
 
 "use client";
 
 import Link from "next/link";
-import React from "react";
-import { FaRocket, FaArrowRight } from "react-icons/fa";
+import React, { useEffect, useRef, useState } from "react";
+import { LuArrowRight } from "react-icons/lu";
 import { useTranslations, useLocale } from "next-intl";
 
 const CTASection = () => {
-  // Get translations and current locale
   const t = useTranslations("about.cta");
   const locale = useLocale();
+  const sectionRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
 
-  // Generate locale-aware contact link
   const contactHref = locale === "tr" ? "/Contact" : `/${locale}/Contact`;
 
-  return (
-    <div className="py-32 px-6 bg-slate-950 relative overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_70%)]"></div>
-      </div>
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.2 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
-      <div className="relative max-w-5xl mx-auto text-center">
-        {/* CTA Card */}
-        <div className="bg-gradient-to-br from-slate-900/80 to-slate-900/40 backdrop-blur-xl border border-slate-800 rounded-[3rem] p-16 shadow-2xl">
+  return (
+    <div className="py-28 md:py-36 px-6 bg-white relative overflow-hidden">
+      <div className="relative max-w-5xl mx-auto" ref={sectionRef}>
+        {/* Top Border */}
+        <div
+          className="w-full h-[1px] bg-slate-200 mb-20"
+          style={{
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? "scaleX(1)" : "scaleX(0)",
+            transformOrigin: "center",
+            transition: "opacity 0.6s ease, transform 0.6s ease",
+          }}
+        />
+
+        <div className="text-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-5 py-2 bg-blue-500/10 backdrop-blur-xl rounded-full border border-blue-500/30 mb-8">
-            <FaRocket className="w-4 h-4 text-blue-400" />
-            <span className="text-sm text-slate-300 font-semibold">
-              {t("badge")}
-            </span>
-          </div>
+          <span
+            className="inline-block text-[11px] tracking-[0.3em] uppercase text-slate-400 font-medium"
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? "translateY(0)" : "translateY(15px)",
+              transition: "opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s",
+            }}
+          >
+            {t("badge")}
+          </span>
+
+          <div
+            className="w-10 h-[1px] bg-slate-300 mx-auto mt-4 mb-6"
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? "scaleX(1)" : "scaleX(0)",
+              transition: "opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s",
+            }}
+          />
 
           {/* Title */}
-          <h2 className="text-5xl md:text-6xl font-black text-white mb-6 leading-tight">
-            {t("title")}{" "}
-            <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              {t("titleHighlight")}
-            </span>
+          <h2
+            className="text-3xl md:text-4xl lg:text-5xl tracking-[0.02em] text-slate-900 mb-6"
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? "translateY(0)" : "translateY(20px)",
+              transition: "opacity 0.7s ease 0.3s, transform 0.7s ease 0.3s",
+            }}
+          >
+            <span className="font-extralight">{t("title")} </span>
+            <span className="font-bold">{t("titleHighlight")}</span>
           </h2>
 
           {/* Subtitle */}
-          <p className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto">
+          <p
+            className="text-slate-500 text-base md:text-lg font-light leading-relaxed max-w-2xl mx-auto mb-12"
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? "translateY(0)" : "translateY(15px)",
+              transition: "opacity 0.6s ease 0.5s, transform 0.6s ease 0.5s",
+            }}
+          >
             {t("subtitle")}
           </p>
 
           {/* CTA Button */}
-          <div className="flex flex-wrap justify-center gap-4">
+          <div
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? "translateY(0)" : "translateY(15px)",
+              transition: "opacity 0.6s ease 0.7s, transform 0.6s ease 0.7s",
+            }}
+          >
             <Link href={contactHref}>
-              <button className="group inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl text-white font-bold text-lg hover:shadow-2xl hover:shadow-blue-500/50 hover:scale-105 transition-all duration-300">
+              <button className="group inline-flex items-center gap-3 px-8 py-4 border border-slate-900 text-slate-900 text-sm tracking-[0.1em] uppercase font-medium hover:bg-slate-900 hover:text-white transition-all duration-500">
                 <span>{t("button")}</span>
-                <FaArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                <LuArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
               </button>
             </Link>
           </div>
         </div>
+
+        {/* Bottom Border */}
+        <div
+          className="w-full h-[1px] bg-slate-200 mt-20"
+          style={{
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? "scaleX(1)" : "scaleX(0)",
+            transformOrigin: "center",
+            transition: "opacity 0.6s ease 0.8s, transform 0.6s ease 0.8s",
+          }}
+        />
       </div>
     </div>
   );

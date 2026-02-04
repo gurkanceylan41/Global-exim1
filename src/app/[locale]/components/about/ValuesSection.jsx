@@ -1,117 +1,158 @@
 /**
  * Values Section
  *
- * Displays the company's core values in a grid layout
- * with animated cards and icons.
+ * Displays the company's core values in a numbered horizontal layout
+ * with scroll-triggered animations.
  */
 
 "use client";
 
-import React from "react";
-import { FaShieldAlt, FaRocket, FaUsers, FaStar } from "react-icons/fa";
+import React, { useEffect, useRef, useState } from "react";
+import { LuShieldCheck, LuTrendingUp, LuHandshake, LuAward } from "react-icons/lu";
 import { useTranslations } from "next-intl";
 
 const ValuesSection = () => {
-  // Get translations
   const t = useTranslations("about.values");
+  const headerRef = useRef(null);
+  const [headerVisible, setHeaderVisible] = useState(false);
+  const rowRefs = useRef([]);
+  const [rowVisibility, setRowVisibility] = useState([false, false, false, false]);
 
-  // Values configuration with icons, colors, and translation keys
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHeaderVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.2 }
+    );
+    if (headerRef.current) observer.observe(headerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const observers = rowRefs.current.map((el, index) => {
+      if (!el) return null;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setRowVisibility((prev) => {
+              const next = [...prev];
+              next[index] = true;
+              return next;
+            });
+            observer.unobserve(entry.target);
+          }
+        },
+        { threshold: 0.2 }
+      );
+      observer.observe(el);
+      return observer;
+    });
+    return () => observers.forEach((o) => o?.disconnect());
+  }, []);
+
   const values = [
     {
-      icon: FaShieldAlt,
+      icon: LuShieldCheck,
       titleKey: "items.reliability.title",
       descriptionKey: "items.reliability.description",
-      color: "from-blue-500 to-blue-600",
-      borderColor: "group-hover:border-blue-500/50",
     },
     {
-      icon: FaRocket,
+      icon: LuTrendingUp,
       titleKey: "items.innovation.title",
       descriptionKey: "items.innovation.description",
-      color: "from-purple-500 to-purple-600",
-      borderColor: "group-hover:border-purple-500/50",
     },
     {
-      icon: FaUsers,
+      icon: LuHandshake,
       titleKey: "items.customerFocus.title",
       descriptionKey: "items.customerFocus.description",
-      color: "from-emerald-500 to-emerald-600",
-      borderColor: "group-hover:border-emerald-500/50",
     },
     {
-      icon: FaStar,
+      icon: LuAward,
       titleKey: "items.excellence.title",
       descriptionKey: "items.excellence.description",
-      color: "from-amber-500 to-amber-600",
-      borderColor: "group-hover:border-amber-500/50",
     },
   ];
 
   return (
-    <div className="py-32 px-6 bg-gradient-to-b from-slate-950 to-slate-900 relative overflow-hidden">
-      {/* Background Effect - Decorative blurred circles */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500 rounded-full blur-3xl"></div>
-      </div>
-
-      <div className="relative max-w-7xl mx-auto">
+    <div className="py-28 md:py-36 px-6 bg-white relative overflow-hidden">
+      <div className="relative max-w-5xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 px-5 py-2 bg-purple-500/10 backdrop-blur-xl rounded-full border border-purple-500/30 mb-8">
-            <FaShieldAlt className="w-4 h-4 text-purple-400" />
-            <span className="text-sm text-slate-300 font-semibold">
-              {t("badge")}
-            </span>
-          </div>
-          <h2 className="text-5xl md:text-6xl font-black text-white mb-6">
-            {t("title")}{" "}
-            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              {t("titleHighlight")}
-            </span>
+        <div className="text-center mb-20" ref={headerRef}>
+          <span
+            className="inline-block text-[11px] tracking-[0.3em] uppercase text-slate-400 font-medium"
+            style={{
+              opacity: headerVisible ? 1 : 0,
+              transform: headerVisible ? "translateY(0)" : "translateY(15px)",
+              transition: "opacity 0.6s ease, transform 0.6s ease",
+            }}
+          >
+            {t("badge")}
+          </span>
+          <div
+            className="w-10 h-[1px] bg-slate-300 mx-auto mt-4 mb-6"
+            style={{
+              opacity: headerVisible ? 1 : 0,
+              transform: headerVisible ? "scaleX(1)" : "scaleX(0)",
+              transition: "opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s",
+            }}
+          />
+          <h2
+            className="text-3xl md:text-4xl lg:text-5xl tracking-[0.02em] text-slate-900 mb-6"
+            style={{
+              opacity: headerVisible ? 1 : 0,
+              transform: headerVisible ? "translateY(0)" : "translateY(20px)",
+              transition: "opacity 0.7s ease 0.3s, transform 0.7s ease 0.3s",
+            }}
+          >
+            <span className="font-extralight">{t("title")} </span>
+            <span className="font-bold">{t("titleHighlight")}</span>
           </h2>
-          <p className="text-slate-400 text-xl max-w-3xl mx-auto">
+          <p
+            className="text-slate-500 text-base md:text-lg font-light leading-relaxed max-w-2xl mx-auto"
+            style={{
+              opacity: headerVisible ? 1 : 0,
+              transform: headerVisible ? "translateY(0)" : "translateY(15px)",
+              transition: "opacity 0.6s ease 0.5s, transform 0.6s ease 0.5s",
+            }}
+          >
             {t("subtitle")}
           </p>
         </div>
 
-        {/* Values Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Values - Numbered horizontal rows */}
+        <div className="space-y-0">
           {values.map((value, index) => (
             <div
               key={index}
-              className="group relative"
-              style={{ animationDelay: `${index * 100}ms` }}
+              ref={(el) => (rowRefs.current[index] = el)}
+              className="group grid grid-cols-[auto_1fr] md:grid-cols-[60px_auto_1fr] gap-6 md:gap-10 items-start py-10 border-t border-slate-200 last:border-b"
+              style={{
+                opacity: rowVisibility[index] ? 1 : 0,
+                transform: rowVisibility[index] ? "translateY(0)" : "translateY(25px)",
+                transition: `opacity 0.6s ease ${index * 0.12}s, transform 0.6s ease ${index * 0.12}s`,
+              }}
             >
-              {/* Hover glow effect */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${value.color} opacity-0 group-hover:opacity-20 rounded-3xl blur-xl transition-all duration-500`}
-              ></div>
+              {/* Number */}
+              <span className="text-[11px] tracking-[0.2em] text-slate-300 font-light pt-1">
+                0{index + 1}
+              </span>
 
-              {/* Card content */}
-              <div
-                className={`relative h-full bg-slate-900/40 backdrop-blur-xl border border-slate-800 rounded-3xl p-8 hover:bg-slate-900/60 transition-all duration-300 transform hover:-translate-y-2 ${value.borderColor}`}
-              >
-                {/* Icon container */}
-                <div
-                  className={`inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br ${value.color} mb-8 shadow-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}
-                >
-                  <value.icon className="w-10 h-10 text-white" />
-                </div>
-
-                {/* Title */}
-                <h3 className="text-2xl font-black text-white mb-4 group-hover:text-blue-400 transition-colors duration-300">
+              {/* Title + Icon */}
+              <div className="flex items-center gap-3 md:min-w-[220px]">
+                <value.icon className="w-4 h-4 text-slate-400 group-hover:text-slate-700 transition-colors duration-300 shrink-0" />
+                <h3 className="text-sm tracking-[0.12em] uppercase font-medium text-slate-900 group-hover:text-slate-700 transition-colors duration-300">
                   {t(value.titleKey)}
                 </h3>
-
-                {/* Description */}
-                <p className="text-slate-400 leading-relaxed">
-                  {t(value.descriptionKey)}
-                </p>
-
-                {/* Decorative Element */}
-                <div className="absolute bottom-4 right-4 w-16 h-16 border-2 border-slate-700/30 rounded-full group-hover:border-blue-500/30 transition-colors duration-300"></div>
               </div>
+
+              {/* Description */}
+              <p className="text-slate-500 text-sm font-light leading-relaxed col-span-2 md:col-span-1 group-hover:text-slate-700 transition-colors duration-300">
+                {t(value.descriptionKey)}
+              </p>
             </div>
           ))}
         </div>

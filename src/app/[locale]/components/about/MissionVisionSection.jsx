@@ -1,92 +1,200 @@
 /**
  * Mission/Vision/Values Section
  *
- * Tabbed content section displaying company mission, vision, and values.
- * Interactive tabs with smooth transitions and hover effects.
+ * Clean alternating layout with contained images and text.
+ * Scroll-triggered animations for each block.
  */
 
 "use client";
 
-import { useState } from "react";
-import { FaStar, FaQuoteLeft, FaRocket, FaBuilding } from "react-icons/fa";
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { LuRocket, LuBuilding2, LuSparkles } from "react-icons/lu";
 import { useTranslations } from "next-intl";
 
+const AnimatedBlock = ({ children, index, isReverse }) => {
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.15 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={`flex flex-col gap-8 lg:gap-16 ${
+        isReverse ? "lg:flex-row-reverse" : "lg:flex-row"
+      } items-center`}
+    >
+      {children(isVisible)}
+    </div>
+  );
+};
+
 export default function MissionVisionSection() {
-  // Active tab state
-  const [activeTab, setActiveTab] = useState("mission");
-
-  // Get translations
   const t = useTranslations("about.mission");
+  const headerRef = useRef(null);
+  const [headerVisible, setHeaderVisible] = useState(false);
 
-  // Tab configuration with icons
-  const tabs = [
-    { id: "mission", labelKey: "tabs.mission.label", contentKey: "tabs.mission.content", icon: FaRocket },
-    { id: "vision", labelKey: "tabs.vision.label", contentKey: "tabs.vision.content", icon: FaBuilding },
-    { id: "values", labelKey: "tabs.values.label", contentKey: "tabs.values.content", icon: FaStar },
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHeaderVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.2 }
+    );
+    if (headerRef.current) observer.observe(headerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const sections = [
+    {
+      labelKey: "tabs.mission.label",
+      contentKey: "tabs.mission.content",
+      icon: LuRocket,
+      image: "/images/mission.jpg",
+    },
+    {
+      labelKey: "tabs.vision.label",
+      contentKey: "tabs.vision.content",
+      icon: LuBuilding2,
+      image: "/images/vision.jpg",
+    },
+    {
+      labelKey: "tabs.values.label",
+      contentKey: "tabs.values.content",
+      icon: LuSparkles,
+      image: "/images/values.jpg",
+    },
   ];
 
   return (
-    <div className="py-32 px-6 bg-slate-950 relative">
-      {/* Background Pattern - Radial gradient effect */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.3),transparent_50%)]"></div>
+    <div className="bg-[#f8fafc] py-24 md:py-32">
+      {/* Section Header */}
+      <div ref={headerRef} className="max-w-5xl mx-auto px-6 mb-24">
+        <span
+          className="inline-block text-[11px] tracking-[0.3em] uppercase text-slate-400 font-medium"
+          style={{
+            opacity: headerVisible ? 1 : 0,
+            transform: headerVisible ? "translateY(0)" : "translateY(15px)",
+            transition: "opacity 0.6s ease, transform 0.6s ease",
+          }}
+        >
+          {t("badge")}
+        </span>
+        <div
+          className="w-10 h-[1px] bg-slate-300 mt-4 mb-6"
+          style={{
+            opacity: headerVisible ? 1 : 0,
+            transform: headerVisible ? "scaleX(1)" : "scaleX(0)",
+            transformOrigin: "left",
+            transition: "opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s",
+          }}
+        />
+        <h2
+          className="text-3xl md:text-4xl lg:text-5xl tracking-[0.02em] text-slate-900"
+          style={{
+            opacity: headerVisible ? 1 : 0,
+            transform: headerVisible ? "translateY(0)" : "translateY(20px)",
+            transition: "opacity 0.7s ease 0.3s, transform 0.7s ease 0.3s",
+          }}
+        >
+          <span className="font-extralight">{t("title")} </span>
+          <span className="font-bold">{t("titleHighlight")}</span>
+        </h2>
       </div>
 
-      <div className="relative max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 px-5 py-2 bg-blue-500/10 backdrop-blur-xl rounded-full border border-blue-500/30 mb-8">
-            <FaStar className="w-4 h-4 text-blue-400" />
-            <span className="text-sm text-slate-300 font-semibold">
-              {t("badge")}
-            </span>
-          </div>
-          <h2 className="text-5xl md:text-6xl font-black text-white mb-6">
-            {t("title")}{" "}
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              {t("titleHighlight")}
-            </span>
-          </h2>
-          <p className="text-slate-400 text-xl max-w-2xl mx-auto">
-            {t("subtitle")}
-          </p>
-        </div>
+      {/* Blocks */}
+      <div className="max-w-6xl mx-auto px-6 space-y-28 md:space-y-36">
+        {sections.map((section, index) => {
+          const isReverse = index % 2 !== 0;
 
-        {/* Enhanced Tabs Navigation */}
-        <div className="flex justify-center mb-16">
-          <div className="inline-flex gap-3 p-2 bg-slate-900/50 backdrop-blur-xl rounded-3xl border border-slate-800">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-3 px-10 py-5 rounded-2xl font-bold text-lg transition-all duration-300 ${
-                  activeTab === tab.id
-                    ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-2xl shadow-blue-500/50 scale-105"
-                    : "text-slate-400 hover:text-white hover:bg-slate-800/50"
-                }`}
-              >
-                <tab.icon className="w-6 h-6" />
-                {t(tab.labelKey)}
-              </button>
-            ))}
-          </div>
-        </div>
+          return (
+            <AnimatedBlock key={index} index={index} isReverse={isReverse}>
+              {(isVisible) => (
+                <>
+                  {/* Image side */}
+                  <div
+                    className="w-full lg:w-[45%] relative shrink-0"
+                    style={{
+                      opacity: isVisible ? 1 : 0,
+                      transform: isVisible
+                        ? "translateX(0) scale(1)"
+                        : isReverse
+                        ? "translateX(40px) scale(0.97)"
+                        : "translateX(-40px) scale(0.97)",
+                      transition: "opacity 0.8s ease, transform 0.8s ease",
+                    }}
+                  >
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
+                      <Image
+                        src={section.image}
+                        alt={t(section.labelKey)}
+                        fill
+                        className="object-cover hover:scale-[1.03] transition-transform duration-700"
+                        quality={90}
+                      />
+                    </div>
+                  </div>
 
-        {/* Enhanced Content Card */}
-        <div className="max-w-5xl mx-auto">
-          <div className="group relative">
-            {/* Hover glow effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/30 to-purple-500/30 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                  {/* Text side */}
+                  <div
+                    className="w-full lg:w-[55%] flex items-center"
+                    style={{
+                      opacity: isVisible ? 1 : 0,
+                      transform: isVisible
+                        ? "translateX(0)"
+                        : isReverse
+                        ? "translateX(-30px)"
+                        : "translateX(30px)",
+                      transition:
+                        "opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s",
+                    }}
+                  >
+                    <div>
+                      {/* Number + Label */}
+                      <div className="flex items-center gap-4 mb-5">
+                        <span className="text-4xl md:text-5xl font-extralight text-slate-200 leading-none">
+                          0{index + 1}
+                        </span>
+                        <div className="w-6 h-[1px] bg-slate-200" />
+                        <section.icon className="w-4 h-4 text-slate-400" />
+                      </div>
 
-            {/* Content card */}
-            <div className="relative bg-gradient-to-br from-slate-900/80 to-slate-900/40 backdrop-blur-xl border border-slate-800 rounded-3xl p-12 md:p-16 shadow-2xl group-hover:border-blue-500/50 transition-all duration-300">
-              <FaQuoteLeft className="w-12 h-12 text-blue-400/30 mb-6" />
-              <p className="text-slate-300 text-xl md:text-2xl leading-relaxed font-light">
-                {t(tabs.find((tab) => tab.id === activeTab)?.contentKey)}
-              </p>
-            </div>
-          </div>
-        </div>
+                      {/* Title */}
+                      <h3 className="text-xl md:text-2xl tracking-[0.02em] text-slate-900 mb-2">
+                        <span className="font-extralight">{t("title")} </span>
+                        <span className="font-bold">{t(section.labelKey)}</span>
+                      </h3>
+
+                      {/* Line */}
+                      <div className="w-8 h-[1px] bg-slate-300 my-5" />
+
+                      {/* Description */}
+                      <p className="text-slate-500 text-sm md:text-[15px] font-light leading-[1.9] max-w-md">
+                        {t(section.contentKey)}
+                      </p>
+                    </div>
+                  </div>
+                </>
+              )}
+            </AnimatedBlock>
+          );
+        })}
       </div>
     </div>
   );

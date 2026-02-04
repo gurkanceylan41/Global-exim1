@@ -313,17 +313,17 @@
       },
       "address": {
         "title": "Адрес",
-        "value": "Кёрфез, Измит",
-        "subtitle": "Коджаэли, Турция"
+        "value": "123 Anywhere St.",
+        "subtitle": "Any City, ST 12345"
       }
     },
     "offices": {
       "title": "Наши Офисы",
       "headquarters": {
         "title": "Головной Офис",
-        "address": "Район Кёрфез, Çizmeci TIME",
-        "city": "Измит, Коджаэли",
-        "country": "Турция"
+        "address": "123 Anywhere St.",
+        "city": "Any City, ST 12345",
+        "country": ""
       },
       "global": {
         "title": "Глобальное Обслуживание",

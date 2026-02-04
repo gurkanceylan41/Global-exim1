@@ -22,7 +22,6 @@ import {
   FaWhatsapp,
   FaInstagram,
   FaXTwitter,
-  FaGlobe,
 } from "react-icons/fa6";
 
 const Header = () => {
@@ -79,80 +78,68 @@ const Header = () => {
   const currentLang = languages.find((lang) => lang.code === locale);
 
   return (
-    <header className="w-full bg-black/70 text-white fixed top-0 left-0 z-50 backdrop-blur-md border-b border-white/10">
-      <div className="max-w-[1440px] mx-auto px-5 md:px-10 h-16 md:h-18 flex justify-between items-center">
-        {/* Logo - Using next-intl Link for locale-aware navigation */}
+    <header className="w-full bg-black/50 text-white fixed top-0 left-0 z-50 backdrop-blur-xl border-b border-white/[0.08]">
+      <div className="max-w-[1440px] mx-auto px-5 md:px-10 h-16 md:h-20 flex justify-between items-center">
+        {/* Logo - Global Exim styled like business card */}
         <Link href="/" className="flex items-center shrink-0 z-10 group">
-          <span className="text-2xl md:text-3xl font-black tracking-tight leading-none">
-            <span className="text-white transition-all duration-300 group-hover:text-gray-200">
-              Global
+          <div className="flex flex-col items-start leading-none">
+            <div className="flex items-baseline gap-1.5 tracking-[0.15em] uppercase">
+              <span className="text-xl md:text-2xl font-extralight text-white transition-all duration-300 group-hover:text-gray-200">
+                Global
+              </span>
+              <span className="text-xl md:text-2xl font-bold text-white transition-all duration-300 group-hover:text-gray-200">
+                Exim
+              </span>
+            </div>
+            <div className="w-full h-[1px] bg-white/60 mt-[1px] mb-0.5" />
+            <span className="text-[6px] md:text-[8px] tracking-[0.2em] uppercase text-white/50 font-medium">
+              Beyond Borders, Beyond Limits
             </span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-400 transition-all duration-300 group-hover:from-blue-300 group-hover:via-blue-400 group-hover:to-cyan-300">
-              {" "}
-              Exim
-            </span>
-          </span>
+          </div>
         </Link>
 
-        {/* Desktop Navigation - Using next-intl Link */}
-        <nav className="hidden lg:flex items-center gap-10 text-sm font-semibold">
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:flex items-center gap-8">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="relative py-2 hover:text-blue-400 transition-all duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-gradient-to-r after:from-blue-400 after:to-cyan-400 after:transition-all after:duration-300 hover:after:w-full"
+              className="relative text-[13px] tracking-[0.12em] uppercase font-light text-white/75 hover:text-white transition-all duration-300 py-2 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-white/50 after:transition-all after:duration-300 hover:after:w-full"
             >
               {item.label}
             </Link>
           ))}
-        </nav>
 
-        {/* Right Side - Language Switcher, Social Icons & Menu */}
-        <div className="flex items-center gap-4 shrink-0">
-          {/* Language Switcher Dropdown */}
-          <div className="relative">
-            <button
-              onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
-              className="flex items-center gap-2 px-3 py-2 bg-white/5 hover:bg-white/10 rounded-lg transition-all duration-300"
-              aria-label={tLang("label")}
-            >
-              <FaGlobe className="w-4 h-4 text-blue-400" />
-              <span className="text-sm font-medium hidden sm:inline">
-                {currentLang?.flag} {currentLang?.label}
-              </span>
-              <span className="text-sm font-medium sm:hidden">
-                {currentLang?.flag}
-              </span>
-            </button>
+          {/* Separator */}
+          <div className="w-[1px] h-5 bg-white/20 mx-1" />
 
-            {/* Dropdown Menu */}
-            {isLangDropdownOpen && (
-              <div className="absolute top-full right-0 mt-2 bg-slate-900/95 backdrop-blur-lg border border-slate-700 rounded-lg shadow-xl overflow-hidden min-w-[140px]">
-                {languages.map((lang) => (
-                  <button
-                    key={lang.code}
-                    onClick={() => handleLanguageChange(lang.code)}
-                    className={`w-full flex items-center gap-3 px-4 py-3 text-sm font-medium transition-all duration-200 ${
-                      locale === lang.code
-                        ? "bg-blue-500/20 text-blue-400"
-                        : "hover:bg-white/5 text-slate-300 hover:text-white"
-                    }`}
-                  >
-                    <span className="text-lg">{lang.flag}</span>
-                    <span>{lang.label}</span>
-                  </button>
-                ))}
-              </div>
-            )}
+          {/* Language Switcher - inline buttons */}
+          <div className="flex items-center gap-1">
+            {languages.map((lang) => (
+              <button
+                key={lang.code}
+                onClick={() => handleLanguageChange(lang.code)}
+                className={`text-[12px] tracking-[0.1em] uppercase px-2.5 py-1 rounded transition-all duration-300 ${
+                  locale === lang.code
+                    ? "text-white bg-white/15"
+                    : "text-white/50 hover:text-white/80"
+                }`}
+              >
+                {lang.code}
+              </button>
+            ))}
           </div>
 
-          {/* Social Media Icons - Desktop Only */}
-          <div className="hidden lg:flex items-center gap-4">
+          {/* Separator */}
+          <div className="w-[1px] h-5 bg-white/20 mx-1" />
+
+          {/* Social Media Icons */}
+          <div className="flex items-center gap-2.5">
             <a
               href="https://wa.me/905368854619"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 flex items-center justify-center rounded-full bg-white/5 hover:bg-blue-500 hover:scale-110 transition-all duration-300 text-base"
+              className="text-white/50 hover:text-white transition-all duration-300 text-[15px]"
               aria-label="WhatsApp"
             >
               <FaWhatsapp />
@@ -161,7 +148,7 @@ const Header = () => {
               href="https://www.instagram.com/hlydmr90/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 flex items-center justify-center rounded-full bg-white/5 hover:bg-blue-500 hover:scale-110 transition-all duration-300 text-base"
+              className="text-white/50 hover:text-white transition-all duration-300 text-[15px]"
               aria-label="Instagram"
             >
               <FaInstagram />
@@ -170,17 +157,37 @@ const Header = () => {
               href="https://x.com/globalexim"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 flex items-center justify-center rounded-full bg-white/5 hover:bg-blue-500 hover:scale-110 transition-all duration-300 text-base"
+              className="text-white/50 hover:text-white transition-all duration-300 text-[15px]"
               aria-label="X (Twitter)"
             >
               <FaXTwitter />
             </a>
           </div>
+        </nav>
+
+        {/* Mobile Right Side */}
+        <div className="flex items-center gap-3 lg:hidden shrink-0">
+          {/* Mobile Language Switcher */}
+          <div className="flex items-center gap-1">
+            {languages.map((lang) => (
+              <button
+                key={lang.code}
+                onClick={() => handleLanguageChange(lang.code)}
+                className={`text-[11px] tracking-[0.1em] uppercase px-2 py-1 rounded transition-all duration-300 ${
+                  locale === lang.code
+                    ? "text-white bg-white/15"
+                    : "text-white/50 hover:text-white/80"
+                }`}
+              >
+                {lang.code}
+              </button>
+            ))}
+          </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMobileMenu}
-            className="lg:hidden w-10 h-10 flex items-center justify-center rounded-lg bg-white/5 hover:bg-blue-500/20 transition-all duration-300 text-2xl"
+            className="w-9 h-9 flex items-center justify-center rounded transition-all duration-300 text-xl text-white/70 hover:text-white"
             aria-label={isMobileMenuOpen ? t("closeMenu") : t("openMenu")}
           >
             {isMobileMenuOpen ? <FaXmark /> : <FaBars />}
@@ -188,46 +195,53 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Menu - Slide Down Panel */}
+      {/* Mobile Menu */}
       <div
-        className={`lg:hidden fixed top-16 md:top-18 left-0 w-full bg-black/95 backdrop-blur-lg transition-all duration-300 overflow-hidden ${
+        className={`lg:hidden fixed top-16 md:top-20 left-0 w-full bg-black/80 backdrop-blur-xl transition-all duration-300 overflow-hidden border-b border-white/[0.08] ${
           isMobileMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <nav className="flex flex-col px-5 py-6 gap-4">
+        <nav className="flex flex-col px-5 py-5 gap-1">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               onClick={closeMobileMenu}
-              className="py-3 px-4 hover:bg-white/5 hover:text-blue-400 rounded-lg transition-all duration-300 border-b border-white/10"
+              className="py-3 px-4 text-[13px] tracking-[0.12em] uppercase font-light text-white/70 hover:text-white hover:bg-white/5 rounded transition-all duration-300"
             >
               {item.label}
             </Link>
           ))}
 
-          {/* Mobile Language Switcher */}
-          <div className="pt-4 border-t border-white/10">
-            <div className="text-sm text-slate-400 mb-3 px-4">{tLang("label")}</div>
-            <div className="flex gap-2 px-4">
-              {languages.map((lang) => (
-                <button
-                  key={lang.code}
-                  onClick={() => {
-                    handleLanguageChange(lang.code);
-                    closeMobileMenu();
-                  }}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 ${
-                    locale === lang.code
-                      ? "bg-blue-500/20 text-blue-400 border border-blue-500/50"
-                      : "bg-white/5 text-slate-300 hover:bg-white/10"
-                  }`}
-                >
-                  <span>{lang.flag}</span>
-                  <span className="text-sm font-medium">{lang.label}</span>
-                </button>
-              ))}
-            </div>
+          {/* Mobile Social Icons */}
+          <div className="flex items-center gap-4 px-4 pt-4 mt-2 border-t border-white/[0.08]">
+            <a
+              href="https://wa.me/905368854619"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/50 hover:text-white transition-all duration-300 text-[15px]"
+              aria-label="WhatsApp"
+            >
+              <FaWhatsapp />
+            </a>
+            <a
+              href="https://www.instagram.com/hlydmr90/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/50 hover:text-white transition-all duration-300 text-[15px]"
+              aria-label="Instagram"
+            >
+              <FaInstagram />
+            </a>
+            <a
+              href="https://x.com/globalexim"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/50 hover:text-white transition-all duration-300 text-[15px]"
+              aria-label="X (Twitter)"
+            >
+              <FaXTwitter />
+            </a>
           </div>
         </nav>
       </div>

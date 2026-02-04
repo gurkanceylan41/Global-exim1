@@ -8,17 +8,16 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { FaArrowRight, FaGlobe, FaShippingFast, FaAward } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 import { useTranslations } from "next-intl";
 import ScrollButton from "./ScrollButton";
 
 export default function HeroSection() {
-  // Get translations for the home.hero namespace
   const t = useTranslations("home.hero");
 
   return (
     <section className="relative w-full h-screen min-h-[600px]">
-      {/* Background Image - Full screen with subtle zoom animation */}
+      {/* Background Image */}
       <div className="absolute inset-0 overflow-hidden">
         <Image
           src="/home1.jpg"
@@ -30,83 +29,79 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* Gradient Overlay - Creates depth and improves text readability */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/70" />
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
 
-      {/* Animated Grid Background - Subtle visual effect */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
-      </div>
-
-      {/* Main Content - Centered vertically and horizontally */}
+      {/* Main Content */}
       <div className="relative h-full flex flex-col justify-center items-center text-white text-center px-5 pt-32 pb-12 z-10">
-        {/* Main Title with Gradient Animation */}
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in-up">
-          <span className="relative inline-block">
-            <span className="bg-gradient-to-r from-white via-[#53B6F0] to-white bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
-              {t("title")}
-            </span>
-            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent blur-xl animate-shine"></span>
-          </span>
+        {/* Main Title */}
+        <h1 className="text-4xl md:text-6xl lg:text-7xl tracking-[0.04em] mb-6 animate-fade-in-up">
+          <span className="font-extralight">{t("title").split(" ")[0]} </span>
+          <span className="font-bold">{t("title").split(" ").slice(1).join(" ")}</span>
         </h1>
 
+        {/* Thin line under title */}
+        <div className="w-20 h-[1px] bg-white/40 mb-6 animate-fade-in-up animation-delay-200" />
+
         {/* Tagline */}
-        <p className="text-lg md:text-2xl lg:text-3xl font-light mb-4 max-w-3xl animate-fade-in-up animation-delay-200">
+        <p className="text-base md:text-xl lg:text-2xl font-extralight tracking-[0.15em] uppercase mb-4 max-w-3xl animate-fade-in-up animation-delay-200">
           {t("tagline")}
         </p>
 
         {/* Description */}
-        <p className="mt-2 text-sm md:text-lg max-w-2xl text-gray-300 leading-relaxed animate-fade-in-up animation-delay-400">
+        <p className="mt-2 text-sm md:text-base max-w-2xl text-white/60 font-light leading-relaxed animate-fade-in-up animation-delay-400">
           {t("description")}
         </p>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 mt-10 animate-fade-in-up animation-delay-600">
-          {/* Primary CTA - Products */}
+        <div className="flex flex-col sm:flex-row gap-4 mt-12 animate-fade-in-up animation-delay-600">
           <Link
             href="/Products"
-            className="group px-8 py-4 bg-[#53B6F0] text-white font-semibold rounded-lg shadow-lg hover:bg-[#4aa3db] hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center gap-2 justify-center"
+            className="group px-8 py-3.5 bg-white text-slate-900 text-sm tracking-[0.1em] uppercase font-medium hover:bg-white/90 transition-all duration-300 flex items-center gap-3 justify-center"
           >
             {t("ctaProducts")}
-            <FaArrowRight className="group-hover:translate-x-1 transition-transform duration-300" />
+            <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform duration-300" />
           </Link>
 
-          {/* Secondary CTA - Contact */}
           <Link
             href="/Contact"
-            className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-lg border-2 border-white/30 hover:bg-white/20 hover:border-white/50 hover:scale-105 transition-all duration-300"
+            className="px-8 py-3.5 text-sm tracking-[0.1em] uppercase font-medium border border-white/30 text-white hover:bg-white/10 hover:border-white/50 transition-all duration-300"
           >
             {t("ctaContact")}
           </Link>
         </div>
 
-        {/* Statistics Grid */}
-        <div className="mt-16 grid grid-cols-3 gap-4 md:gap-8 max-w-4xl w-full animate-fade-in-up animation-delay-800">
-          {/* Countries Stat */}
-          <div className="flex flex-col items-center gap-2 p-3 md:p-4 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-300">
-            <FaGlobe className="text-2xl md:text-4xl text-[#53B6F0]" />
-            <p className="text-xl md:text-3xl font-bold">50+</p>
-            <p className="text-xs md:text-sm text-gray-300">{t("stats.countries")}</p>
+        {/* Statistics */}
+        <div className="mt-20 flex items-center gap-0 max-w-2xl w-full animate-fade-in-up animation-delay-800">
+          {/* Countries */}
+          <div className="flex-1 flex flex-col items-center gap-1 py-4">
+            <p className="text-3xl md:text-4xl font-extralight tracking-wide">50+</p>
+            <p className="text-[10px] md:text-xs tracking-[0.2em] uppercase text-white/40 font-light">
+              {t("stats.countries")}
+            </p>
           </div>
 
-          {/* Deliveries Stat */}
-          <div className="flex flex-col items-center gap-2 p-3 md:p-4 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-300">
-            <FaShippingFast className="text-2xl md:text-4xl text-[#53B6F0]" />
-            <p className="text-xl md:text-3xl font-bold">1000+</p>
-            <p className="text-xs md:text-sm text-gray-300">
+          <div className="w-[1px] h-12 bg-white/15" />
+
+          {/* Deliveries */}
+          <div className="flex-1 flex flex-col items-center gap-1 py-4">
+            <p className="text-3xl md:text-4xl font-extralight tracking-wide">1000+</p>
+            <p className="text-[10px] md:text-xs tracking-[0.2em] uppercase text-white/40 font-light">
               {t("stats.deliveries")}
             </p>
           </div>
 
-          {/* Experience Stat */}
-          <div className="flex flex-col items-center gap-2 p-3 md:p-4 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-300">
-            <FaAward className="text-2xl md:text-4xl text-[#53B6F0]" />
-            <p className="text-xl md:text-3xl font-bold">15+</p>
-            <p className="text-xs md:text-sm text-gray-300">{t("stats.experience")}</p>
+          <div className="w-[1px] h-12 bg-white/15" />
+
+          {/* Experience */}
+          <div className="flex-1 flex flex-col items-center gap-1 py-4">
+            <p className="text-3xl md:text-4xl font-extralight tracking-wide">15+</p>
+            <p className="text-[10px] md:text-xs tracking-[0.2em] uppercase text-white/40 font-light">
+              {t("stats.experience")}
+            </p>
           </div>
         </div>
 
-        {/* Scroll Indicator - Client Component for interactivity */}
         <ScrollButton />
       </div>
     </section>

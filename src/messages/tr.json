@@ -313,17 +313,17 @@
       },
       "address": {
         "title": "Adres",
-        "value": "Körfez, İzmit",
-        "subtitle": "Kocaeli, Türkiye"
+        "value": "123 Anywhere St.",
+        "subtitle": "Any City, ST 12345"
       }
     },
     "offices": {
       "title": "Ofislerimiz",
       "headquarters": {
         "title": "Merkez Ofis",
-        "address": "Körfez Mahallesi, Çizmeci TIME",
-        "city": "İzmit, Kocaeli",
-        "country": "Türkiye"
+        "address": "123 Anywhere St.",
+        "city": "Any City, ST 12345",
+        "country": ""
       },
       "global": {
         "title": "Küresel Hizmet",

@@ -1,128 +1,193 @@
 /**
  * Why Choose Us Section
  *
- * Highlights company differentiators with statistics,
- * certifications, and key features.
+ * Split layout: left side with key stats and certifications,
+ * right side with features list. Scroll-triggered animations.
  */
 
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
-  FaStar,
-  FaHandshake,
-  FaCertificate,
-  FaLeaf,
-  FaShieldAlt,
-  FaMapMarkedAlt,
-  FaClock,
-  FaChartLine,
-} from "react-icons/fa";
+  LuShieldCheck,
+  LuMapPin,
+  LuClock,
+  LuChartBar,
+  LuHandshake,
+  LuBadgeCheck,
+  LuLeaf,
+} from "react-icons/lu";
 import { useTranslations } from "next-intl";
 
 const WhyChooseUsSection = () => {
-  // Get translations
   const t = useTranslations("about.whyUs");
+  const leftRef = useRef(null);
+  const rightRef = useRef(null);
+  const [leftVisible, setLeftVisible] = useState(false);
+  const [rightVisible, setRightVisible] = useState(false);
 
-  // Features configuration
+  useEffect(() => {
+    const createObserver = (ref, setter) => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setter(true);
+            observer.unobserve(entry.target);
+          }
+        },
+        { threshold: 0.15 }
+      );
+      if (ref.current) observer.observe(ref.current);
+      return observer;
+    };
+    const o1 = createObserver(leftRef, setLeftVisible);
+    const o2 = createObserver(rightRef, setRightVisible);
+    return () => {
+      o1.disconnect();
+      o2.disconnect();
+    };
+  }, []);
+
   const features = [
-    {
-      icon: FaShieldAlt,
-      textKey: "features.payment",
-      color: "from-blue-500 to-blue-600",
-    },
-    {
-      icon: FaMapMarkedAlt,
-      textKey: "features.network",
-      color: "from-emerald-500 to-emerald-600",
-    },
-    {
-      icon: FaClock,
-      textKey: "features.support",
-      color: "from-purple-500 to-purple-600",
-    },
-    {
-      icon: FaChartLine,
-      textKey: "features.pricing",
-      color: "from-amber-500 to-amber-600",
-    },
+    { icon: LuShieldCheck, textKey: "features.payment" },
+    { icon: LuMapPin, textKey: "features.network" },
+    { icon: LuClock, textKey: "features.support" },
+    { icon: LuChartBar, textKey: "features.pricing" },
   ];
 
   return (
-    <div className="py-32 px-6 bg-slate-950 relative overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-500/30 to-purple-500/30"></div>
-      </div>
+    <div className="py-28 md:py-36 px-6 bg-white relative overflow-hidden">
+      <div className="relative max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          {/* Left - Stats & Certifications */}
+          <div ref={leftRef}>
+            {/* Big stat */}
+            <div
+              style={{
+                opacity: leftVisible ? 1 : 0,
+                transform: leftVisible ? "translateY(0)" : "translateY(30px)",
+                transition: "opacity 0.7s ease, transform 0.7s ease",
+              }}
+            >
+              <LuHandshake className="w-6 h-6 text-slate-300 mb-6" />
+              <div className="text-6xl md:text-7xl font-extralight text-slate-900 tracking-wide mb-2">
+                1000+
+              </div>
+              <div className="text-[11px] tracking-[0.2em] uppercase text-slate-400 font-light">
+                {t("partnerCount")}
+              </div>
+            </div>
 
-      <div className="relative max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          {/* Left - Image with Advanced Effects */}
-          <div className="relative group">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/30 to-purple-500/30 rounded-3xl blur-3xl group-hover:blur-2xl transition-all duration-500"></div>
-            <div className="relative bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-3xl p-8 group-hover:border-blue-500/50 transition-all duration-300">
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center overflow-hidden">
-                <div className="text-center p-8">
-                  <FaHandshake className="w-32 h-32 text-blue-400 mx-auto mb-6 group-hover:scale-110 transition-transform duration-500" />
-                  <div className="space-y-4">
-                    <div className="text-6xl font-black text-white">1000+</div>
-                    <div className="text-slate-400 text-xl">
-                      {t("partnerCount")}
-                    </div>
-                  </div>
+            <div
+              className="w-full h-[1px] bg-slate-200 my-10"
+              style={{
+                opacity: leftVisible ? 1 : 0,
+                transform: leftVisible ? "scaleX(1)" : "scaleX(0)",
+                transformOrigin: "left",
+                transition: "opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s",
+              }}
+            />
+
+            {/* Certifications */}
+            <div className="grid grid-cols-2 gap-6">
+              <div
+                className="group"
+                style={{
+                  opacity: leftVisible ? 1 : 0,
+                  transform: leftVisible ? "translateY(0)" : "translateY(20px)",
+                  transition:
+                    "opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s",
+                }}
+              >
+                <LuBadgeCheck className="w-5 h-5 text-slate-300 mb-3 group-hover:text-slate-600 transition-colors duration-300" />
+                <div className="text-sm text-slate-600 font-light leading-relaxed">
+                  {t("certifications.iso")}
                 </div>
               </div>
-
-              {/* Certification Badges */}
-              <div className="grid grid-cols-2 gap-4 mt-6">
-                <div className="bg-slate-900/80 rounded-xl p-4 border border-slate-800">
-                  <FaCertificate className="w-8 h-8 text-emerald-400 mb-2" />
-                  <div className="text-sm text-slate-400">{t("certifications.iso")}</div>
-                </div>
-                <div className="bg-slate-900/80 rounded-xl p-4 border border-slate-800">
-                  <FaLeaf className="w-8 h-8 text-emerald-400 mb-2" />
-                  <div className="text-sm text-slate-400">{t("certifications.eco")}</div>
+              <div
+                className="group"
+                style={{
+                  opacity: leftVisible ? 1 : 0,
+                  transform: leftVisible ? "translateY(0)" : "translateY(20px)",
+                  transition:
+                    "opacity 0.6s ease 0.5s, transform 0.6s ease 0.5s",
+                }}
+              >
+                <LuLeaf className="w-5 h-5 text-slate-300 mb-3 group-hover:text-slate-600 transition-colors duration-300" />
+                <div className="text-sm text-slate-600 font-light leading-relaxed">
+                  {t("certifications.eco")}
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right - Content */}
-          <div className="space-y-8">
-            {/* Section Badge */}
-            <div className="inline-flex items-center gap-2 px-5 py-2 bg-blue-500/10 backdrop-blur-xl rounded-full border border-blue-500/30">
-              <FaStar className="w-4 h-4 text-blue-400" />
-              <span className="text-sm text-slate-300 font-semibold">
-                {t("badge")}
-              </span>
-            </div>
+          {/* Right - Title & Features */}
+          <div ref={rightRef}>
+            {/* Badge */}
+            <span
+              className="inline-block text-[11px] tracking-[0.3em] uppercase text-slate-400 font-medium"
+              style={{
+                opacity: rightVisible ? 1 : 0,
+                transform: rightVisible ? "translateY(0)" : "translateY(15px)",
+                transition: "opacity 0.6s ease, transform 0.6s ease",
+              }}
+            >
+              {t("badge")}
+            </span>
 
-            {/* Section Title */}
-            <h2 className="text-5xl md:text-6xl font-black text-white leading-tight">
-              {t("title")}{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                {t("titleHighlight")}
-              </span>
+            <div
+              className="w-10 h-[1px] bg-slate-300 mt-4 mb-6"
+              style={{
+                opacity: rightVisible ? 1 : 0,
+                transform: rightVisible ? "scaleX(1)" : "scaleX(0)",
+                transformOrigin: "left",
+                transition: "opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s",
+              }}
+            />
+
+            {/* Title */}
+            <h2
+              className="text-3xl md:text-4xl tracking-[0.02em] text-slate-900 mb-4"
+              style={{
+                opacity: rightVisible ? 1 : 0,
+                transform: rightVisible ? "translateY(0)" : "translateY(20px)",
+                transition: "opacity 0.7s ease 0.3s, transform 0.7s ease 0.3s",
+              }}
+            >
+              <span className="font-extralight">{t("title")} </span>
+              <span className="font-bold">{t("titleHighlight")}</span>
             </h2>
 
-            {/* Description */}
-            <p className="text-xl text-slate-400 leading-relaxed">
+            {/* Subtitle */}
+            <p
+              className="text-slate-500 text-base font-light leading-relaxed mb-10"
+              style={{
+                opacity: rightVisible ? 1 : 0,
+                transform: rightVisible ? "translateY(0)" : "translateY(15px)",
+                transition: "opacity 0.6s ease 0.5s, transform 0.6s ease 0.5s",
+              }}
+            >
               {t("subtitle")}
             </p>
 
-            {/* Features List */}
-            <div className="space-y-4">
+            {/* Features */}
+            <div className="space-y-0">
               {features.map((feature, i) => (
                 <div
                   key={i}
-                  className="group flex items-center gap-4 p-4 bg-slate-900/30 backdrop-blur-xl border border-slate-800 rounded-2xl hover:bg-slate-900/50 hover:border-blue-500/50 transition-all duration-300"
+                  className="group flex items-center gap-4 py-5 border-t border-slate-200 last:border-b"
+                  style={{
+                    opacity: rightVisible ? 1 : 0,
+                    transform: rightVisible
+                      ? "translateX(0)"
+                      : "translateX(30px)",
+                    transition: `opacity 0.6s ease ${
+                      0.6 + i * 0.1
+                    }s, transform 0.6s ease ${0.6 + i * 0.1}s`,
+                  }}
                 >
-                  <div
-                    className={`flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
-                  >
-                    <feature.icon className="w-6 h-6 text-white" />
-                  </div>
-                  <span className="text-slate-300 font-medium group-hover:text-white transition-colors duration-300">
+                  <feature.icon className="w-4 h-4 text-slate-400 group-hover:text-slate-600 transition-colors duration-300 shrink-0" />
+                  <span className="text-sm tracking-[0.05em] text-slate-600 font-light group-hover:text-slate-900 transition-colors duration-300">
                     {t(feature.textKey)}
                   </span>
                 </div>

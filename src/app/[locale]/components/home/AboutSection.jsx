@@ -3,177 +3,210 @@
  *
  * Displays company highlights, key values, and statistics on the home page.
  * Uses translations for all text content to support multiple languages.
+ * Scroll-triggered animations via IntersectionObserver.
  */
 
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import {
-  FaShieldAlt,
-  FaRocket,
-  FaUsers,
-  FaStar,
-  FaArrowRight,
-  FaGlobe,
-} from "react-icons/fa";
+import { LuArrowRight, LuShieldCheck, LuTrendingUp, LuHandshake, LuAward } from "react-icons/lu";
 import { useTranslations } from "next-intl";
 
 const AboutSection = () => {
-  // Get translations for the home.about namespace
   const t = useTranslations("home.about");
+  const headerRef = useRef(null);
+  const gridRef = useRef(null);
+  const statsRef = useRef(null);
+  const ctaRef = useRef(null);
+  const [headerVisible, setHeaderVisible] = useState(false);
+  const [gridVisible, setGridVisible] = useState(false);
+  const [statsVisible, setStatsVisible] = useState(false);
+  const [ctaVisible, setCtaVisible] = useState(false);
 
-  // Highlight cards configuration with icons and colors
-  // Text content is loaded from translations
+  useEffect(() => {
+    const entries = [
+      { ref: headerRef, setter: setHeaderVisible },
+      { ref: gridRef, setter: setGridVisible },
+      { ref: statsRef, setter: setStatsVisible },
+      { ref: ctaRef, setter: setCtaVisible },
+    ];
+
+    const observers = entries.map(({ ref, setter }) => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setter(true);
+            observer.unobserve(entry.target);
+          }
+        },
+        { threshold: 0.15 }
+      );
+      if (ref.current) observer.observe(ref.current);
+      return observer;
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
+
   const highlights = [
     {
-      icon: FaShieldAlt,
+      icon: LuShieldCheck,
       titleKey: "highlights.reliability.title",
       descriptionKey: "highlights.reliability.description",
-      color: "from-blue-500 to-blue-600",
     },
     {
-      icon: FaRocket,
+      icon: LuTrendingUp,
       titleKey: "highlights.innovation.title",
       descriptionKey: "highlights.innovation.description",
-      color: "from-purple-500 to-purple-600",
     },
     {
-      icon: FaUsers,
+      icon: LuHandshake,
       titleKey: "highlights.customerFocus.title",
       descriptionKey: "highlights.customerFocus.description",
-      color: "from-emerald-500 to-emerald-600",
     },
     {
-      icon: FaStar,
+      icon: LuAward,
       titleKey: "highlights.excellence.title",
       descriptionKey: "highlights.excellence.description",
-      color: "from-amber-500 to-amber-600",
     },
   ];
 
-  // Bottom statistics configuration with emojis and values
   const bottomStats = [
-    { labelKey: "bottomStats.shipments", value: "10K+", icon: "📦" },
-    { labelKey: "bottomStats.satisfaction", value: "99.8%", icon: "⭐" },
-    { labelKey: "bottomStats.network", value: "70+", icon: "🌍" },
-    { labelKey: "bottomStats.industryExp", value: "15", icon: "🏆" },
+    { labelKey: "bottomStats.shipments", value: "10K+" },
+    { labelKey: "bottomStats.satisfaction", value: "99.8%" },
+    { labelKey: "bottomStats.network", value: "70+" },
+    { labelKey: "bottomStats.industryExp", value: "15+" },
   ];
 
   return (
-    <div className="py-32 px-6 bg-gradient-to-b from-slate-950 to-slate-900 relative overflow-hidden">
-      {/* Background Effects - Decorative blurred circles */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500 rounded-full blur-3xl"></div>
-      </div>
-
-      <div className="relative max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left Column - Main Content */}
-          <div className="space-y-8">
-            <div>
-              {/* Section Badge */}
-              <div className="inline-flex items-center gap-2 px-5 py-2 bg-blue-500/10 backdrop-blur-xl rounded-full border border-blue-500/30 mb-6">
-                <FaGlobe className="w-4 h-4 text-blue-400" />
-                <span className="text-sm text-slate-300 font-semibold">
-                  {t("badge")}
-                </span>
-              </div>
-
-              {/* Section Title */}
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
-                {t("title")}{" "}
-                <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  {t("titleHighlight")}
-                </span>
-              </h2>
-
-              {/* Description with highlighted text */}
-              <p className="text-slate-400 text-lg md:text-xl leading-relaxed mb-8">
-                <span className="text-slate-300 font-semibold">{t("years")}</span>{" "}
-                uluslararası ticarette köprü kuruyoruz.{" "}
-                <span className="text-slate-300 font-semibold">{t("countries")}</span>{" "}
-                faaliyet göstererek işinizi dünya pazarlarına taşıyoruz.
-              </p>
-
-              {/* Quick Stats */}
-              <div className="flex flex-wrap gap-4 mb-8">
-                <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-xl px-6 py-3">
-                  <div className="text-2xl font-black text-white">1000+</div>
-                  <div className="text-sm text-slate-400">{t("stats.customers")}</div>
-                </div>
-                <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-xl px-6 py-3">
-                  <div className="text-2xl font-black text-white">70+</div>
-                  <div className="text-sm text-slate-400">{t("stats.countries")}</div>
-                </div>
-                <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-xl px-6 py-3">
-                  <div className="text-2xl font-black text-white">15+</div>
-                  <div className="text-sm text-slate-400">{t("stats.experience")}</div>
-                </div>
-              </div>
-
-              {/* CTA Button */}
-              <Link href="/About">
-                <button className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl text-white font-bold text-lg hover:shadow-2xl hover:shadow-blue-500/50 hover:scale-105 transition-all duration-300">
-                  <span>{t("cta")}</span>
-                  <FaArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
-                </button>
-              </Link>
-            </div>
-          </div>
-
-          {/* Right Column - Highlights Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {highlights.map((item, index) => (
-              <div
-                key={index}
-                className="group relative"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                {/* Hover glow effect */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-20 rounded-2xl blur-xl transition-all duration-500`}
-                ></div>
-
-                {/* Card content */}
-                <div className="relative h-full bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-2xl p-8 hover:border-blue-500/50 hover:bg-slate-900/70 transition-all duration-300 transform hover:-translate-y-2">
-                  {/* Icon */}
-                  <div
-                    className={`inline-flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br ${item.color} mb-6 shadow-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}
-                  >
-                    <item.icon className="w-8 h-8 text-white" />
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="text-xl font-black text-white mb-3 group-hover:text-blue-400 transition-colors duration-300">
-                    {t(item.titleKey)}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-slate-400 text-sm leading-relaxed">
-                    {t(item.descriptionKey)}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+    <div className="py-28 md:py-36 px-6 bg-white relative overflow-hidden">
+      <div className="relative max-w-6xl mx-auto">
+        {/* Section Header */}
+        <div className="text-center mb-20" ref={headerRef}>
+          <span
+            className="inline-block text-[11px] tracking-[0.3em] uppercase text-slate-400 font-medium"
+            style={{
+              opacity: headerVisible ? 1 : 0,
+              transform: headerVisible ? "translateY(0)" : "translateY(15px)",
+              transition: "opacity 0.6s ease, transform 0.6s ease",
+            }}
+          >
+            {t("badge")}
+          </span>
+          <div
+            className="w-10 h-[1px] bg-slate-300 mx-auto mt-4 mb-6"
+            style={{
+              opacity: headerVisible ? 1 : 0,
+              transform: headerVisible ? "scaleX(1)" : "scaleX(0)",
+              transition: "opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s",
+            }}
+          />
+          <h2
+            className="text-3xl md:text-4xl lg:text-5xl tracking-[0.02em] text-slate-900 mb-6"
+            style={{
+              opacity: headerVisible ? 1 : 0,
+              transform: headerVisible ? "translateY(0)" : "translateY(20px)",
+              transition: "opacity 0.7s ease 0.3s, transform 0.7s ease 0.3s",
+            }}
+          >
+            <span className="font-extralight">{t("title")} </span>
+            <span className="font-bold">{t("titleHighlight")}</span>
+          </h2>
+          <p
+            className="text-slate-500 text-base md:text-lg font-light leading-relaxed max-w-2xl mx-auto"
+            style={{
+              opacity: headerVisible ? 1 : 0,
+              transform: headerVisible ? "translateY(0)" : "translateY(15px)",
+              transition: "opacity 0.6s ease 0.5s, transform 0.6s ease 0.5s",
+            }}
+          >
+            <span className="text-slate-800 font-medium">{t("years")}</span>{" "}
+            uluslararası ticarette köprü kuruyoruz.{" "}
+            <span className="text-slate-800 font-medium">{t("countries")}</span>{" "}
+            faaliyet göstererek işinizi dünya pazarlarına taşıyoruz.
+          </p>
         </div>
 
-        {/* Bottom Stats Bar */}
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
-          {bottomStats.map((stat, index) => (
+        {/* Highlights Grid */}
+        <div
+          ref={gridRef}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-slate-200 border border-slate-200 mb-20"
+        >
+          {highlights.map((item, index) => (
             <div
               key={index}
-              className="group relative bg-slate-900/30 backdrop-blur-xl border border-slate-800 rounded-2xl p-6 text-center hover:border-blue-500/50 transition-all duration-300"
+              className="group bg-white p-8 md:p-10 hover:bg-slate-50 transition-all duration-500"
+              style={{
+                opacity: gridVisible ? 1 : 0,
+                transform: gridVisible ? "translateY(0)" : "translateY(30px)",
+                transition: `opacity 0.6s ease ${index * 0.12}s, transform 0.6s ease ${index * 0.12}s`,
+              }}
             >
-              <div className="text-3xl mb-2">{stat.icon}</div>
-              <div className="text-3xl font-black text-white mb-2 group-hover:text-blue-400 transition-colors duration-300">
-                {stat.value}
-              </div>
-              <div className="text-sm text-slate-400">{t(stat.labelKey)}</div>
+              <item.icon className="w-5 h-5 text-slate-400 mb-6 group-hover:text-slate-700 transition-colors duration-300" />
+              <h3 className="text-sm tracking-[0.12em] uppercase font-medium text-slate-900 mb-3">
+                {t(item.titleKey)}
+              </h3>
+              <div className="w-6 h-[1px] bg-slate-300 mb-4 group-hover:w-10 transition-all duration-300" />
+              <p className="text-slate-500 text-sm font-light leading-relaxed">
+                {t(item.descriptionKey)}
+              </p>
             </div>
           ))}
+        </div>
+
+        {/* Bottom Stats */}
+        <div
+          ref={statsRef}
+          className="flex items-center justify-center max-w-3xl mx-auto mb-16"
+        >
+          {bottomStats.map((stat, index) => (
+            <React.Fragment key={index}>
+              <div
+                className="flex-1 text-center py-4"
+                style={{
+                  opacity: statsVisible ? 1 : 0,
+                  transform: statsVisible ? "translateY(0)" : "translateY(20px)",
+                  transition: `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`,
+                }}
+              >
+                <div className="text-2xl md:text-3xl font-extralight text-slate-900 tracking-wide mb-1">
+                  {stat.value}
+                </div>
+                <div className="text-[10px] md:text-[11px] tracking-[0.2em] uppercase text-slate-400 font-light">
+                  {t(stat.labelKey)}
+                </div>
+              </div>
+              {index < bottomStats.length - 1 && (
+                <div
+                  className="w-[1px] h-10 bg-slate-200"
+                  style={{
+                    opacity: statsVisible ? 1 : 0,
+                    transform: statsVisible ? "scaleY(1)" : "scaleY(0)",
+                    transition: `opacity 0.4s ease ${0.2 + index * 0.1}s, transform 0.4s ease ${0.2 + index * 0.1}s`,
+                  }}
+                />
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div
+          ref={ctaRef}
+          className="text-center"
+          style={{
+            opacity: ctaVisible ? 1 : 0,
+            transform: ctaVisible ? "translateY(0)" : "translateY(15px)",
+            transition: "opacity 0.6s ease, transform 0.6s ease",
+          }}
+        >
+          <Link href="/About">
+            <button className="group inline-flex items-center gap-3 px-8 py-3.5 border border-slate-900 text-slate-900 text-sm tracking-[0.1em] uppercase font-medium hover:bg-slate-900 hover:text-white transition-all duration-300">
+              <span>{t("cta")}</span>
+              <LuArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+            </button>
+          </Link>
         </div>
       </div>
     </div>
