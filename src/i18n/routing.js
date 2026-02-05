@@ -7,13 +7,14 @@
  * Supported languages:
  * - tr: Turkish (Turkce) - Default language
  * - ru: Russian (Русский) - Cyrillic alphabet
+ * - en: English - Latin alphabet
  */
 
 import { defineRouting } from 'next-intl/routing';
 
 export const routing = defineRouting({
   // List of all supported locales
-  locales: ['tr', 'ru'],
+  locales: ['tr', 'ru', 'en'],
 
   // Default locale when no locale is specified in the URL
   defaultLocale: 'tr',

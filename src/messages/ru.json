@@ -16,7 +16,8 @@
   "languageSwitcher": {
     "label": "Язык",
     "turkish": "Türkçe",
-    "russian": "Русский"
+    "russian": "Русский",
+    "english": "English"
   },
   "home": {
     "hero": {

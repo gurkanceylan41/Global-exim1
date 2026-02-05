@@ -1,0 +1,353 @@
+{
+  "metadata": {
+    "title": "Global Exim - Your Trusted Partner in Global Trade",
+    "titleTemplate": "%s | Global Exim",
+    "description": "Global Exim - Quality wafer and biscuit manufacturer exporting to 70+ countries. Your trusted partner in international trade.",
+    "keywords": "export, import, wafer, biscuit, international trade, Global Exim"
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "products": "Products",
+    "contact": "Contact",
+    "openMenu": "Open Menu",
+    "closeMenu": "Close Menu"
+  },
+  "languageSwitcher": {
+    "label": "Language",
+    "turkish": "Turkce",
+    "russian": "Русский",
+    "english": "English"
+  },
+  "home": {
+    "hero": {
+      "title": "Global Exim",
+      "tagline": "Your Trusted Partner in Global Trade",
+      "description": "Making a difference in international trade with quality products, strong service approach and professional attitude.",
+      "ctaProducts": "Explore Products",
+      "ctaContact": "Contact Us",
+      "stats": {
+        "countries": "Countries Export",
+        "deliveries": "Successful Deliveries",
+        "experience": "Years Experience"
+      }
+    },
+    "about": {
+      "badge": "About Global Exim",
+      "title": "Your Trusted",
+      "titleHighlight": "Partner in International Trade",
+      "description": "Building bridges in international trade for {years}. Operating in {countries} countries, taking your business to world markets.",
+      "years": "15 years",
+      "countries": "70+ countries",
+      "cta": "Learn More",
+      "stats": {
+        "customers": "Happy Customers",
+        "countries": "Countries",
+        "experience": "Years Experience"
+      },
+      "bottomStats": {
+        "shipments": "Successful Shipments",
+        "satisfaction": "Customer Satisfaction",
+        "network": "Global Network",
+        "industryExp": "Industry Experience"
+      },
+      "highlights": {
+        "reliability": {
+          "title": "Reliability",
+          "description": "ISO 9001 certified quality assurance"
+        },
+        "innovation": {
+          "title": "Innovation",
+          "description": "Technology-driven solutions"
+        },
+        "customerFocus": {
+          "title": "Customer Focus",
+          "description": "24/7 professional support"
+        },
+        "excellence": {
+          "title": "Excellence",
+          "description": "Highest service standards"
+        }
+      }
+    }
+  },
+  "about": {
+    "metadata": {
+      "title": "About Us",
+      "description": "Learn about Global Exim, exporting to 70+ countries since 2010. Our mission, vision and values.",
+      "keywords": "Global Exim, about us, export company, international trade"
+    },
+    "hero": {
+      "badge": "Your Trusted Partner for 15 Years",
+      "title": "Global Exim",
+      "descriptionText": "the address of trust and excellence in international trade",
+      "years": "for 15 years"
+    },
+    "stats": {
+      "countries": "Countries",
+      "customers": "Happy Customers",
+      "shipments": "Successful Shipments",
+      "experience": "Years Experience"
+    },
+    "mission": {
+      "badge": "Who We Are & Our Values",
+      "title": "Our",
+      "titleHighlight": "Story",
+      "subtitle": "The difference we create with our principles and values",
+      "tabs": {
+        "mission": {
+          "label": "Mission",
+          "content": "To be a trusted bridge in international trade, supporting our customers' growth in global markets by providing the highest quality service. We aim to be a pioneer in the industry with a sustainable trade approach."
+        },
+        "vision": {
+          "label": "Vision",
+          "content": "To become a global trade company serving over 100 countries by 2030, referenced in the industry for its technology-driven solutions. Shaping the future through digital transformation and innovation."
+        },
+        "values": {
+          "label": "Values",
+          "content": "Honesty, transparency, customer satisfaction, continuous improvement and environmental responsibility. We manage all our business processes in line with these values and build long-term partnerships."
+        }
+      }
+    },
+    "values": {
+      "badge": "Our Values",
+      "title": "Core",
+      "titleHighlight": "Values",
+      "subtitle": "The principles behind our success",
+      "items": {
+        "reliability": {
+          "title": "Reliability",
+          "description": "Building trust with our ISO 9001 certified quality management system"
+        },
+        "innovation": {
+          "title": "Innovation",
+          "description": "Leading digital transformation with technology-driven solutions"
+        },
+        "customerFocus": {
+          "title": "Customer Focus",
+          "description": "By your side with 24/7 support and custom solutions"
+        },
+        "excellence": {
+          "title": "Excellence",
+          "description": "Delivering the highest standards of service quality"
+        }
+      }
+    },
+    "timeline": {
+      "badge": "Our History",
+      "title": "Our",
+      "titleHighlight": "Journey",
+      "subtitle": "Our 15-year story of success and growth",
+      "items": {
+        "2010": {
+          "title": "Foundation",
+          "description": "Global Exim was founded in Turkey with a vision for international trade. We took our first steps and built our foundations.",
+          "achievements": ["First office", "Founding team"]
+        },
+        "2015": {
+          "title": "Growth Period",
+          "description": "We became a strong organization serving 50+ countries. We strengthened our regional leadership.",
+          "achievements": ["50+ countries", "500+ customers"]
+        },
+        "2020": {
+          "title": "Digital Transformation",
+          "description": "We launched new services on e-commerce and digital platforms. We invested in technology.",
+          "achievements": ["Digital platform", "Online services"]
+        },
+        "2025": {
+          "title": "Leading Position",
+          "description": "We are the industry leader operating in 70+ countries. We look to the future with confidence.",
+          "achievements": ["70+ countries", "1000+ customers"]
+        }
+      }
+    },
+    "whyUs": {
+      "badge": "Why Choose Us?",
+      "title": "Your Trusted",
+      "titleHighlight": "Partner for Success",
+      "subtitle": "We help you grow your business in international markets with our 15 years of experience and expertise.",
+      "partnerCount": "Happy Partners",
+      "certifications": {
+        "iso": "ISO 9001",
+        "eco": "Eco-Friendly"
+      },
+      "features": {
+        "payment": "Secure and fast payment systems",
+        "network": "Global network and logistics in 70+ countries",
+        "support": "24/7 professional customer support",
+        "pricing": "Competitive prices and transparent cost structure"
+      }
+    },
+    "testimonials": {
+      "badge": "Customer Reviews",
+      "title": "What Our",
+      "titleHighlight": "Clients Say",
+      "subtitle": "Our success stories and feedback",
+      "items": [
+        {
+          "name": "Ahmet Yilmaz",
+          "position": "CEO, TechCorp",
+          "text": "Working with Global Exim made it easy to take our business to international markets. Professional team and fast solutions."
+        },
+        {
+          "name": "Ayse Demir",
+          "position": "Export Manager, ExportPro",
+          "text": "Our trusted business partner for 15 years. They are always by our side and find immediate solutions to our problems."
+        },
+        {
+          "name": "Mehmet Kaya",
+          "position": "Logistics Director, FastShip",
+          "text": "Quality service, on-time delivery and competitive prices. I recommend Global Exim to everyone."
+        }
+      ]
+    },
+    "cta": {
+      "badge": "Get Started",
+      "title": "Get In",
+      "titleHighlight": "Touch Today",
+      "subtitle": "Let's discuss how we can help you on your international trade journey",
+      "button": "Contact Us"
+    }
+  },
+  "products": {
+    "metadata": {
+      "title": "Products",
+      "description": "Global Exim product catalog. Discover our wafer, biscuit and natural dried fruit varieties. Exporting to 70+ countries.",
+      "keywords": "wafer, biscuit, dried fruit, Wafer Master, export products, Global Exim"
+    },
+    "header": {
+      "badge": "Our Products",
+      "title": "Product Catalog",
+      "subtitle": "Quality wafer and biscuit manufacturer exporting to over 70 countries"
+    },
+    "search": {
+      "placeholder": "Search products... (Name, brand or code)"
+    },
+    "categories": {
+      "all": "All",
+      "waferRoll": "Wafer Rolls",
+      "wafer": "Wafers",
+      "biscuit": "Biscuits",
+      "dried": "Natural Dried Fruit"
+    },
+    "categoryNames": {
+      "waferRoll": "Wafer Roll",
+      "wafer": "Wafer",
+      "biscuit": "Biscuit",
+      "dried": "Natural Dried Fruit"
+    },
+    "labels": {
+      "code": "Code",
+      "weight": "Weight",
+      "units": "Box/Pack"
+    },
+    "emptyState": "No products found matching your criteria.",
+    "productNames": {
+      "1215": "Cocoa Hazelnut Cream Wafer Roll",
+      "1802": "Cocoa Hazelnut Cream Wafer Roll",
+      "1220": "Cocoa Hazelnut Cream Wafer Roll",
+      "1390": "Cocoa Hazelnut Cream Wafer Roll",
+      "1490": "Cocoa Hazelnut Cream Wafer Roll",
+      "1267": "Chocolate Cream Wafer Roll",
+      "1395": "Chocolate Cream Wafer Roll",
+      "1228": "Chocolate Cream Wafer Roll",
+      "1892": "Vanilla Cream Wafer Roll",
+      "1882": "Strawberry Flavored Wafer Roll",
+      "1872": "Cappuccino Cream Wafer Roll",
+      "1822": "Peanut Cream Wafer Roll",
+      "1358": "Coconut Flavored Coconut Flakes Milk Chocolate Coated",
+      "1092": "Chocolate Cream Wafer Roll",
+      "1351": "Chocolate Cream Milk Chocolate Coated Wafer",
+      "5115": "Chocolate Cream Wafer",
+      "5125": "Hazelnut Cream Wafer",
+      "5135": "Milk & Vanilla Cream Wafer",
+      "5145": "Cocoa Cream Wafer",
+      "5155": "Strawberry Cream Wafer",
+      "5323": "Chocolate Cream Wafer",
+      "5329": "Peanut Cream Wafer",
+      "5590": "Hazelnut Cream Wafer",
+      "5580": "Chocolate Cream Wafer",
+      "5570": "Milk & Vanilla Cream Wafer",
+      "1048": "Cocoa Hazelnut Cream Wafer",
+      "1049": "Chocolate Cream Wafer",
+      "1701": "Chocolate Cream Wafer",
+      "1037": "Chocolate Cream Wafer",
+      "1035": "Cocoa Hazelnut Cream Wafer",
+      "5760": "Pistachio Cream Milk Chocolate Coated Wafer",
+      "4010": "Milk Chocolate Milk Cream Biscuit",
+      "4200": "White Chocolate Hazelnut Cream Biscuit",
+      "4220": "White Chocolate Peanut Cream Biscuit",
+      "2680": "Cocoa Coated Coconut Flavored Cream Coconut Biscuit",
+      "2129": "Cocoa Coated Strawberry Flavored Cream Strawberry Biscuit",
+      "2158": "Cocoa Coated Coconut Flavored Cream Coconut Biscuit",
+      "2355": "Cocoa Coated Vanilla Cream Cocoa Biscuit",
+      "1212": "Chocolate Cream Wafer Roll",
+      "1213": "Strawberry Flavored Wafer Roll",
+      "1010": "Dried Apricot",
+      "1011": "Dried Raisins",
+      "1111": "Dried Figs"
+    }
+  },
+  "contact": {
+    "metadata": {
+      "title": "Contact",
+      "description": "Get in touch with Global Exim. Reach us by phone, WhatsApp, email or visit our office.",
+      "keywords": "contact, Global Exim, phone, email, WhatsApp, address"
+    },
+    "hero": {
+      "badge": "Reach Us",
+      "title": "Get In Touch",
+      "subtitle": "Reach us through the most convenient channel. Our professional team is ready to help you."
+    },
+    "cards": {
+      "phone": {
+        "title": "Phone",
+        "subtitle": "Monday-Friday, 09:00-18:00"
+      },
+      "whatsapp": {
+        "title": "WhatsApp",
+        "subtitle": "24/7 Instant Response"
+      },
+      "email": {
+        "title": "Email",
+        "subtitle": "Response Within 24 Hours"
+      },
+      "address": {
+        "title": "Address",
+        "value": "123 Anywhere St.",
+        "subtitle": "Any City, ST 12345"
+      }
+    },
+    "offices": {
+      "title": "Our Offices",
+      "headquarters": {
+        "title": "Headquarters",
+        "address": "123 Anywhere St.",
+        "city": "Any City, ST 12345",
+        "country": ""
+      },
+      "global": {
+        "title": "Global Service",
+        "address": "Exporting to 70+ Countries",
+        "city": "International Trade",
+        "country": "Worldwide"
+      }
+    },
+    "social": {
+      "title": "Social Media"
+    },
+    "map": {
+      "title": "Our Location",
+      "directions": "Get Directions",
+      "iframeTitle": "Global Exim Location",
+      "notice": "Please make an appointment before visiting our office"
+    }
+  },
+  "common": {
+    "learnMore": "Learn More",
+    "viewAll": "View All",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Try Again"
+  }
+}

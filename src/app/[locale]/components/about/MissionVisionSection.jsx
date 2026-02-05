@@ -42,6 +42,53 @@ const AnimatedBlock = ({ children, index, isReverse }) => {
   );
 };
 
+// Rotating image component for mission section
+const RotatingImage = ({ images, alt, isVisible, isReverse }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 8000); // 8 seconds for smoother transitions
+
+    return () => clearInterval(interval);
+  }, [isVisible, images.length]);
+
+  return (
+    <div
+      className="w-full lg:w-[45%] relative shrink-0"
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible
+          ? "translateX(0) scale(1)"
+          : isReverse
+          ? "translateX(40px) scale(0.97)"
+          : "translateX(-40px) scale(0.97)",
+        transition: "opacity 0.8s ease, transform 0.8s ease",
+      }}
+    >
+      <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
+        {images.map((img, idx) => (
+          <Image
+            key={img}
+            src={img}
+            alt={alt}
+            fill
+            className="object-cover"
+            quality={90}
+            style={{
+              opacity: currentIndex === idx ? 1 : 0,
+              transition: "opacity 2s ease-in-out",
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export default function MissionVisionSection() {
   const t = useTranslations("about.mission");
   const headerRef = useRef(null);
@@ -61,24 +108,32 @@ export default function MissionVisionSection() {
     return () => observer.disconnect();
   }, []);
 
+  // All sections have rotating images
+  const missionImages = ["/images/mission.jpg", "/images/mission2.jpg"];
+  const visionImages = ["/images/vision.jpg", "/images/vision2.jpg"];
+  const valuesImages = ["/images/values.jpg", "/images/values2.jpg"];
+
   const sections = [
     {
       labelKey: "tabs.mission.label",
       contentKey: "tabs.mission.content",
       icon: LuRocket,
-      image: "/images/mission.jpg",
+      images: missionImages,
+      isRotating: true,
     },
     {
       labelKey: "tabs.vision.label",
       contentKey: "tabs.vision.content",
       icon: LuBuilding2,
-      image: "/images/vision.jpg",
+      images: visionImages,
+      isRotating: true,
     },
     {
       labelKey: "tabs.values.label",
       contentKey: "tabs.values.content",
       icon: LuSparkles,
-      image: "/images/values.jpg",
+      images: valuesImages,
+      isRotating: true,
     },
   ];
 
@@ -128,28 +183,37 @@ export default function MissionVisionSection() {
               {(isVisible) => (
                 <>
                   {/* Image side */}
-                  <div
-                    className="w-full lg:w-[45%] relative shrink-0"
-                    style={{
-                      opacity: isVisible ? 1 : 0,
-                      transform: isVisible
-                        ? "translateX(0) scale(1)"
-                        : isReverse
-                        ? "translateX(40px) scale(0.97)"
-                        : "translateX(-40px) scale(0.97)",
-                      transition: "opacity 0.8s ease, transform 0.8s ease",
-                    }}
-                  >
-                    <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
-                      <Image
-                        src={section.image}
-                        alt={t(section.labelKey)}
-                        fill
-                        className="object-cover hover:scale-[1.03] transition-transform duration-700"
-                        quality={90}
-                      />
+                  {section.isRotating ? (
+                    <RotatingImage
+                      images={section.images}
+                      alt={t(section.labelKey)}
+                      isVisible={isVisible}
+                      isReverse={isReverse}
+                    />
+                  ) : (
+                    <div
+                      className="w-full lg:w-[45%] relative shrink-0"
+                      style={{
+                        opacity: isVisible ? 1 : 0,
+                        transform: isVisible
+                          ? "translateX(0) scale(1)"
+                          : isReverse
+                          ? "translateX(40px) scale(0.97)"
+                          : "translateX(-40px) scale(0.97)",
+                        transition: "opacity 0.8s ease, transform 0.8s ease",
+                      }}
+                    >
+                      <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
+                        <Image
+                          src={section.image}
+                          alt={t(section.labelKey)}
+                          fill
+                          className="object-cover hover:scale-[1.03] transition-transform duration-700"
+                          quality={90}
+                        />
+                      </div>
                     </div>
-                  </div>
+                  )}
 
                   {/* Text side */}
                   <div

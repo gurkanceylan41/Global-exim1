@@ -56,7 +56,7 @@ export async function generateMetadata({ params }) {
     creator: "Global Exim",
     openGraph: {
       type: "website",
-      locale: locale === "tr" ? "tr_TR" : "ru_RU",
+      locale: locale === "tr" ? "tr_TR" : locale === "en" ? "en_US" : "ru_RU",
       siteName: "Global Exim",
     },
     robots: {
@@ -68,6 +68,7 @@ export async function generateMetadata({ params }) {
       languages: {
         tr: "/",
         ru: "/ru",
+        en: "/en",
       },
     },
   };

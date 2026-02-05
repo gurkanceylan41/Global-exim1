@@ -72,6 +72,7 @@ const Header = () => {
   const languages = [
     { code: "tr", label: tLang("turkish"), flag: "🇹🇷" },
     { code: "ru", label: tLang("russian"), flag: "🇷🇺" },
+    { code: "en", label: tLang("english"), flag: "🇬🇧" },
   ];
 
   // Get current language info
