@@ -42,19 +42,27 @@ const AnimatedBlock = ({ children, index, isReverse }) => {
   );
 };
 
-// Rotating image component for mission section
-const RotatingImage = ({ images, alt, isVisible, isReverse }) => {
+// Rotating image component with staggered timing
+const RotatingImage = ({ images, alt, isVisible, isReverse, delay = 0 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     if (!isVisible) return;
 
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, 8000); // 8 seconds for smoother transitions
+    let interval;
 
-    return () => clearInterval(interval);
-  }, [isVisible, images.length]);
+    // Initial delay before starting rotation
+    const timeout = setTimeout(() => {
+      interval = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % images.length);
+      }, 8000); // 8 seconds between transitions
+    }, delay);
+
+    return () => {
+      clearTimeout(timeout);
+      if (interval) clearInterval(interval);
+    };
+  }, [isVisible, images.length, delay]);
 
   return (
     <div
@@ -120,6 +128,7 @@ export default function MissionVisionSection() {
       icon: LuRocket,
       images: missionImages,
       isRotating: true,
+      delay: 0, // Starts immediately
     },
     {
       labelKey: "tabs.vision.label",
@@ -127,6 +136,7 @@ export default function MissionVisionSection() {
       icon: LuBuilding2,
       images: visionImages,
       isRotating: true,
+      delay: 3000, // Starts after 3 seconds
     },
     {
       labelKey: "tabs.values.label",
@@ -134,6 +144,7 @@ export default function MissionVisionSection() {
       icon: LuSparkles,
       images: valuesImages,
       isRotating: true,
+      delay: 6000, // Starts after 6 seconds
     },
   ];
 
@@ -189,6 +200,7 @@ export default function MissionVisionSection() {
                       alt={t(section.labelKey)}
                       isVisible={isVisible}
                       isReverse={isReverse}
+                      delay={section.delay}
                     />
                   ) : (
                     <div
