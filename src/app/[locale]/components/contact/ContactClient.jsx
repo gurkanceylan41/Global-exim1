@@ -71,9 +71,9 @@ export default function ContactClient() {
     {
       icon: LuMail,
       titleKey: "cards.email.title",
-      value: "murat.seyhan@globaleximco.com",
+      value: "murat.seyhan@globalexim.com",
       subtitleKey: "cards.email.subtitle",
-      link: "mailto:murat.seyhan@globaleximco.com",
+      link: "mailto:murat.seyhan@globalexim.com",
     },
     {
       icon: LuMapPin,
@@ -126,7 +126,10 @@ export default function ContactClient() {
   return (
     <>
       {/* Header */}
-      <header className="pt-36 pb-16 px-6 border-b border-slate-200" ref={headerRef}>
+      <header
+        className="pt-36 pb-16 px-6 border-b border-slate-200"
+        ref={headerRef}
+      >
         <div className="max-w-5xl mx-auto text-center">
           <span
             className="inline-block text-[11px] tracking-[0.3em] uppercase text-slate-400 font-medium"
@@ -156,8 +159,12 @@ export default function ContactClient() {
               transition: "opacity 0.7s ease 0.3s, transform 0.7s ease 0.3s",
             }}
           >
-            <span className="font-extralight">{t("hero.title").split(" ")[0]} </span>
-            <span className="font-bold">{t("hero.title").split(" ").slice(1).join(" ")}</span>
+            <span className="font-extralight">
+              {t("hero.title").split(" ")[0]}{" "}
+            </span>
+            <span className="font-bold">
+              {t("hero.title").split(" ").slice(1).join(" ")}
+            </span>
           </h1>
 
           <p
@@ -182,12 +189,20 @@ export default function ContactClient() {
                 key={index}
                 href={card.link}
                 target={card.link.startsWith("http") ? "_blank" : undefined}
-                rel={card.link.startsWith("http") ? "noopener noreferrer" : undefined}
+                rel={
+                  card.link.startsWith("http")
+                    ? "noopener noreferrer"
+                    : undefined
+                }
                 className="group bg-white p-8 hover:bg-slate-50 transition-colors duration-500"
                 style={{
                   opacity: cardsVisible ? 1 : 0,
-                  transform: cardsVisible ? "translateY(0)" : "translateY(25px)",
-                  transition: `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`,
+                  transform: cardsVisible
+                    ? "translateY(0)"
+                    : "translateY(25px)",
+                  transition: `opacity 0.6s ease ${
+                    index * 0.1
+                  }s, transform 0.6s ease ${index * 0.1}s`,
                 }}
               >
                 <card.icon className="w-5 h-5 text-slate-300 mb-5 group-hover:text-slate-600 transition-colors duration-300" />
@@ -215,7 +230,9 @@ export default function ContactClient() {
             <div
               style={{
                 opacity: contentVisible ? 1 : 0,
-                transform: contentVisible ? "translateY(0)" : "translateY(25px)",
+                transform: contentVisible
+                  ? "translateY(0)"
+                  : "translateY(25px)",
                 transition: "opacity 0.6s ease, transform 0.6s ease",
               }}
             >
@@ -231,8 +248,12 @@ export default function ContactClient() {
                     className="group flex items-start gap-4 py-6 border-t border-slate-200 last:border-b"
                     style={{
                       opacity: contentVisible ? 1 : 0,
-                      transform: contentVisible ? "translateX(0)" : "translateX(20px)",
-                      transition: `opacity 0.6s ease ${0.2 + index * 0.15}s, transform 0.6s ease ${0.2 + index * 0.15}s`,
+                      transform: contentVisible
+                        ? "translateX(0)"
+                        : "translateX(20px)",
+                      transition: `opacity 0.6s ease ${
+                        0.2 + index * 0.15
+                      }s, transform 0.6s ease ${0.2 + index * 0.15}s`,
                     }}
                   >
                     <office.icon className="w-4 h-4 text-slate-400 mt-0.5 shrink-0 group-hover:text-slate-600 transition-colors duration-300" />
@@ -259,7 +280,9 @@ export default function ContactClient() {
             <div
               style={{
                 opacity: contentVisible ? 1 : 0,
-                transform: contentVisible ? "translateY(0)" : "translateY(25px)",
+                transform: contentVisible
+                  ? "translateY(0)"
+                  : "translateY(25px)",
                 transition: "opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s",
               }}
             >
@@ -278,12 +301,20 @@ export default function ContactClient() {
                     className="group flex items-center gap-4 py-5 border-t border-slate-200 last:border-b"
                     style={{
                       opacity: contentVisible ? 1 : 0,
-                      transform: contentVisible ? "translateX(0)" : "translateX(20px)",
-                      transition: `opacity 0.6s ease ${0.4 + index * 0.12}s, transform 0.6s ease ${0.4 + index * 0.12}s`,
+                      transform: contentVisible
+                        ? "translateX(0)"
+                        : "translateX(20px)",
+                      transition: `opacity 0.6s ease ${
+                        0.4 + index * 0.12
+                      }s, transform 0.6s ease ${0.4 + index * 0.12}s`,
                     }}
                   >
                     {social.isCustomIcon ? (
-                      <svg className="w-4 h-4 text-slate-400 group-hover:text-slate-600 transition-colors duration-300 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                      <svg
+                        className="w-4 h-4 text-slate-400 group-hover:text-slate-600 transition-colors duration-300 shrink-0"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
                         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                       </svg>
                     ) : (
@@ -305,7 +336,6 @@ export default function ContactClient() {
           </div>
         </div>
       </div>
-
     </>
   );
 }

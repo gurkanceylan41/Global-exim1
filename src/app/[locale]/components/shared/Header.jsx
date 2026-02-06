@@ -89,7 +89,7 @@ const Header = () => {
                 Global
               </span>
               <span className="text-xl md:text-2xl font-bold text-white transition-all duration-300 group-hover:text-gray-200">
-                Exim
+                Exım
               </span>
             </div>
             <div className="w-full h-[1px] bg-white/60 mt-[1px] mb-0.5" />
