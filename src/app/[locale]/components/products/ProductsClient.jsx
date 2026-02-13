@@ -1,77 +1,203 @@
 /**
- * Products Client Component
+ * Products Client Component - Premium Redesign
  *
- * Interactive client-side component for product filtering and search.
- * Minimal design matching the site's clean aesthetic.
+ * Overview page showing 4 main category cards that link to dedicated pages:
+ * - GOFRETLER → /Wafers
+ * - YAĞLAR → /Oils
+ * - SÜT TOZU → /MilkPowder
+ * - DOĞAL KURUYEMİŞ → /Nuts
  */
 
 "use client";
 
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import { LuSearch } from "react-icons/lu";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  LuArrowRight,
+  LuArrowUpRight,
+  LuSparkles,
+  LuBox,
+  LuGlobe,
+  LuShield,
+} from "react-icons/lu";
 
-export default function ProductsClient({ products }) {
-  const [currentCategory, setCurrentCategory] = useState("all");
-  const [searchTerm, setSearchTerm] = useState("");
-  const headerRef = useRef(null);
-  const filtersRef = useRef(null);
-  const cardRefs = useRef([]);
-  const [headerVisible, setHeaderVisible] = useState(false);
-  const [filtersVisible, setFiltersVisible] = useState(false);
-  const [cardVisibility, setCardVisibility] = useState([]);
-  const [hoveredCard, setHoveredCard] = useState(null);
+function AnimatedSection({ children, className = "", delay = 0 }) {
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "translateY(0)" : "translateY(40px)",
+        transition: `opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s`,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+// Floating image card with hover (same as Wafers page)
+function FloatingCard({ src, className, baseRotate }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div
+      className={`${className} relative rounded-2xl overflow-hidden border-2 border-white/10 shadow-2xl cursor-pointer`}
+      style={{
+        transform: hovered
+          ? "rotate(0deg) scale(1.12)"
+          : `rotate(${baseRotate}deg) scale(1)`,
+        boxShadow: hovered
+          ? "0 30px 60px rgba(0,0,0,0.6)"
+          : "0 15px 30px rgba(0,0,0,0.3)",
+        transition:
+          "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease",
+        zIndex: hovered ? 10 : 1,
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <img
+        src={src}
+        alt=""
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          display: "block",
+          pointerEvents: "none",
+          mixBlendMode: "multiply",
+        }}
+      />
+    </div>
+  );
+}
+
+// Premium category card with large image, gradient overlay, and hover effects
+function CategoryCard({ category, link, image, t, index, isVisible, color }) {
+  return (
+    <Link
+      href={link}
+      className="group relative block overflow-hidden rounded-2xl"
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible
+          ? "translateY(0) scale(1)"
+          : "translateY(40px) scale(0.97)",
+        transition: `all 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.12}s`,
+      }}
+    >
+      {/* Image with aspect ratio */}
+      <div className="relative aspect-[3/4] sm:aspect-[4/5] overflow-hidden">
+        <Image
+          src={image}
+          alt={t(`mainCategories.${category}.title`)}
+          fill
+          className="object-cover group-hover:scale-110 transition-transform duration-[1.2s] ease-out"
+          quality={85}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+        />
+        {/* Multi-layer gradient for depth */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        <div
+          className={`absolute inset-0 bg-gradient-to-br ${color} opacity-0 group-hover:opacity-100 transition-opacity duration-700`}
+        />
+      </div>
+
+      {/* Category number */}
+      <div className="absolute top-5 right-5">
+        <span className="text-[11px] tracking-[0.2em] text-white/30 font-mono">
+          0{index + 1}
+        </span>
+      </div>
+
+      {/* Content overlay */}
+      <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+        <div className="transform group-hover:-translate-y-2 transition-transform duration-500">
+          <p className="text-[10px] tracking-[0.3em] uppercase text-white/50 font-medium mb-2">
+            {t(`mainCategories.${category}.subtitle`)}
+          </p>
+          <h3 className="text-2xl md:text-3xl font-bold text-white tracking-wide mb-4">
+            {t(`mainCategories.${category}.title`)}
+          </h3>
+          <div className="flex items-center gap-2 text-white/60 group-hover:text-white transition-colors duration-300">
+            <span className="text-sm font-medium tracking-wide">
+              {t("viewCategory")}
+            </span>
+            <LuArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
+          </div>
+        </div>
+
+        {/* Animated underline */}
+        <div className="mt-4 h-[2px] bg-white/20 rounded-full overflow-hidden">
+          <div className="h-full bg-white/70 rounded-full transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700" />
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+export default function ProductsClient() {
+  const heroRef = useRef(null);
+  const [heroVisible, setHeroVisible] = useState(false);
+  const categoriesRef = useRef(null);
+  const [categoriesVisible, setCategoriesVisible] = useState(false);
 
   const t = useTranslations("products");
 
-  const categories = [
-    { id: "all", labelKey: "categories.all" },
-    { id: "wafer-roll", labelKey: "categories.waferRoll" },
-    { id: "wafer", labelKey: "categories.wafer" },
-    { id: "biscuit", labelKey: "categories.biscuit" },
-    { id: "dried", labelKey: "categories.dried" },
+  // Main categories configuration
+  const mainCategories = [
+    {
+      id: "gofretler",
+      link: "/Wafers",
+      image: "/images/burada/gofret1.png",
+      color: "from-rose-900/30 to-orange-900/20",
+    },
+    {
+      id: "yaglar",
+      link: "/Oils",
+      image: "/images/oils/olive1.jpeg",
+      color: "from-emerald-900/30 to-green-900/20",
+    },
+    {
+      id: "suttozu",
+      link: "/MilkPowder",
+      image: "/images/burada/suttozu.jpeg",
+      color: "from-blue-900/30 to-cyan-900/20",
+    },
+    {
+      id: "kuruyemis",
+      link: "/Nuts",
+      image: "/images/burada/dogal.jpeg",
+      color: "from-amber-900/30 to-yellow-900/20",
+    },
   ];
-
-  const categoryNameKeys = {
-    "wafer-roll": "categoryNames.waferRoll",
-    wafer: "categoryNames.wafer",
-    biscuit: "categoryNames.biscuit",
-    dried: "categoryNames.dried",
-  };
-
-  const getCategoryName = (category) => {
-    const key = categoryNameKeys[category];
-    return key ? t(key) : category;
-  };
-
-  const getProductName = (code, fallbackName) => {
-    try {
-      const translated = t(`productNames.${code}`);
-      return translated.startsWith("productNames.") ? fallbackName : translated;
-    } catch {
-      return fallbackName;
-    }
-  };
-
-  const filteredProducts = useMemo(() => {
-    return products.filter((product) => {
-      const matchesCategory =
-        currentCategory === "all" || product.category === currentCategory;
-      const lowerSearch = searchTerm.toLowerCase();
-      const matchesSearch =
-        (product.name || "").toLowerCase().includes(lowerSearch) ||
-        (product.brand || "").toLowerCase().includes(lowerSearch) ||
-        (product.code || "").toLowerCase().includes(lowerSearch);
-      return matchesCategory && matchesSearch;
-    });
-  }, [products, currentCategory, searchTerm]);
 
   useEffect(() => {
     const entries = [
-      { ref: headerRef, setter: setHeaderVisible },
-      { ref: filtersRef, setter: setFiltersVisible },
+      { ref: heroRef, setter: setHeroVisible },
+      { ref: categoriesRef, setter: setCategoriesVisible },
     ];
-
     const observers = entries.map(({ ref, setter }) => {
       const observer = new IntersectionObserver(
         ([entry]) => {
@@ -85,248 +211,182 @@ export default function ProductsClient({ products }) {
       if (ref.current) observer.observe(ref.current);
       return observer;
     });
-
     return () => observers.forEach((o) => o.disconnect());
   }, []);
 
-  useEffect(() => {
-    setCardVisibility(new Array(filteredProducts.length).fill(false));
-    cardRefs.current = cardRefs.current.slice(0, filteredProducts.length);
-  }, [filteredProducts]);
-
-  useEffect(() => {
-    const observers = cardRefs.current.map((el, index) => {
-      if (!el) return null;
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setCardVisibility((prev) => {
-              const next = [...prev];
-              next[index] = true;
-              return next;
-            });
-            observer.unobserve(entry.target);
-          }
-        },
-        { threshold: 0.05 }
-      );
-      observer.observe(el);
-      return observer;
-    });
-    return () => observers.forEach((o) => o?.disconnect());
-  }, [filteredProducts]);
-
   return (
-    <>
-      {/* Header */}
-      <header
-        className="pt-36 pb-16 px-6 border-b border-slate-200"
-        ref={headerRef}
+    <div className="bg-white">
+      {/* Hero Section */}
+      <section
+        ref={heroRef}
+        className="relative min-h-[80vh] overflow-hidden flex items-center"
       >
-        <div className="max-w-5xl mx-auto text-center">
-          {/* Badge */}
-          <span
-            className="inline-block text-[11px] tracking-[0.3em] uppercase text-slate-400 font-medium"
-            style={{
-              opacity: headerVisible ? 1 : 0,
-              transform: headerVisible ? "translateY(0)" : "translateY(15px)",
-              transition: "opacity 0.6s ease, transform 0.6s ease",
-            }}
-          >
-            {t("header.badge")}
-          </span>
+        {/* Background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800" />
 
-          <div
-            className="w-10 h-[1px] bg-slate-300 mx-auto mt-4 mb-6"
-            style={{
-              opacity: headerVisible ? 1 : 0,
-              transform: headerVisible ? "scaleX(1)" : "scaleX(0)",
-              transition: "opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s",
-            }}
-          />
-
-          {/* Title */}
-          <h1
-            className="text-3xl md:text-4xl lg:text-5xl tracking-[0.02em] text-slate-900 mb-6"
-            style={{
-              opacity: headerVisible ? 1 : 0,
-              transform: headerVisible ? "translateY(0)" : "translateY(20px)",
-              transition: "opacity 0.7s ease 0.3s, transform 0.7s ease 0.3s",
-            }}
-          >
-            <span className="font-extralight">
-              {t("header.title").split(" ")[0]}{" "}
-            </span>
-            <span className="font-bold">
-              {t("header.title").split(" ").slice(1).join(" ")}
-            </span>
-          </h1>
-
-          {/* Subtitle */}
-          <p
-            className="text-slate-500 text-base md:text-lg font-light leading-relaxed max-w-2xl mx-auto"
-            style={{
-              opacity: headerVisible ? 1 : 0,
-              transform: headerVisible ? "translateY(0)" : "translateY(15px)",
-              transition: "opacity 0.6s ease 0.5s, transform 0.6s ease 0.5s",
-            }}
-          >
-            {t("header.subtitle")}
-          </p>
+        {/* Decorative elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 right-20 w-[500px] h-[500px] rounded-full bg-amber-500/5 blur-[120px]" />
+          <div className="absolute bottom-10 left-10 w-96 h-96 rounded-full bg-emerald-500/5 blur-[100px]" />
+          <div className="absolute top-1/3 left-1/3 w-72 h-72 rounded-full bg-blue-500/5 blur-[80px]" />
         </div>
-      </header>
 
-      {/* Filters Section */}
-      <div className="max-w-5xl mx-auto px-6 py-10" ref={filtersRef}>
-        {/* Search Input */}
+        {/* Grid pattern */}
         <div
-          className="relative mb-8"
+          className="absolute inset-0"
           style={{
-            opacity: filtersVisible ? 1 : 0,
-            transform: filtersVisible ? "translateY(0)" : "translateY(15px)",
-            transition: "opacity 0.6s ease, transform 0.6s ease",
+            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0)`,
+            backgroundSize: "48px 48px",
           }}
-        >
-          <LuSearch className="absolute left-0 top-1/2 -translate-y-1/2 text-slate-300 w-4 h-4" />
-          <input
-            type="text"
-            className="w-full bg-transparent border-b border-slate-200 text-slate-900 placeholder-slate-400 py-3 pl-7 pr-4 focus:outline-none focus:border-slate-900 transition-colors duration-300 text-sm font-light tracking-wide"
-            placeholder={t("search.placeholder")}
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
+        />
 
-        {/* Category Filter Buttons */}
-        <div className="flex flex-wrap gap-2">
-          {categories.map((cat, index) => (
-            <button
-              key={cat.id}
-              onClick={() => setCurrentCategory(cat.id)}
-              className={`px-5 py-2.5 text-[11px] tracking-[0.15em] uppercase font-medium transition-all duration-300 ${
-                currentCategory === cat.id
-                  ? "bg-slate-900 text-white"
-                  : "bg-transparent text-slate-500 border border-slate-200 hover:border-slate-400 hover:text-slate-900"
-              }`}
+        <div className="relative w-full px-6 md:px-12 lg:px-24 py-32">
+          <div className="max-w-3xl">
+            <div
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 mb-8"
               style={{
-                opacity: filtersVisible ? 1 : 0,
-                transform: filtersVisible
-                  ? "translateY(0)"
-                  : "translateY(10px)",
-                transition: `opacity 0.4s ease ${
-                  0.2 + index * 0.08
-                }s, transform 0.4s ease ${
-                  0.2 + index * 0.08
-                }s, background-color 0.3s, color 0.3s, border-color 0.3s`,
+                opacity: heroVisible ? 1 : 0,
+                transform: heroVisible ? "translateY(0)" : "translateY(20px)",
+                transition: "all 0.7s cubic-bezier(0.16, 1, 0.3, 1)",
               }}
             >
-              {t(cat.labelKey)}
-            </button>
-          ))}
-        </div>
-      </div>
+              <LuSparkles className="w-4 h-4 text-amber-400" />
+              <span className="text-[12px] tracking-[0.2em] uppercase text-amber-300/80 font-medium">
+                {t("header.badge")}
+              </span>
+            </div>
 
-      {/* Divider */}
-      <div className="max-w-5xl mx-auto px-6">
-        <div className="h-[1px] bg-slate-200" />
-      </div>
+            <h1
+              className="text-5xl md:text-6xl lg:text-7xl tracking-tight text-white mb-8 leading-[1.1]"
+              style={{
+                opacity: heroVisible ? 1 : 0,
+                transform: heroVisible ? "translateY(0)" : "translateY(30px)",
+                transition: "all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s",
+              }}
+            >
+              <span className="font-extralight">
+                {t("header.title").split(" ")[0]}{" "}
+              </span>
+              <span className="font-bold bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">
+                {t("header.title").split(" ").slice(1).join(" ")}
+              </span>
+            </h1>
 
-      {/* Products Grid */}
-      <div className="max-w-5xl mx-auto px-6 py-16 pb-28">
-        {filteredProducts.length === 0 ? (
-          <div className="text-center py-20">
-            <p className="text-slate-400 text-sm font-light tracking-wide">
-              {t("emptyState")}
+            <p
+              className="text-white/50 text-lg md:text-xl font-light leading-relaxed max-w-xl mb-12"
+              style={{
+                opacity: heroVisible ? 1 : 0,
+                transform: heroVisible ? "translateY(0)" : "translateY(20px)",
+                transition: "all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s",
+              }}
+            >
+              {t("header.subtitle")}
             </p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0">
-            {filteredProducts.map((product, index) => (
-              <div
-                key={`${product.code}-${index}`}
-                ref={(el) => (cardRefs.current[index] = el)}
-                className="group bg-white p-6 border border-slate-200 -mt-px -ml-px flex flex-col"
-                onMouseEnter={() => setHoveredCard(index)}
-                onMouseLeave={() => setHoveredCard(null)}
-                style={{
-                  opacity: cardVisibility[index] ? 1 : 0,
-                  transform: !cardVisibility[index]
-                    ? "translateY(25px)"
-                    : hoveredCard === index
-                      ? "translateY(-8px)"
-                      : "translateY(0)",
-                  transition: cardVisibility[index]
-                    ? "opacity 0.5s ease, transform 0.6s ease-in-out"
-                    : `opacity 0.5s ease ${(index % 3) * 0.1}s, transform 0.5s ease ${(index % 3) * 0.1}s`,
-                }}
+
+            <div
+              className="flex flex-wrap gap-4"
+              style={{
+                opacity: heroVisible ? 1 : 0,
+                transform: heroVisible ? "translateY(0)" : "translateY(20px)",
+                transition: "all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.45s",
+              }}
+            >
+              <a
+                href="#categories"
+                className="group inline-flex items-center gap-3 px-8 py-4 bg-white text-slate-900 rounded-xl text-sm font-semibold tracking-wide hover:bg-white/90 transition-all duration-300 shadow-lg shadow-white/10"
               >
-                {/* Product Image */}
-                <div className="relative h-56 overflow-hidden mb-6 bg-white">
-                  <div className="w-full h-full flex items-center justify-center p-4">
-                    <img
-                      src={product.image || "/images/products/default.jpg"}
-                      alt={product.name}
-                      className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700"
-                      onError={(e) => {
-                        e.target.src =
-                          "https://via.placeholder.com/400x400/f8fafc/94a3b8?text=No+Image";
-                      }}
-                    />
-                  </div>
-                </div>
+                {t("selectCategory")}
+                <LuArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <Link
+                href="/Contact"
+                className="inline-flex items-center gap-3 px-8 py-4 border border-white/20 text-white rounded-xl text-sm font-semibold tracking-wide hover:bg-white/10 transition-all duration-300"
+              >
+                {t("contactUs") || "İletişim"}
+                <LuArrowUpRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
-                {/* Category */}
-                <span className="text-[10px] tracking-[0.2em] uppercase text-slate-400 font-light mb-2">
-                  {getCategoryName(product.category)}
-                </span>
+      {/* Categories Section */}
+      <section
+        id="categories"
+        ref={categoriesRef}
+        className="py-24 md:py-32 px-6 bg-white"
+      >
+        <div className="max-w-7xl mx-auto">
+          {/* Section header */}
+          <AnimatedSection className="text-center mb-16 md:mb-20">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 border border-slate-200 mb-6">
+              <LuBox className="w-3.5 h-3.5 text-slate-600" />
+              <span className="text-[11px] tracking-[0.2em] uppercase text-slate-600 font-semibold">
+                {t("header.badge")}
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tight text-slate-900 leading-tight mb-4">
+              <span className="font-extralight">
+                {t("categoriesTitle")?.split(" ")[0] || "Ürün"}{" "}
+              </span>
+              <span className="font-bold">
+                {t("categoriesTitle")?.split(" ").slice(1).join(" ") ||
+                  "Kategorileri"}
+              </span>
+            </h2>
+            <p className="text-slate-400 text-base md:text-lg font-light max-w-2xl mx-auto">
+              {t("selectCategory")}
+            </p>
+          </AnimatedSection>
 
-                {/* Product Name */}
-                <h3 className="text-sm tracking-[0.05em] font-medium text-slate-900 mb-1 line-clamp-2 group-hover:text-slate-700 transition-colors duration-300">
-                  {getProductName(product.code, product.name)}
-                </h3>
-
-                {/* Brand */}
-                {product.brand && (
-                  <span className="text-[11px] text-slate-400 font-light mb-4">
-                    {product.brand}
-                  </span>
-                )}
-
-                {/* Divider */}
-                <div className="w-6 h-[1px] bg-slate-200 my-4 group-hover:w-10 transition-all duration-500" />
-
-                {/* Product Specs */}
-                <div className="space-y-0 mt-auto">
-                  <div className="flex justify-between items-center py-2 border-t border-slate-100">
-                    <span className="text-[11px] tracking-[0.1em] uppercase text-slate-400 font-light">
-                      {t("labels.code")}
-                    </span>
-                    <span className="text-sm text-slate-700 font-medium">
-                      {product.code}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center py-2 border-t border-slate-100">
-                    <span className="text-[11px] tracking-[0.1em] uppercase text-slate-400 font-light">
-                      {t("labels.weight")}
-                    </span>
-                    <span className="text-sm text-slate-700 font-medium">
-                      {product.weight}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center py-2 border-t border-slate-100 border-b">
-                    <span className="text-[11px] tracking-[0.1em] uppercase text-slate-400 font-light">
-                      {t("labels.units")}
-                    </span>
-                    <span className="text-sm text-slate-700 font-medium">
-                      {product.units}
-                    </span>
-                  </div>
-                </div>
-              </div>
+          {/* Category cards grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+            {mainCategories.map((category, index) => (
+              <CategoryCard
+                key={category.id}
+                category={category.id}
+                link={category.link}
+                image={category.image}
+                t={t}
+                index={index}
+                isVisible={categoriesVisible}
+                color={category.color}
+              />
             ))}
           </div>
-        )}
-      </div>
-    </>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 md:py-32 px-6 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white text-center relative overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-10 left-10 w-72 h-72 rounded-full bg-amber-500/5 blur-[100px]" />
+          <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-emerald-500/5 blur-[100px]" />
+        </div>
+        <AnimatedSection className="max-w-3xl mx-auto relative">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tight mb-6 leading-tight">
+            <span className="font-extralight">
+              {t("ctaTitle")?.split(" ")[0] || "Hemen"}{" "}
+            </span>
+            <span className="font-bold bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
+              {t("ctaTitle")?.split(" ").slice(1).join(" ") ||
+                "İletişime Geçin"}
+            </span>
+          </h2>
+          <p className="text-white/40 text-lg font-light leading-relaxed mb-12 max-w-xl mx-auto">
+            {t("ctaDescription") || t("header.subtitle")}
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/Contact"
+              className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-slate-900 rounded-xl text-sm font-semibold tracking-wide hover:bg-white/90 transition-all duration-300 shadow-lg shadow-white/10"
+            >
+              {t("contactUs") || "İletişime Geçin"}
+              <LuArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+        </AnimatedSection>
+      </section>
+    </div>
   );
 }

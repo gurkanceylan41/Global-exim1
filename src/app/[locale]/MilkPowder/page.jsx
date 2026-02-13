@@ -1,19 +1,19 @@
 /**
- * Products Page
+ * Milk Powder Page
  *
- * Overview page showing category cards that link to dedicated product pages.
+ * Premium milk powder products page with Bunge-style design.
  */
 
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
-import ProductsClient from "../components/products/ProductsClient";
+import MilkPowderClient from "../components/milkpowder/MilkPowderClient";
 
 /**
  * Generate page-specific metadata for SEO
  */
 export async function generateMetadata({ params }) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "products.metadata" });
+  const t = await getTranslations({ locale, namespace: "milkPowder.metadata" });
 
   return {
     title: t("title"),
@@ -23,20 +23,17 @@ export async function generateMetadata({ params }) {
 }
 
 /**
- * Products Page Component
+ * Milk Powder Page Component
  */
-export default async function ProductsPage({ params }) {
+export default async function MilkPowderPage({ params }) {
   const { locale } = await params;
 
   // Enable static rendering for this locale
   setRequestLocale(locale);
 
-  // Get translations for server-rendered content
-  const t = await getTranslations("products");
-
   return (
     <div className="w-full min-h-screen bg-white">
-      <ProductsClient />
+      <MilkPowderClient />
     </div>
   );
 }

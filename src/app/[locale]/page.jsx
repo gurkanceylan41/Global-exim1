@@ -9,6 +9,7 @@ import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 import AboutSection from "./components/home/AboutSection";
 import HeroSection from "./components/home/HeroSection";
+import FeaturedSection from "./components/home/FeaturedSection";
 
 /**
  * Generate page-specific metadata for SEO
@@ -44,6 +45,9 @@ export default async function HomePage({ params }) {
 
       {/* About section with company highlights and statistics */}
       <AboutSection />
+
+      {/* Featured section with agricultural theme cards */}
+      <FeaturedSection />
     </>
   );
 }

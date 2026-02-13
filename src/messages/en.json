@@ -9,9 +9,16 @@
     "home": "Home",
     "about": "About",
     "products": "Products",
+    "oils": "Oils",
     "contact": "Contact",
     "openMenu": "Open Menu",
-    "closeMenu": "Close Menu"
+    "closeMenu": "Close Menu",
+    "productCategories": {
+      "wafers": "Wafers",
+      "oils": "Oils",
+      "milkPowder": "Milk Powder",
+      "nuts": "Natural Nuts"
+    }
   },
   "languageSwitcher": {
     "label": "Language",
@@ -67,6 +74,30 @@
         "excellence": {
           "title": "Excellence",
           "description": "Highest service standards"
+        }
+      }
+    },
+    "featured": {
+      "badge": "Featured",
+      "title": "From Farm",
+      "titleHighlight": "To Table",
+      "viewAll": "View All",
+      "readMore": "Read More",
+      "items": {
+        "sustainable": {
+          "category": "Sustainable Agriculture",
+          "title": "Environmentally Conscious Production",
+          "description": "Working towards a sustainable future with modern agricultural technologies and eco-friendly practices."
+        },
+        "supply": {
+          "category": "Global Supply",
+          "title": "Worldwide Reliable Supply Chain",
+          "description": "Delivering your products safely and on time with our strong logistics network reaching over 70 countries."
+        },
+        "quality": {
+          "category": "Quality Assurance",
+          "title": "Highest Quality Standards",
+          "description": "Guaranteeing quality with products meticulously controlled at every stage from field to table."
         }
       }
     }
@@ -142,22 +173,34 @@
         "2010": {
           "title": "Foundation",
           "description": "Global Exim was founded in Turkey with a vision for international trade. We took our first steps and built our foundations.",
-          "achievements": ["First office", "Founding team"]
+          "achievements": [
+            "First office",
+            "Founding team"
+          ]
         },
         "2015": {
           "title": "Growth Period",
           "description": "We became a strong organization serving 50+ countries. We strengthened our regional leadership.",
-          "achievements": ["50+ countries", "500+ customers"]
+          "achievements": [
+            "50+ countries",
+            "500+ customers"
+          ]
         },
         "2020": {
           "title": "Digital Transformation",
           "description": "We launched new services on e-commerce and digital platforms. We invested in technology.",
-          "achievements": ["Digital platform", "Online services"]
+          "achievements": [
+            "Digital platform",
+            "Online services"
+          ]
         },
         "2025": {
           "title": "Leading Position",
           "description": "We are the industry leader operating in 70+ countries. We look to the future with confidence.",
-          "achievements": ["70+ countries", "1000+ customers"]
+          "achievements": [
+            "70+ countries",
+            "1000+ customers"
+          ]
         }
       }
     },
@@ -225,16 +268,20 @@
     },
     "categories": {
       "all": "All",
+      "oliveOil": "Olive Oils",
+      "milkPowder": "Milk Powder",
+      "nuts": "Natural Nuts",
       "waferRoll": "Wafer Rolls",
       "wafer": "Wafers",
-      "biscuit": "Biscuits",
-      "dried": "Natural Dried Fruit"
+      "biscuit": "Biscuits"
     },
     "categoryNames": {
+      "oliveOil": "Olive Oil",
+      "milkPowder": "Milk Powder",
+      "nuts": "Natural Nuts",
       "waferRoll": "Wafer Roll",
       "wafer": "Wafer",
-      "biscuit": "Biscuit",
-      "dried": "Natural Dried Fruit"
+      "biscuit": "Biscuit"
     },
     "labels": {
       "code": "Code",
@@ -242,22 +289,79 @@
       "units": "Box/Pack"
     },
     "emptyState": "No products found matching your criteria.",
+    "tryDifferentSearch": "Try a different search term",
+    "results": "products",
+    "selectCategory": "Select a category to view products",
+    "viewCategory": "Explore",
+    "contactUs": "Contact Us",
+    "categoriesTitle": "Product Categories",
+    "ctaTitle": "Get In Touch Now",
+    "ctaDescription": "Contact us for detailed information about our products and wholesale orders.",
+    "stats": {
+      "products": "Products",
+      "countries": "Countries",
+      "quality": "Quality",
+      "categories": "Categories"
+    },
+    "mainCategories": {
+      "gofretler": {
+        "title": "Wafers",
+        "subtitle": "Wafer rolls, wafers and biscuits"
+      },
+      "yaglar": {
+        "title": "Oils",
+        "subtitle": "Specialty oils and fats"
+      },
+      "suttozu": {
+        "title": "Milk Powder",
+        "subtitle": "Premium quality milk powder varieties"
+      },
+      "kuruyemis": {
+        "title": "Natural Nuts",
+        "subtitle": "Selected nuts and dried fruits"
+      }
+    },
+    "subcategories": {
+      "wafer-roll": "Wafer Rolls",
+      "wafer": "Wafers",
+      "biscuit": "Biscuits"
+    },
     "productNames": {
-      "1215": "Cocoa Hazelnut Cream Wafer Roll",
-      "1802": "Cocoa Hazelnut Cream Wafer Roll",
-      "1220": "Cocoa Hazelnut Cream Wafer Roll",
-      "1390": "Cocoa Hazelnut Cream Wafer Roll",
-      "1490": "Cocoa Hazelnut Cream Wafer Roll",
-      "1267": "Chocolate Cream Wafer Roll",
-      "1395": "Chocolate Cream Wafer Roll",
-      "1228": "Chocolate Cream Wafer Roll",
-      "1892": "Vanilla Cream Wafer Roll",
-      "1882": "Strawberry Flavored Wafer Roll",
-      "1872": "Cappuccino Cream Wafer Roll",
-      "1822": "Peanut Cream Wafer Roll",
-      "1358": "Coconut Flavored Coconut Flakes Milk Chocolate Coated",
+      "1010": "Dried Apricot",
+      "1011": "Dried Raisins",
+      "1035": "Cocoa Hazelnut Cream Wafer",
+      "1037": "Chocolate Cream Wafer",
+      "1048": "Cocoa Hazelnut Cream Wafer",
+      "1049": "Chocolate Cream Wafer",
       "1092": "Chocolate Cream Wafer Roll",
+      "1111": "Dried Figs",
+      "1112": "Pistachio",
+      "1113": "Walnut",
+      "1114": "Almond",
+      "1212": "Chocolate Cream Wafer Roll",
+      "1213": "Strawberry Flavored Wafer Roll",
+      "1215": "Cocoa Hazelnut Cream Wafer Roll",
+      "1220": "Cocoa Hazelnut Cream Wafer Roll",
+      "1228": "Chocolate Cream Wafer Roll",
+      "1267": "Chocolate Cream Wafer Roll",
       "1351": "Chocolate Cream Milk Chocolate Coated Wafer",
+      "1358": "Coconut Flavored Coconut Flakes Milk Chocolate Coated",
+      "1390": "Cocoa Hazelnut Cream Wafer Roll",
+      "1395": "Chocolate Cream Wafer Roll",
+      "1490": "Cocoa Hazelnut Cream Wafer Roll",
+      "1701": "Chocolate Cream Wafer",
+      "1802": "Cocoa Hazelnut Cream Wafer Roll",
+      "1822": "Peanut Cream Wafer Roll",
+      "1872": "Cappuccino Cream Wafer Roll",
+      "1882": "Strawberry Flavored Wafer Roll",
+      "1892": "Vanilla Cream Wafer Roll",
+      "2129": "Cocoa Coated Strawberry Flavored Cream Strawberry Biscuit",
+      "2158": "Cocoa Coated Coconut Flavored Cream Coconut Biscuit",
+      "2355": "Cocoa Coated Vanilla Cream Cocoa Biscuit",
+      "2680": "Cocoa Coated Coconut Flavored Cream Coconut Biscuit",
+      "4010": "Milk Chocolate Milk Cream Biscuit",
+      "4200": "White Chocolate Hazelnut Cream Biscuit",
+      "4220": "White Chocolate Peanut Cream Biscuit",
       "5115": "Chocolate Cream Wafer",
       "5125": "Hazelnut Cream Wafer",
       "5135": "Milk & Vanilla Cream Wafer",
@@ -265,27 +369,329 @@
       "5155": "Strawberry Cream Wafer",
       "5323": "Chocolate Cream Wafer",
       "5329": "Peanut Cream Wafer",
-      "5590": "Hazelnut Cream Wafer",
-      "5580": "Chocolate Cream Wafer",
       "5570": "Milk & Vanilla Cream Wafer",
-      "1048": "Cocoa Hazelnut Cream Wafer",
-      "1049": "Chocolate Cream Wafer",
-      "1701": "Chocolate Cream Wafer",
-      "1037": "Chocolate Cream Wafer",
-      "1035": "Cocoa Hazelnut Cream Wafer",
+      "5580": "Chocolate Cream Wafer",
+      "5590": "Hazelnut Cream Wafer",
       "5760": "Pistachio Cream Milk Chocolate Coated Wafer",
-      "4010": "Milk Chocolate Milk Cream Biscuit",
-      "4200": "White Chocolate Hazelnut Cream Biscuit",
-      "4220": "White Chocolate Peanut Cream Biscuit",
-      "2680": "Cocoa Coated Coconut Flavored Cream Coconut Biscuit",
-      "2129": "Cocoa Coated Strawberry Flavored Cream Strawberry Biscuit",
-      "2158": "Cocoa Coated Coconut Flavored Cream Coconut Biscuit",
-      "2355": "Cocoa Coated Vanilla Cream Cocoa Biscuit",
-      "1212": "Chocolate Cream Wafer Roll",
-      "1213": "Strawberry Flavored Wafer Roll",
-      "1010": "Dried Apricot",
-      "1011": "Dried Raisins",
-      "1111": "Dried Figs"
+      "OL001": "Extra Virgin Olive Oil",
+      "OL002": "Riviera Olive Oil",
+      "OL003": "Natural Extra Virgin Olive Oil",
+      "OL004": "Early Harvest Olive Oil",
+      "MP001": "Whole Milk Powder",
+      "MP002": "Skim Milk Powder",
+      "MP003": "Industrial Milk Powder",
+      "MP004": "Baby Formula Milk Powder"
+    }
+  },
+  "wafers": {
+    "metadata": {
+      "title": "Wafers",
+      "description": "Global Exim wafer product catalog. Wafer rolls, wafers and biscuits. Exporting to 70+ countries.",
+      "keywords": "wafer, biscuit, wafer roll, Wafer Master, export"
+    },
+    "hero": {
+      "badge": "Wafers & Biscuits",
+      "title": "Wafers",
+      "subtitle": "Discover our premium quality wafer and biscuit varieties. Exporting to over 70 countries with Wafer Master brand."
+    }
+  },
+  "milkPowder": {
+    "metadata": {
+      "title": "Milk Powder",
+      "description": "Global Exim milk powder products. Whole milk, skim milk and industrial milk powder varieties.",
+      "keywords": "milk powder, whole milk powder, skim milk powder, baby formula"
+    },
+    "hero": {
+      "badge": "Dairy Products",
+      "title": "Milk Powder",
+      "description": "Premium quality milk powder varieties for industrial and consumer use. World-class production and quality assurance."
+    },
+    "intro": {
+      "title": "Premium",
+      "titleHighlight": "Milk Powder Solutions",
+      "description": "We offer high-quality milk powder products that can be used in every area of the food industry. Solutions for a wide range from bakery to confectionery, baby food to sports nutrition products."
+    },
+    "quality": {
+      "badge": "Quality Assurance",
+      "title": "Highest",
+      "titleHighlight": "Quality Standards",
+      "description": "Our milk powders produced in ISO 9001 and HACCP certified facilities meet international quality standards. Rigorous controls are applied at every stage from raw material to final product.",
+      "features": {
+        "feature1": "ISO 9001 and HACCP certified production facilities",
+        "feature2": "Regular microbiological and chemical analyses",
+        "feature3": "Full traceability and quality control system",
+        "feature4": "Compliance with international food safety standards"
+      }
+    },
+    "stats": {
+      "years": "Years Experience",
+      "countries": "Export Countries",
+      "tons": "Tons/Year Capacity",
+      "certified": "Certified"
+    },
+    "products": {
+      "badge": "Product Range",
+      "title": "Milk Powder",
+      "titleHighlight": "Varieties",
+      "whole": {
+        "title": "Whole Milk Powder",
+        "description": "Essential for bakery and confectionery sector with rich flavor profile and high nutritional value.",
+        "specs": "Min. 26% fat, max. 4% moisture"
+      },
+      "skim": {
+        "title": "Skim Milk Powder",
+        "description": "Ideal choice for healthy product formulations with low fat content.",
+        "specs": "Max. 1.5% fat, min. 34% protein"
+      },
+      "industrial": {
+        "title": "Industrial Milk Powder",
+        "description": "Economical and functional solution for large-scale food production.",
+        "specs": "Custom formulation, bulk packaging"
+      },
+      "baby": {
+        "title": "Baby Formula Milk Powder",
+        "description": "Baby formula raw material produced at the highest quality and safety standards.",
+        "specs": "Special purity, GMP certified"
+      }
+    },
+    "packaging": {
+      "badge": "Packaging Options",
+      "title": "Flexible",
+      "titleHighlight": "Packaging Solutions",
+      "description": "We offer various packaging options suitable for different sector needs. From industrial bulk packaging to retail packaging.",
+      "options": {
+        "option1": "25 kg kraft bag",
+        "option2": "25 kg PE lined bag",
+        "option3": "Big bag (500-1000 kg)",
+        "option4": "Custom retail packaging"
+      }
+    },
+    "applications": {
+      "badge": "Application Areas",
+      "title": "Application",
+      "titleHighlight": "Areas",
+      "bakery": "Bakery",
+      "confectionery": "Confectionery",
+      "dairy": "Dairy Products",
+      "iceCream": "Ice Cream",
+      "chocolate": "Chocolate",
+      "babyFood": "Baby Food",
+      "sports": "Sports Nutrition",
+      "recombined": "Recombined Milk"
+    },
+    "cta": {
+      "title": "For Your Milk Powder Needs",
+      "titleHighlight": "Contact Us",
+      "description": "Our expert team is ready to provide the most suitable milk powder solution for your needs. Contact us for quotes and technical support.",
+      "products": "View Products",
+      "contact": "Contact Us"
+    }
+  },
+  "nuts": {
+    "metadata": {
+      "title": "Natural Nuts",
+      "description": "Global Exim natural nuts and dried fruit products. Pistachios, walnuts, almonds and dried fruits.",
+      "keywords": "nuts, dried fruit, pistachio, walnut, almond, dried apricot"
+    },
+    "hero": {
+      "badge": "Natural Products",
+      "title": "Natural Nuts",
+      "description": "From Turkey's fertile lands to tables around the world. The highest quality nuts and dried fruit varieties."
+    },
+    "intro": {
+      "title": "From Nature",
+      "titleHighlight": "To Your Table",
+      "description": "Our nuts and dried fruits grown in Anatolia's fertile soils are harvested using traditional methods and processed in modern facilities. We preserve their natural qualities while delivering to world markets."
+    },
+    "origin": {
+      "badge": "Origin Turkey",
+      "title": "Anatolia's",
+      "titleHighlight": "Fertile Lands",
+      "description": "Turkey ranks among the world leaders in nut and dried fruit production. Unique climate conditions and fertile soils ensure the highest quality products.",
+      "regions": {
+        "region1": "Gaziantep - World-famous Turkish pistachios",
+        "region2": "Aegean Region - Premium quality dried figs and raisins",
+        "region3": "Malatya - Home of golden apricots"
+      }
+    },
+    "benefits": {
+      "badge": "Why Us?",
+      "title": "Quality",
+      "titleHighlight": "Commitment",
+      "health": {
+        "title": "Healthy",
+        "description": "Natural nutritional values preserved"
+      },
+      "natural": {
+        "title": "Natural",
+        "description": "No additives"
+      },
+      "quality": {
+        "title": "Quality",
+        "description": "Rigorous quality control"
+      },
+      "premium": {
+        "title": "Premium",
+        "description": "Top-tier products"
+      }
+    },
+    "products": {
+      "badge": "Product Range",
+      "title": "Nut",
+      "titleHighlight": "Varieties",
+      "pistachio": {
+        "title": "Pistachio",
+        "description": "Gaziantep's world-famous green gold. Unique taste and aroma.",
+        "origin": "Gaziantep, Turkey"
+      },
+      "walnut": {
+        "title": "Walnut",
+        "description": "Rich in Omega-3, healthy snack option.",
+        "origin": "Eastern Anatolia, Turkey"
+      },
+      "almond": {
+        "title": "Almond",
+        "description": "Protein and Vitamin E powerhouse, versatile use.",
+        "origin": "Aegean Region, Turkey"
+      },
+      "apricot": {
+        "title": "Dried Apricot",
+        "description": "Malatya's golden apricot, natural sweetness.",
+        "origin": "Malatya, Turkey"
+      },
+      "fig": {
+        "title": "Dried Fig",
+        "description": "Aegean's famous figs, rich in fiber.",
+        "origin": "Aydın, Turkey"
+      },
+      "raisin": {
+        "title": "Raisin",
+        "description": "Sun-dried, natural energy source.",
+        "origin": "Aegean Region, Turkey"
+      }
+    },
+    "features": {
+      "badge": "Our Features",
+      "title": "Why",
+      "titleHighlight": "Choose Us",
+      "description": "We apply quality control at every stage from farm to table. Our products are processed and packaged according to the highest international standards.",
+      "organic": "Organic options",
+      "noAdditives": "Additive-free and natural",
+      "handSelected": "Hand-selected",
+      "sustainable": "Sustainable farming",
+      "traceable": "Full traceability",
+      "certified": "International certifications"
+    },
+    "cta": {
+      "title": "For Your Nut Needs",
+      "titleHighlight": "Contact Us",
+      "description": "You're at the right place for Turkey's highest quality nuts and dried fruits. Contact us for wholesale and export.",
+      "products": "View Products",
+      "contact": "Contact Us"
+    }
+  },
+  "oils": {
+    "metadata": {
+      "title": "Specialty Oils, Fats and Lecithins",
+      "description": "Plant-based specialty oils, fats and lecithins for restaurants, bakeries and food processing industry."
+    },
+    "hero": {
+      "badge": "Oils and Fats",
+      "title": "Specialty Oils, Fats and Lecithins",
+      "description": "Oils and fats are essential ingredients that shape flavor, nutrition and culinary experience. Our plant-based specialty oils serve restaurants, bakeries, food service and food processing sectors."
+    },
+    "intro": {
+      "title": "Global",
+      "titleHighlight": "Oil Solutions",
+      "description": "As a global leader in oils and fat-based raw materials, we offer soft seed and tropical oil solutions. We develop custom formulations for confectionery, bakery, infant nutrition and plant-based foods."
+    },
+    "oilsFats": {
+      "badge": "Product Range",
+      "title": "Oils and",
+      "titleHighlight": "Fats",
+      "description": "With our global leadership, we produce the highest quality vegetable oils and fats. We offer solutions for every area of the food industry with raw materials sourced from sustainable sources.",
+      "applications": {
+        "label": "Application Areas:",
+        "confectionery": "Confectionery",
+        "bakery": "Bakery",
+        "babyFood": "Infant Nutrition",
+        "plantBased": "Plant-Based Foods"
+      }
+    },
+    "lecithins": {
+      "badge": "Functional Additives",
+      "title": "Lecithins and",
+      "titleHighlight": "Emulsifiers",
+      "description": "Our lecithins offer various functional properties in food production. From non-stick properties to glossy chocolate production, dough homogenization to instant dissolution of powder beverages.",
+      "features": {
+        "nonStick": "Non-stick pan and mold performance",
+        "chocolate": "Glossy and smooth chocolate production",
+        "dough": "Dough homogenization and processability",
+        "instant": "Instant dissolution in powder beverages"
+      }
+    },
+    "sources": {
+      "badge": "Raw Material Sources",
+      "title": "Oil",
+      "titleHighlight": "Sources",
+      "soy": {
+        "title": "Soybeans",
+        "description": "High quality soybean oil with sustainable supply chain.",
+        "origins": "USA, South America"
+      },
+      "canola": {
+        "title": "Canola",
+        "description": "Healthy alternative with low saturated fat content.",
+        "origins": "Australia, Canada, Germany, USA, Poland"
+      },
+      "palm": {
+        "title": "Palm",
+        "description": "Traceable and certified sustainable palm oil.",
+        "origins": "Southeast Asia"
+      },
+      "shea": {
+        "title": "Shea",
+        "description": "Oil obtained from natural nuts from West African savanna parks.",
+        "origins": "West Africa"
+      },
+      "coconut": {
+        "title": "Coconut",
+        "description": "Premium quality coconut oil from tropical regions.",
+        "origins": "Philippines, Indonesia"
+      },
+      "sunflower": {
+        "title": "Sunflower",
+        "description": "High oleic and linoleic varieties available.",
+        "origins": "Hungary, Argentina, Ukraine, Turkey"
+      },
+      "olive": {
+        "title": "Olive",
+        "description": "Premium quality olive oil from the Mediterranean.",
+        "origins": "Turkey, Spain, Italy, Greece"
+      }
+    },
+    "responsible": {
+      "badge": "Sustainability",
+      "title": "Responsible",
+      "titleHighlight": "Supply Chains",
+      "description": "We support sustainable agriculture, protect the social and economic well-being of local communities, and work to improve the environment.",
+      "pillars": {
+        "sustainable": "Sustainable Agriculture",
+        "community": "Community Welfare",
+        "environment": "Environmental Protection"
+      }
+    },
+    "cta": {
+      "title": "Let's Work",
+      "titleHighlight": "Together",
+      "description": "Contact us for your oil and fat needs. Our expert team is ready to provide you with the most suitable solution.",
+      "products": "Explore Products",
+      "contact": "Contact Us"
+    },
+    "grove": {
+      "title": "From Nature",
+      "titleHighlight": "To Your Table",
+      "description": "From the fertile lands of the Mediterranean climate, the finest olive oils and vegetable oils reach the world."
     }
   },
   "contact": {

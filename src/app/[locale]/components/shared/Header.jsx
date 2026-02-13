@@ -22,6 +22,7 @@ import {
   FaWhatsapp,
   FaInstagram,
   FaXTwitter,
+  FaChevronDown,
 } from "react-icons/fa6";
 
 const Header = () => {
@@ -29,6 +30,10 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   // State for language dropdown
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
+  // State for products dropdown
+  const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
+  // State for mobile products submenu
+  const [isMobileProductsOpen, setIsMobileProductsOpen] = useState(false);
 
   // Get current locale and translations
   const locale = useLocale();
@@ -47,6 +52,7 @@ const Header = () => {
   // Close mobile menu (used when clicking a link)
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
+    setIsMobileProductsOpen(false);
   };
 
   /**
@@ -64,8 +70,15 @@ const Header = () => {
   const navItems = [
     { href: "/", label: t("home") },
     { href: "/About", label: t("about") },
-    { href: "/Products", label: t("products") },
     { href: "/Contact", label: t("contact") },
+  ];
+
+  // Product subcategories for dropdown
+  const productSubItems = [
+    { href: "/Wafers", label: t("productCategories.wafers") },
+    { href: "/Oils", label: t("productCategories.oils") },
+    { href: "/MilkPowder", label: t("productCategories.milkPowder") },
+    { href: "/Nuts", label: t("productCategories.nuts") },
   ];
 
   // Language options
@@ -101,15 +114,69 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-8">
-          {navItems.map((item) => (
+          {/* Home */}
+          <Link
+            href="/"
+            className="relative text-[13px] tracking-[0.12em] uppercase font-light text-white/75 hover:text-white transition-all duration-300 py-2 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-white/50 after:transition-all after:duration-300 hover:after:w-full"
+          >
+            {t("home")}
+          </Link>
+
+          {/* About */}
+          <Link
+            href="/About"
+            className="relative text-[13px] tracking-[0.12em] uppercase font-light text-white/75 hover:text-white transition-all duration-300 py-2 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-white/50 after:transition-all after:duration-300 hover:after:w-full"
+          >
+            {t("about")}
+          </Link>
+
+          {/* Products with Dropdown */}
+          <div
+            className="relative"
+            onMouseEnter={() => setIsProductsDropdownOpen(true)}
+            onMouseLeave={() => setIsProductsDropdownOpen(false)}
+          >
             <Link
-              key={item.href}
-              href={item.href}
-              className="relative text-[13px] tracking-[0.12em] uppercase font-light text-white/75 hover:text-white transition-all duration-300 py-2 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-white/50 after:transition-all after:duration-300 hover:after:w-full"
+              href="/Products"
+              className="relative text-[13px] tracking-[0.12em] uppercase font-light text-white/75 hover:text-white transition-all duration-300 py-2 flex items-center gap-1.5 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-white/50 after:transition-all after:duration-300 hover:after:w-full"
             >
-              {item.label}
+              {t("products")}
+              <FaChevronDown
+                className={`text-[10px] transition-transform duration-300 ${
+                  isProductsDropdownOpen ? "rotate-180" : ""
+                }`}
+              />
             </Link>
-          ))}
+
+            {/* Dropdown Menu */}
+            <div
+              className={`absolute top-full left-0 mt-0 pt-2 transition-all duration-300 ${
+                isProductsDropdownOpen
+                  ? "opacity-100 visible translate-y-0"
+                  : "opacity-0 invisible -translate-y-2"
+              }`}
+            >
+              <div className="bg-black/90 backdrop-blur-xl border border-white/10 rounded-sm min-w-[200px] py-2">
+                {productSubItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="block px-5 py-2.5 text-[12px] tracking-[0.1em] uppercase font-light text-white/70 hover:text-white hover:bg-white/5 transition-all duration-300"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Contact */}
+          <Link
+            href="/Contact"
+            className="relative text-[13px] tracking-[0.12em] uppercase font-light text-white/75 hover:text-white transition-all duration-300 py-2 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-white/50 after:transition-all after:duration-300 hover:after:w-full"
+          >
+            {t("contact")}
+          </Link>
 
           {/* Separator */}
           <div className="w-[1px] h-5 bg-white/20 mx-1" />
@@ -203,16 +270,65 @@ const Header = () => {
         }`}
       >
         <nav className="flex flex-col px-5 py-5 gap-1">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={closeMobileMenu}
-              className="py-3 px-4 text-[13px] tracking-[0.12em] uppercase font-light text-white/70 hover:text-white hover:bg-white/5 rounded transition-all duration-300"
+          {/* Home */}
+          <Link
+            href="/"
+            onClick={closeMobileMenu}
+            className="py-3 px-4 text-[13px] tracking-[0.12em] uppercase font-light text-white/70 hover:text-white hover:bg-white/5 rounded transition-all duration-300"
+          >
+            {t("home")}
+          </Link>
+
+          {/* About */}
+          <Link
+            href="/About"
+            onClick={closeMobileMenu}
+            className="py-3 px-4 text-[13px] tracking-[0.12em] uppercase font-light text-white/70 hover:text-white hover:bg-white/5 rounded transition-all duration-300"
+          >
+            {t("about")}
+          </Link>
+
+          {/* Products with Submenu */}
+          <div>
+            <button
+              onClick={() => setIsMobileProductsOpen(!isMobileProductsOpen)}
+              className="w-full py-3 px-4 text-[13px] tracking-[0.12em] uppercase font-light text-white/70 hover:text-white hover:bg-white/5 rounded transition-all duration-300 flex items-center justify-between"
             >
-              {item.label}
-            </Link>
-          ))}
+              {t("products")}
+              <FaChevronDown
+                className={`text-[10px] transition-transform duration-300 ${
+                  isMobileProductsOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+            <div
+              className={`overflow-hidden transition-all duration-300 ${
+                isMobileProductsOpen ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"
+              }`}
+            >
+              <div className="pl-4 border-l border-white/10 ml-4 mt-1 mb-2">
+                {productSubItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={closeMobileMenu}
+                    className="block py-2.5 px-4 text-[12px] tracking-[0.1em] uppercase font-light text-white/60 hover:text-white transition-all duration-300"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Contact */}
+          <Link
+            href="/Contact"
+            onClick={closeMobileMenu}
+            className="py-3 px-4 text-[13px] tracking-[0.12em] uppercase font-light text-white/70 hover:text-white hover:bg-white/5 rounded transition-all duration-300"
+          >
+            {t("contact")}
+          </Link>
 
           {/* Mobile Social Icons */}
           <div className="flex items-center gap-4 px-4 pt-4 mt-2 border-t border-white/[0.08]">

@@ -9,9 +9,16 @@
     "home": "Ana Sayfa",
     "about": "Hakkımızda",
     "products": "Ürünler",
+    "oils": "Yağlar",
     "contact": "İletişim",
     "openMenu": "Menüyü Aç",
-    "closeMenu": "Menüyü Kapat"
+    "closeMenu": "Menüyü Kapat",
+    "productCategories": {
+      "wafers": "Gofretler",
+      "oils": "Yağlar",
+      "milkPowder": "Süt Tozu",
+      "nuts": "Doğal Kuruyemiş"
+    }
   },
   "languageSwitcher": {
     "label": "Dil",
@@ -67,6 +74,30 @@
         "excellence": {
           "title": "Mükemmellik",
           "description": "En yüksek hizmet standartları"
+        }
+      }
+    },
+    "featured": {
+      "badge": "Öne Çıkanlar",
+      "title": "Tarımdan",
+      "titleHighlight": "Sofranıza",
+      "viewAll": "Tümünü Gör",
+      "readMore": "Devamını Oku",
+      "items": {
+        "sustainable": {
+          "category": "Sürdürülebilir Tarım",
+          "title": "Doğaya Saygılı Üretim Anlayışı",
+          "description": "Modern tarım teknolojileri ve çevre dostu uygulamalarla sürdürülebilir bir gelecek için çalışıyoruz."
+        },
+        "supply": {
+          "category": "Global Tedarik",
+          "title": "Dünya Çapında Güvenilir Tedarik Zinciri",
+          "description": "70'den fazla ülkeye ulaşan güçlü lojistik ağımızla ürünlerinizi zamanında ve güvenle teslim ediyoruz."
+        },
+        "quality": {
+          "category": "Kalite Güvencesi",
+          "title": "En Yüksek Kalite Standartları",
+          "description": "Tarladan sofraya kadar her aşamada titizlikle kontrol edilen ürünlerle kaliteyi garanti ediyoruz."
         }
       }
     }
@@ -142,22 +173,34 @@
         "2010": {
           "title": "Kuruluş",
           "description": "Global Exim, Türkiye'de uluslararası ticaret vizyonuyla kuruldu. İlk adımları attık ve temellerimizi oluşturduk.",
-          "achievements": ["İlk ofis", "Kurucu ekip"]
+          "achievements": [
+            "İlk ofis",
+            "Kurucu ekip"
+          ]
         },
         "2015": {
           "title": "Büyüme Dönemi",
           "description": "50+ ülkeye hizmet veren güçlü bir yapıya kavuştuk. Bölgesel liderliğimizi pekiştirdik.",
-          "achievements": ["50+ ülke", "500+ müşteri"]
+          "achievements": [
+            "50+ ülke",
+            "500+ müşteri"
+          ]
         },
         "2020": {
           "title": "Dijital Dönüşüm",
           "description": "E-ticaret ve dijital platformlarda yeni hizmetler başlattık. Teknolojiye yatırım yaptık.",
-          "achievements": ["Dijital platform", "Online hizmetler"]
+          "achievements": [
+            "Dijital platform",
+            "Online hizmetler"
+          ]
         },
         "2025": {
           "title": "Lider Pozisyon",
           "description": "70+ ülkede faaliyet gösteren sektör lideri konumundayız. Geleceğe güvenle bakıyoruz.",
-          "achievements": ["70+ ülke", "1000+ müşteri"]
+          "achievements": [
+            "70+ ülke",
+            "1000+ müşteri"
+          ]
         }
       }
     },
@@ -225,16 +268,20 @@
     },
     "categories": {
       "all": "Tümü",
+      "oliveOil": "Zeytin Yağları",
+      "milkPowder": "Süt Tozu",
+      "nuts": "Doğal Kuruyemiş",
       "waferRoll": "Rulo Gofretler",
       "wafer": "Gofretler",
-      "biscuit": "Bisküviler",
-      "dried": "Doğal Kuru Meyve"
+      "biscuit": "Bisküviler"
     },
     "categoryNames": {
+      "oliveOil": "Zeytin Yağı",
+      "milkPowder": "Süt Tozu",
+      "nuts": "Doğal Kuruyemiş",
       "waferRoll": "Rulo Gofret",
       "wafer": "Gofret",
-      "biscuit": "Bisküvi",
-      "dried": "Doğal Kuru Meyve"
+      "biscuit": "Bisküvi"
     },
     "labels": {
       "code": "Kod",
@@ -242,22 +289,79 @@
       "units": "Koli/Kutu"
     },
     "emptyState": "Aradığınız kriterlere uygun ürün bulunamadı.",
+    "tryDifferentSearch": "Farklı bir arama terimi deneyin",
+    "results": "ürün",
+    "selectCategory": "Ürünleri görüntülemek için bir kategori seçin",
+    "viewCategory": "Keşfet",
+    "contactUs": "İletişime Geçin",
+    "categoriesTitle": "Ürün Kategorileri",
+    "ctaTitle": "Hemen İletişime Geçin",
+    "ctaDescription": "Ürünlerimiz hakkında detaylı bilgi almak ve toptan sipariş vermek için bizimle iletişime geçin.",
+    "stats": {
+      "products": "Ürün",
+      "countries": "Ülke",
+      "quality": "Kalite",
+      "categories": "Kategori"
+    },
+    "mainCategories": {
+      "gofretler": {
+        "title": "Gofretler",
+        "subtitle": "Rulo gofretler, gofretler ve bisküviler"
+      },
+      "yaglar": {
+        "title": "Yağlar",
+        "subtitle": "Özel yağlar ve katı yağlar"
+      },
+      "suttozu": {
+        "title": "Süt Tozu",
+        "subtitle": "Premium kalite süt tozu çeşitleri"
+      },
+      "kuruyemis": {
+        "title": "Doğal Kuruyemiş",
+        "subtitle": "Seçkin kuruyemiş ve kuru meyveler"
+      }
+    },
+    "subcategories": {
+      "wafer-roll": "Rulo Gofretler",
+      "wafer": "Gofretler",
+      "biscuit": "Bisküviler"
+    },
     "productNames": {
-      "1215": "Kakaolu Fındık Kremalı Rulo Gofret",
-      "1802": "Kakaolu Fındık Kremalı Rulo Gofret",
-      "1220": "Kakaolu Fındık Kremalı Rulo Gofret",
-      "1390": "Kakaolu Fındık Kremalı Rulo Gofret",
-      "1490": "Kakaolu Fındık Kremalı Rulo Gofret",
-      "1267": "Çikolata Kremalı Rulo Gofret",
-      "1395": "Çikolata Kremalı Rulo Gofret",
-      "1228": "Çikolata Kremalı Rulo Gofret",
-      "1892": "Vanilya Kremalı Rulo Gofret",
-      "1882": "Çilek Aromalı Rulo Gofret",
-      "1872": "Cappuccino Kremalı Rulo Gofret",
-      "1822": "Yer Fıstığı Kremalı Rulo Gofret",
-      "1358": "Hindistan Cevizi Aromalı Hindistan Cevizi Parçacıklı Sütlü Çikolata Kaplamalı",
+      "1010": "Kuru Kayısı",
+      "1011": "Kuru Üzüm",
+      "1035": "Kakaolu Fındık Kremalı Gofret",
+      "1037": "Çikolata Kremalı Gofret",
+      "1048": "Kakaolu Fındık Kremalı Gofret",
+      "1049": "Çikolata Kremalı Gofret",
       "1092": "Çikolata Kremalı Rulo Gofret",
+      "1111": "Kuru İncir",
+      "1112": "Antep Fıstığı",
+      "1113": "Ceviz İçi",
+      "1114": "Badem",
+      "1212": "Çikolata Kremalı Rulo Gofret",
+      "1213": "Çilek Aromalı Rulo Gofret",
+      "1215": "Kakaolu Fındık Kremalı Rulo Gofret",
+      "1220": "Kakaolu Fındık Kremalı Rulo Gofret",
+      "1228": "Çikolata Kremalı Rulo Gofret",
+      "1267": "Çikolata Kremalı Rulo Gofret",
       "1351": "Çikolata Kremalı Sütlü Çikolata Kaplamalı Gofret",
+      "1358": "Hindistan Cevizi Aromalı Hindistan Cevizi Parçacıklı Sütlü Çikolata Kaplamalı",
+      "1390": "Kakaolu Fındık Kremalı Rulo Gofret",
+      "1395": "Çikolata Kremalı Rulo Gofret",
+      "1490": "Kakaolu Fındık Kremalı Rulo Gofret",
+      "1701": "Çikolata Kremalı Gofret",
+      "1802": "Kakaolu Fındık Kremalı Rulo Gofret",
+      "1822": "Yer Fıstığı Kremalı Rulo Gofret",
+      "1872": "Cappuccino Kremalı Rulo Gofret",
+      "1882": "Çilek Aromalı Rulo Gofret",
+      "1892": "Vanilya Kremalı Rulo Gofret",
+      "2129": "Kakao Kaplamalı Çilek Aroma Kremalı Çilekli Bisküvi",
+      "2158": "Kakao Kaplamalı Hindistan Cevizi Aroma Kremalı Hindistan Cevizli Bisküvi",
+      "2355": "Kakao Kaplamalı Vanilya Kremalı Kakaolu Bisküvi",
+      "2680": "Kakao Kaplamalı Hindistan Cevizi Aroma Kremalı Hindistan Cevizli Bisküvi",
+      "4010": "Sütlü Çikolatalı Sütlü Kremalı Bisküvi",
+      "4200": "Beyaz Çikolatalı Fındık Kremalı Bisküvi",
+      "4220": "Beyaz Çikolatalı Yer Fıstığı Kremalı Bisküvi",
       "5115": "Çikolata Kremalı Gofret",
       "5125": "Fındık Kremalı Gofret",
       "5135": "Sütlü & Vanilya Kremalı Gofret",
@@ -265,27 +369,329 @@
       "5155": "Çilek Kremalı Gofret",
       "5323": "Çikolata Kremalı Gofret",
       "5329": "Yer Fıstığı Kremalı Gofret",
-      "5590": "Fındık Kremalı Gofret",
-      "5580": "Çikolata Kremalı Gofret",
       "5570": "Sütlü & Vanilya Kremalı Gofret",
-      "1048": "Kakaolu Fındık Kremalı Gofret",
-      "1049": "Çikolata Kremalı Gofret",
-      "1701": "Çikolata Kremalı Gofret",
-      "1037": "Çikolata Kremalı Gofret",
-      "1035": "Kakaolu Fındık Kremalı Gofret",
+      "5580": "Çikolata Kremalı Gofret",
+      "5590": "Fındık Kremalı Gofret",
       "5760": "Antep Fıstığı Kremalı Sütlü Çikolatalı Kaplamalı Gofret",
-      "4010": "Sütlü Çikolatalı Sütlü Kremalı Bisküvi",
-      "4200": "Beyaz Çikolatalı Fındık Kremalı Bisküvi",
-      "4220": "Beyaz Çikolatalı Yer Fıstığı Kremalı Bisküvi",
-      "2680": "Kakao Kaplamalı Hindistan Cevizi Aroma Kremalı Hindistan Cevizli Bisküvi",
-      "2129": "Kakao Kaplamalı Çilek Aroma Kremalı Çilekli Bisküvi",
-      "2158": "Kakao Kaplamalı Hindistan Cevizi Aroma Kremalı Hindistan Cevizli Bisküvi",
-      "2355": "Kakao Kaplamalı Vanilya Kremalı Kakaolu Bisküvi",
-      "1212": "Çikolata Kremalı Rulo Gofret",
-      "1213": "Çilek Aromalı Rulo Gofret",
-      "1010": "Kuru Kayısı",
-      "1011": "Kuru Üzüm",
-      "1111": "Kuru İncir"
+      "OL001": "Sızma Zeytinyağı",
+      "OL002": "Riviera Zeytinyağı",
+      "OL003": "Naturel Sızma Zeytinyağı",
+      "OL004": "Erken Hasat Zeytinyağı",
+      "MP001": "Tam Yağlı Süt Tozu",
+      "MP002": "Yağsız Süt Tozu",
+      "MP003": "Endüstriyel Süt Tozu",
+      "MP004": "Bebek Maması Süt Tozu"
+    }
+  },
+  "wafers": {
+    "metadata": {
+      "title": "Gofretler",
+      "description": "Global Exim gofret ürün katalogu. Rulo gofretler, gofretler ve bisküviler. 70+ ülkeye ihracat.",
+      "keywords": "gofret, bisküvi, rulo gofret, Wafer Master, ihracat"
+    },
+    "hero": {
+      "badge": "Gofret & Bisküvi",
+      "title": "Gofretler",
+      "subtitle": "Premium kalite gofret ve bisküvi çeşitlerimizi keşfedin. Wafer Master markasıyla 70'den fazla ülkeye ihracat."
+    }
+  },
+  "milkPowder": {
+    "metadata": {
+      "title": "Süt Tozu",
+      "description": "Global Exim süt tozu ürünleri. Tam yağlı, yağsız ve endüstriyel süt tozu çeşitleri.",
+      "keywords": "süt tozu, tam yağlı süt tozu, yağsız süt tozu, bebek maması"
+    },
+    "hero": {
+      "badge": "Süt Ürünleri",
+      "title": "Süt Tozu",
+      "description": "Endüstriyel ve tüketici kullanımı için premium kalite süt tozu çeşitlerimiz. Dünya standartlarında üretim ve kalite güvencesi."
+    },
+    "intro": {
+      "title": "Premium",
+      "titleHighlight": "Süt Tozu Çözümleri",
+      "description": "Gıda endüstrisinin her alanında kullanılabilen yüksek kaliteli süt tozu ürünleri sunuyoruz. Fırıncılıktan şekerlemeciliğe, bebek mamalarından spor beslenme ürünlerine kadar geniş bir yelpazede çözümler."
+    },
+    "quality": {
+      "badge": "Kalite Güvencesi",
+      "title": "En Yüksek",
+      "titleHighlight": "Kalite Standartları",
+      "description": "ISO 9001 ve HACCP sertifikalı tesislerde üretilen süt tozlarımız, uluslararası kalite standartlarını karşılar. Hammaddeden son ürüne kadar her aşamada titiz kontroller uygulanır.",
+      "features": {
+        "feature1": "ISO 9001 ve HACCP sertifikalı üretim tesisleri",
+        "feature2": "Düzenli mikrobiyolojik ve kimyasal analizler",
+        "feature3": "Tam izlenebilirlik ve kalite kontrol sistemi",
+        "feature4": "Uluslararası gıda güvenliği standartlarına uygunluk"
+      }
+    },
+    "stats": {
+      "years": "Yıllık Deneyim",
+      "countries": "İhracat Ülkesi",
+      "tons": "Ton/Yıl Kapasite",
+      "certified": "Sertifikalı"
+    },
+    "products": {
+      "badge": "Ürün Gamımız",
+      "title": "Süt Tozu",
+      "titleHighlight": "Çeşitlerimiz",
+      "whole": {
+        "title": "Tam Yağlı Süt Tozu",
+        "description": "Zengin lezzet profili ve yüksek besin değeri ile fırıncılık ve şekerleme sektörünün vazgeçilmezi.",
+        "specs": "Min. %26 yağ, maks. %4 nem"
+      },
+      "skim": {
+        "title": "Yağsız Süt Tozu",
+        "description": "Düşük yağ içeriği ile sağlıklı ürün formülasyonları için ideal tercih.",
+        "specs": "Maks. %1.5 yağ, min. %34 protein"
+      },
+      "industrial": {
+        "title": "Endüstriyel Süt Tozu",
+        "description": "Büyük ölçekli gıda üretimi için ekonomik ve fonksiyonel çözüm.",
+        "specs": "Özel formülasyon, toplu ambalaj"
+      },
+      "baby": {
+        "title": "Bebek Maması Süt Tozu",
+        "description": "En yüksek kalite ve güvenlik standartlarında üretilen bebek maması hammaddesi.",
+        "specs": "Özel saflık, GMP sertifikalı"
+      }
+    },
+    "packaging": {
+      "badge": "Ambalaj Seçenekleri",
+      "title": "Esnek",
+      "titleHighlight": "Ambalaj Çözümleri",
+      "description": "Farklı sektör ihtiyaçlarına uygun çeşitli ambalaj seçenekleri sunuyoruz. Endüstriyel toplu ambalajdan perakende paketlemeye kadar.",
+      "options": {
+        "option1": "25 kg kraft torba",
+        "option2": "25 kg PE astarlı torba",
+        "option3": "Big bag (500-1000 kg)",
+        "option4": "Özel perakende ambalaj"
+      }
+    },
+    "applications": {
+      "badge": "Kullanım Alanları",
+      "title": "Uygulama",
+      "titleHighlight": "Alanları",
+      "bakery": "Fırıncılık",
+      "confectionery": "Şekerleme",
+      "dairy": "Süt Ürünleri",
+      "iceCream": "Dondurma",
+      "chocolate": "Çikolata",
+      "babyFood": "Bebek Maması",
+      "sports": "Spor Beslenme",
+      "recombined": "Rekombin Süt"
+    },
+    "cta": {
+      "title": "Süt Tozu İhtiyaçlarınız İçin",
+      "titleHighlight": "Bizimle İletişime Geçin",
+      "description": "Uzman ekibimiz, ihtiyaçlarınıza en uygun süt tozu çözümünü sunmak için hazır. Fiyat teklifi ve teknik destek için bize ulaşın.",
+      "products": "Ürünleri İncele",
+      "contact": "İletişime Geç"
+    }
+  },
+  "nuts": {
+    "metadata": {
+      "title": "Doğal Kuruyemiş",
+      "description": "Global Exim doğal kuruyemiş ve kuru meyve ürünleri. Antep fıstığı, ceviz, badem ve kuru meyveler.",
+      "keywords": "kuruyemiş, kuru meyve, antep fıstığı, ceviz, badem, kuru kayısı"
+    },
+    "hero": {
+      "badge": "Doğal Ürünler",
+      "title": "Doğal Kuruyemiş",
+      "description": "Türkiye'nin bereketli topraklarından dünya sofralarına. En kaliteli kuruyemiş ve kuru meyve çeşitleri."
+    },
+    "intro": {
+      "title": "Doğadan",
+      "titleHighlight": "Sofranıza",
+      "description": "Anadolu'nun verimli topraklarında yetişen kuruyemiş ve kuru meyvelerimiz, geleneksel yöntemlerle hasat edilir ve modern tesislerde işlenir. Doğallığını koruyarak dünya pazarlarına sunuyoruz."
+    },
+    "origin": {
+      "badge": "Menşei Türkiye",
+      "title": "Anadolu'nun",
+      "titleHighlight": "Bereketli Toprakları",
+      "description": "Türkiye, kuruyemiş ve kuru meyve üretiminde dünya liderleri arasında yer alır. Benzersiz iklim koşulları ve verimli topraklar, en kaliteli ürünlerin yetişmesini sağlar.",
+      "regions": {
+        "region1": "Gaziantep - Dünyaca ünlü Antep fıstığı",
+        "region2": "Ege Bölgesi - Premium kalite kuru incir ve üzüm",
+        "region3": "Malatya - Altın kayısının anavatanı"
+      }
+    },
+    "benefits": {
+      "badge": "Neden Biz?",
+      "title": "Kalite",
+      "titleHighlight": "Taahhüdümüz",
+      "health": {
+        "title": "Sağlıklı",
+        "description": "Doğal besin değerleri korunur"
+      },
+      "natural": {
+        "title": "Doğal",
+        "description": "Katkı maddesi içermez"
+      },
+      "quality": {
+        "title": "Kaliteli",
+        "description": "Titiz kalite kontrolü"
+      },
+      "premium": {
+        "title": "Premium",
+        "description": "En üst sınıf ürünler"
+      }
+    },
+    "products": {
+      "badge": "Ürün Gamımız",
+      "title": "Kuruyemiş",
+      "titleHighlight": "Çeşitlerimiz",
+      "pistachio": {
+        "title": "Antep Fıstığı",
+        "description": "Gaziantep'in dünyaca ünlü yeşil altını. Eşsiz lezzet ve aroma.",
+        "origin": "Gaziantep, Türkiye"
+      },
+      "walnut": {
+        "title": "Ceviz İçi",
+        "description": "Omega-3 açısından zengin, sağlıklı atıştırmalık.",
+        "origin": "Doğu Anadolu, Türkiye"
+      },
+      "almond": {
+        "title": "Badem",
+        "description": "Protein ve E vitamini deposu, çok yönlü kullanım.",
+        "origin": "Ege Bölgesi, Türkiye"
+      },
+      "apricot": {
+        "title": "Kuru Kayısı",
+        "description": "Malatya'nın altın kayısısı, doğal tatlılık.",
+        "origin": "Malatya, Türkiye"
+      },
+      "fig": {
+        "title": "Kuru İncir",
+        "description": "Ege'nin meşhur inciri, lif açısından zengin.",
+        "origin": "Aydın, Türkiye"
+      },
+      "raisin": {
+        "title": "Kuru Üzüm",
+        "description": "Güneşte kurutulmuş, doğal enerji kaynağı.",
+        "origin": "Ege Bölgesi, Türkiye"
+      }
+    },
+    "features": {
+      "badge": "Özelliklerimiz",
+      "title": "Neden",
+      "titleHighlight": "Bizi Tercih Etmelisiniz",
+      "description": "Tarladan sofraya kadar her aşamada kalite kontrolü uyguluyoruz. Ürünlerimiz en yüksek uluslararası standartlara uygun olarak işlenir ve paketlenir.",
+      "organic": "Organik seçenekler",
+      "noAdditives": "Katkısız ve doğal",
+      "handSelected": "El ile seçilmiş",
+      "sustainable": "Sürdürülebilir tarım",
+      "traceable": "Tam izlenebilirlik",
+      "certified": "Uluslararası sertifikalar"
+    },
+    "cta": {
+      "title": "Kuruyemiş İhtiyaçlarınız İçin",
+      "titleHighlight": "Bizimle İletişime Geçin",
+      "description": "Türkiye'nin en kaliteli kuruyemiş ve kuru meyveleri için doğru adrestesiniz. Toptan satış ve ihracat için bize ulaşın.",
+      "products": "Ürünleri İncele",
+      "contact": "İletişime Geç"
+    }
+  },
+  "oils": {
+    "metadata": {
+      "title": "Premium Zeytinyağı",
+      "description": "Akdeniz'in bereketli topraklarından sofralarınıza premium kalite zeytinyağları. Sızma, naturel ve erken hasat zeytinyağı çeşitleri."
+    },
+    "hero": {
+      "badge": "Premium Zeytinyağı",
+      "title": "Akdeniz'den, Sofranıza",
+      "description": "Binlerce yıllık zeytin kültürünün mirasçısı olarak, Akdeniz'in bereketli topraklarından en kaliteli zeytinyağlarını dünyaya sunuyoruz. Doğallığı ve lezzeti bir arada yaşayın."
+    },
+    "intro": {
+      "title": "Premium",
+      "titleHighlight": "Zeytinyağı",
+      "description": "Akdeniz'in eşsiz ikliminde yetişen zeytinlerden elde edilen zeytinyağlarımız, geleneksel yöntemlerle işlenir. Sızma zeytinyağından naturel zeytinyağına, erken hasattan riviera'ya kadar geniş bir ürün yelpazesi sunuyoruz."
+    },
+    "oilsFats": {
+      "badge": "Ürün Gamı",
+      "title": "Yağlar ve",
+      "titleHighlight": "Katı Yağlar",
+      "description": "Küresel liderliğimizle, en kaliteli bitkisel yağları ve katı yağları üretiyoruz. Sürdürülebilir kaynaklardan temin edilen hammaddelerimizle gıda endüstrisinin her alanına çözümler sunuyoruz.",
+      "applications": {
+        "label": "Uygulama Alanları:",
+        "confectionery": "Şekerleme",
+        "bakery": "Fırıncılık",
+        "babyFood": "Bebek Beslenmesi",
+        "plantBased": "Bitki Bazlı Gıdalar"
+      }
+    },
+    "lecithins": {
+      "badge": "Fonksiyonel Katkılar",
+      "title": "Lesitinler ve",
+      "titleHighlight": "Emülgatörler",
+      "description": "Lesitinlerimiz gıda üretiminde çeşitli fonksiyonel özellikler sunar. Yapışmaz özelliklerden parlak çikolata üretimine, hamur homojenleştirmeden toz içeceklerin anında çözünürlüğüne kadar geniş bir kullanım alanı.",
+      "features": {
+        "nonStick": "Yapışmaz tava ve kalıp performansı",
+        "chocolate": "Parlak ve pürüzsüz çikolata üretimi",
+        "dough": "Hamur homojenleştirme ve işlenebilirlik",
+        "instant": "Toz içeceklerde anında çözünürlük"
+      }
+    },
+    "sources": {
+      "badge": "Hammadde Kaynakları",
+      "title": "Yağ",
+      "titleHighlight": "Kaynakları",
+      "soy": {
+        "title": "Soya Fasulyesi",
+        "description": "Sürdürülebilir tedarik zinciri ile yüksek kaliteli soya yağı.",
+        "origins": "Amerika, Güney Amerika"
+      },
+      "canola": {
+        "title": "Kanola",
+        "description": "Düşük doymuş yağ içeriği ile sağlıklı alternatif.",
+        "origins": "Avustralya, Kanada, Almanya, ABD, Polonya"
+      },
+      "palm": {
+        "title": "Palmiye",
+        "description": "İzlenebilir ve sertifikalı sürdürülebilir palmiye yağı.",
+        "origins": "Güneydoğu Asya"
+      },
+      "shea": {
+        "title": "Shea",
+        "description": "Batı Afrika savan parklarından doğal fındıktan elde edilen yağ.",
+        "origins": "Batı Afrika"
+      },
+      "coconut": {
+        "title": "Hindistan Cevizi",
+        "description": "Tropik bölgelerden premium kalite hindistan cevizi yağı.",
+        "origins": "Filipinler, Endonezya"
+      },
+      "sunflower": {
+        "title": "Ayçiçeği",
+        "description": "Yüksek oleik ve linoleik çeşitler mevcut.",
+        "origins": "Macaristan, Arjantin, Ukrayna, Türkiye"
+      },
+      "olive": {
+        "title": "Zeytin",
+        "description": "Akdeniz'den premium kalite zeytinyağı.",
+        "origins": "Türkiye, İspanya, İtalya, Yunanistan"
+      }
+    },
+    "responsible": {
+      "badge": "Sürdürülebilirlik",
+      "title": "Sorumlu",
+      "titleHighlight": "Tedarik Zincirleri",
+      "description": "Sürdürülebilir tarımı destekliyor, yerel toplulukların sosyal ve ekonomik refahını koruyor ve çevreyi iyileştirmek için çalışıyoruz.",
+      "pillars": {
+        "sustainable": "Sürdürülebilir Tarım",
+        "community": "Toplum Refahı",
+        "environment": "Çevre Koruma"
+      }
+    },
+    "cta": {
+      "title": "Birlikte",
+      "titleHighlight": "Çalışalım",
+      "description": "Yağ ve katı yağ ihtiyaçlarınız için bizimle iletişime geçin. Uzman ekibimiz size en uygun çözümü sunmak için hazır.",
+      "products": "Ürünleri Keşfet",
+      "contact": "İletişime Geç"
+    },
+    "grove": {
+      "title": "Doğadan",
+      "titleHighlight": "Sofranıza",
+      "description": "Akdeniz ikliminin bereketli topraklarından, en kaliteli zeytinyağları ve bitkisel yağlar dünyaya ulaşıyor."
     }
   },
   "contact": {

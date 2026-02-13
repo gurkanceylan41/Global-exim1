@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@parcel/watcher-linux-arm64-glibc": "^2.5.6",
     "next": "16.0.7",
     "next-intl": "^4.7.0",
     "react": "19.2.0",

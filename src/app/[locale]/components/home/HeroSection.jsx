@@ -7,7 +7,6 @@
  */
 
 import Link from "next/link";
-import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
 import { useTranslations } from "next-intl";
 import ScrollButton from "./ScrollButton";
@@ -17,16 +16,17 @@ export default function HeroSection() {
 
   return (
     <section className="relative w-full h-screen min-h-[600px]">
-      {/* Background Image */}
+      {/* Background Video */}
       <div className="absolute inset-0 overflow-hidden">
-        <Image
-          src="/home1.jpg"
-          alt="Global Exim Banner"
-          fill
-          className="object-cover scale-105 animate-subtle-zoom"
-          priority
-          quality={90}
-        />
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute w-full h-full object-cover scale-105"
+        >
+          <source src="/soulpressed_intro.mp4" type="video/mp4" />
+        </video>
       </div>
 
       {/* Overlay */}
