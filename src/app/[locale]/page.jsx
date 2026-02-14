@@ -7,9 +7,9 @@
 
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
-import AboutSection from "./components/home/AboutSection";
-import HeroSection from "./components/home/HeroSection";
-import FeaturedSection from "./components/home/FeaturedSection";
+import AboutSection from "@/components/home/AboutSection";
+import HeroSection from "@/components/home/HeroSection";
+import FeaturedSection from "@/components/home/FeaturedSection";
 
 /**
  * Generate page-specific metadata for SEO

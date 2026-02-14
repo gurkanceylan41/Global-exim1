@@ -5,7 +5,7 @@
 
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { memo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
@@ -19,240 +19,135 @@ import {
   LuSun,
   LuTreePine,
   LuCircleDot,
-  LuFlaskConical,
   LuSparkles,
-  LuTruck,
-  LuCircleCheck,
   LuArrowUpRight,
 } from "react-icons/lu";
+import AnimatedSection from "@/components/ui/AnimatedSection";
+import FloatingCard from "@/components/products/FloatingCard";
 
-function AnimatedSection({ children, className = "", delay = 0 }) {
-  const ref = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
+// Static data - outside component to prevent recreation
+const oilSources = [
+  {
+    icon: LuWheat,
+    titleKey: "sources.soy.title",
+    descKey: "sources.soy.description",
+    originsKey: "sources.soy.origins",
+  },
+  {
+    icon: LuLeaf,
+    titleKey: "sources.canola.title",
+    descKey: "sources.canola.description",
+    originsKey: "sources.canola.origins",
+  },
+  {
+    icon: LuTreePine,
+    titleKey: "sources.palm.title",
+    descKey: "sources.palm.description",
+    originsKey: "sources.palm.origins",
+  },
+  {
+    icon: LuCircleDot,
+    titleKey: "sources.shea.title",
+    descKey: "sources.shea.description",
+    originsKey: "sources.shea.origins",
+  },
+  {
+    icon: LuDroplets,
+    titleKey: "sources.coconut.title",
+    descKey: "sources.coconut.description",
+    originsKey: "sources.coconut.origins",
+  },
+  {
+    icon: LuSun,
+    titleKey: "sources.sunflower.title",
+    descKey: "sources.sunflower.description",
+    originsKey: "sources.sunflower.origins",
+  },
+  {
+    icon: LuLeaf,
+    titleKey: "sources.olive.title",
+    descKey: "sources.olive.description",
+    originsKey: "sources.olive.origins",
+  },
+];
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
+const markets = [
+  "markets.bakery",
+  "markets.confectionery",
+  "markets.dairy",
+  "markets.snacks",
+  "markets.nutrition",
+  "markets.personalCare",
+  "markets.plantBased",
+  "markets.foodService",
+];
 
-  return (
-    <div
-      ref={ref}
-      className={className}
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translateY(0)" : "translateY(40px)",
-        transition: `opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s`,
-      }}
-    >
-      {children}
-    </div>
-  );
-}
-
-// Floating image card with hover
-function FloatingCard({ src, className, baseRotate }) {
-  const [hovered, setHovered] = useState(false);
-
-  return (
-    <div
-      className={`${className} relative rounded-2xl overflow-hidden border-2 border-white/10 shadow-2xl cursor-pointer`}
-      style={{
-        transform: hovered
-          ? "rotate(0deg) scale(1.12)"
-          : `rotate(${baseRotate}deg) scale(1)`,
-        boxShadow: hovered
-          ? "0 30px 60px rgba(0,0,0,0.6)"
-          : "0 15px 30px rgba(0,0,0,0.3)",
-        transition:
-          "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease",
-        zIndex: hovered ? 10 : 1,
-      }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      <img
-        src={src}
-        alt=""
-        style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          display: "block",
-          pointerEvents: "none",
-          mixBlendMode: "multiply",
-        }}
-      />
-    </div>
-  );
-}
-
-function OilSourceCard({
+// Memoized OilSourceCard component
+const OilSourceCard = memo(function OilSourceCard({
   icon: Icon,
   title,
   description,
   origins,
   image,
   index,
-  isVisible,
 }) {
   return (
-    <div
-      className="group relative bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-emerald-200 hover:shadow-2xl hover:shadow-emerald-100/50 transition-all duration-700"
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible
-          ? "translateY(0) scale(1)"
-          : "translateY(30px) scale(0.97)",
-        transition: `all 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.08}s`,
-      }}
-    >
-      {image && (
-        <div className="relative h-44 overflow-hidden">
-          <Image
-            src={image}
-            alt={title}
-            fill
-            className="object-cover group-hover:scale-110 transition-transform duration-700"
-            quality={85}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-          <div className="absolute bottom-3 left-3">
-            <div className="w-10 h-10 rounded-xl bg-white/90 backdrop-blur-sm flex items-center justify-center">
-              <Icon className="w-5 h-5 text-emerald-700" />
+    <AnimatedSection delay={index * 0.08}>
+      <div className="group relative bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-emerald-200 hover:shadow-2xl hover:shadow-emerald-100/50 transition-all duration-700">
+        {image && (
+          <div className="relative h-44 overflow-hidden">
+            <Image
+              src={image}
+              alt={title}
+              fill
+              className="object-cover group-hover:scale-110 transition-transform duration-700"
+              quality={85}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+            <div className="absolute bottom-3 left-3">
+              <div className="w-10 h-10 rounded-xl bg-white/90 backdrop-blur-sm flex items-center justify-center">
+                <Icon className="w-5 h-5 text-emerald-700" />
+              </div>
             </div>
           </div>
-        </div>
-      )}
-      {!image && (
-        <div className="p-6 pb-0">
-          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-50 to-emerald-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-500">
-            <Icon className="w-6 h-6 text-emerald-700" />
-          </div>
-        </div>
-      )}
-      <div className="p-6">
-        <h4 className="text-lg font-semibold text-slate-900 mb-2 group-hover:text-emerald-800 transition-colors">
-          {title}
-        </h4>
-        <p className="text-sm text-slate-500 leading-relaxed mb-4">
-          {description}
-        </p>
-        {origins && (
-          <div className="pt-4 border-t border-slate-100">
-            <span className="text-[10px] tracking-[0.25em] uppercase text-emerald-600 font-semibold">
-              Menşei
-            </span>
-            <p className="text-xs text-slate-600 mt-1.5 font-medium">
-              {origins}
-            </p>
+        )}
+        {!image && (
+          <div className="p-6 pb-0">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-50 to-emerald-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-500">
+              <Icon className="w-6 h-6 text-emerald-700" />
+            </div>
           </div>
         )}
+        <div className="p-6">
+          <h4 className="text-lg font-semibold text-slate-900 mb-2 group-hover:text-emerald-800 transition-colors">
+            {title}
+          </h4>
+          <p className="text-sm text-slate-500 leading-relaxed mb-4">
+            {description}
+          </p>
+          {origins && (
+            <div className="pt-4 border-t border-slate-100">
+              <span className="text-[10px] tracking-[0.25em] uppercase text-emerald-600 font-semibold">
+                Menşei
+              </span>
+              <p className="text-xs text-slate-600 mt-1.5 font-medium">
+                {origins}
+              </p>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </AnimatedSection>
   );
-}
+});
 
 export default function OilsClient() {
   const t = useTranslations("oils");
-  const heroRef = useRef(null);
-  const [heroVisible, setHeroVisible] = useState(false);
-  const sourcesRef = useRef(null);
-  const [sourcesVisible, setSourcesVisible] = useState(false);
-
-  useEffect(() => {
-    const entries = [
-      { ref: heroRef, setter: setHeroVisible },
-      { ref: sourcesRef, setter: setSourcesVisible },
-    ];
-    const observers = entries.map(({ ref, setter }) => {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setter(true);
-            observer.unobserve(entry.target);
-          }
-        },
-        { threshold: 0.1 }
-      );
-      if (ref.current) observer.observe(ref.current);
-      return observer;
-    });
-    return () => observers.forEach((o) => o.disconnect());
-  }, []);
-
-  const oilSources = [
-    {
-      icon: LuWheat,
-      titleKey: "sources.soy.title",
-      descKey: "sources.soy.description",
-      originsKey: "sources.soy.origins",
-    },
-    {
-      icon: LuLeaf,
-      titleKey: "sources.canola.title",
-      descKey: "sources.canola.description",
-      originsKey: "sources.canola.origins",
-    },
-    {
-      icon: LuTreePine,
-      titleKey: "sources.palm.title",
-      descKey: "sources.palm.description",
-      originsKey: "sources.palm.origins",
-    },
-    {
-      icon: LuCircleDot,
-      titleKey: "sources.shea.title",
-      descKey: "sources.shea.description",
-      originsKey: "sources.shea.origins",
-    },
-    {
-      icon: LuDroplets,
-      titleKey: "sources.coconut.title",
-      descKey: "sources.coconut.description",
-      originsKey: "sources.coconut.origins",
-    },
-    {
-      icon: LuSun,
-      titleKey: "sources.sunflower.title",
-      descKey: "sources.sunflower.description",
-      originsKey: "sources.sunflower.origins",
-    },
-    {
-      icon: LuLeaf,
-      titleKey: "sources.olive.title",
-      descKey: "sources.olive.description",
-      originsKey: "sources.olive.origins",
-    },
-  ];
-
-  const markets = [
-    "markets.bakery",
-    "markets.confectionery",
-    "markets.dairy",
-    "markets.snacks",
-    "markets.nutrition",
-    "markets.personalCare",
-    "markets.plantBased",
-    "markets.foodService",
-  ];
 
   return (
     <div className="bg-white">
       {/* Hero Section - Full Screen with Gradient */}
-      <section
-        ref={heroRef}
-        className="relative h-screen min-h-[700px] overflow-hidden"
-      >
+      <section className="relative h-screen min-h-[700px] overflow-hidden">
         {/* Animated gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-950 via-emerald-900 to-slate-900" />
 
@@ -273,17 +168,11 @@ export default function OilsClient() {
         />
 
         {/* Product images floating */}
-        <div className="absolute right-8 md:right-16 lg:right-24 top-1/2 -translate-y-1/2 hidden lg:block">
-          <div
-            className="relative w-80 h-80"
-            style={{
-              opacity: heroVisible ? 1 : 0,
-              transform: heroVisible
-                ? "translateX(0) rotate(0deg)"
-                : "translateX(60px) rotate(5deg)",
-              transition: "all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s",
-            }}
-          >
+        <AnimatedSection
+          delay={0.5}
+          className="absolute right-8 md:right-16 lg:right-24 top-1/2 -translate-y-1/2 hidden lg:block"
+        >
+          <div className="relative w-80 h-80">
             <FloatingCard
               src="/images/oils/olive2.jpeg"
               className="absolute -top-8 -left-8 w-40 h-40"
@@ -291,83 +180,63 @@ export default function OilsClient() {
             />
             <FloatingCard
               src="/images/oils/olive1.jpeg"
-              className="absolute  left-30 w-48 h-48"
+              className="absolute left-30 w-48 h-48"
               baseRotate={4}
             />
             <FloatingCard
               src="/images/oils/olive3.jpeg"
-              className="absolute  left-8 w-36 h-36"
+              className="absolute left-8 w-36 h-36"
               baseRotate={-3}
             />
           </div>
-        </div>
+        </AnimatedSection>
 
         <div className="absolute inset-0 flex flex-col justify-center px-6 md:px-12 lg:px-24 pointer-events-none">
           <div className="max-w-3xl pointer-events-auto">
-            <div
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 mb-8"
-              style={{
-                opacity: heroVisible ? 1 : 0,
-                transform: heroVisible ? "translateY(0)" : "translateY(20px)",
-                transition: "all 0.7s cubic-bezier(0.16, 1, 0.3, 1)",
-              }}
-            >
-              <LuDroplets className="w-4 h-4 text-emerald-400" />
-              <span className="text-[12px] tracking-[0.2em] uppercase text-emerald-300 font-medium">
-                {t("hero.badge")}
-              </span>
-            </div>
+            <AnimatedSection>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 mb-8">
+                <LuDroplets className="w-4 h-4 text-emerald-400" />
+                <span className="text-[12px] tracking-[0.2em] uppercase text-emerald-300 font-medium">
+                  {t("hero.badge")}
+                </span>
+              </div>
+            </AnimatedSection>
 
-            <h1
-              className="text-5xl md:text-6xl lg:text-7xl tracking-tight text-white mb-8 leading-[1.1]"
-              style={{
-                opacity: heroVisible ? 1 : 0,
-                transform: heroVisible ? "translateY(0)" : "translateY(30px)",
-                transition: "all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s",
-              }}
-            >
-              <span className="font-light">
-                {t("hero.title").split(",")[0]},
-              </span>
-              <br />
-              <span className="font-bold bg-gradient-to-r from-emerald-300 to-amber-200 bg-clip-text text-transparent">
-                {t("hero.title").split(",").slice(1).join(",")}
-              </span>
-            </h1>
+            <AnimatedSection delay={0.15}>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl tracking-tight text-white mb-8 leading-[1.1]">
+                <span className="font-light">
+                  {t("hero.title").split(",")[0]},
+                </span>
+                <br />
+                <span className="font-bold bg-gradient-to-r from-emerald-300 to-amber-200 bg-clip-text text-transparent">
+                  {t("hero.title").split(",").slice(1).join(",")}
+                </span>
+              </h1>
+            </AnimatedSection>
 
-            <p
-              className="text-white/60 text-lg md:text-xl font-light leading-relaxed max-w-xl mb-10"
-              style={{
-                opacity: heroVisible ? 1 : 0,
-                transform: heroVisible ? "translateY(0)" : "translateY(20px)",
-                transition: "all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s",
-              }}
-            >
-              {t("hero.description")}
-            </p>
+            <AnimatedSection delay={0.3}>
+              <p className="text-white/60 text-lg md:text-xl font-light leading-relaxed max-w-xl mb-10">
+                {t("hero.description")}
+              </p>
+            </AnimatedSection>
 
-            <div
-              className="flex flex-wrap gap-4"
-              style={{
-                opacity: heroVisible ? 1 : 0,
-                transform: heroVisible ? "translateY(0)" : "translateY(20px)",
-                transition: "all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.45s",
-              }}
-            >
-              <Link
-                href="/Products"
-                className="group inline-flex items-center gap-3 px-8 py-4 bg-emerald-500 text-white rounded-xl text-sm font-semibold tracking-wide hover:bg-emerald-400 transition-all duration-300 shadow-lg shadow-emerald-500/25"
-              >
-                {t("cta.products")}
-                <LuArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link
-                href="/Contact"
-                className="inline-flex items-center gap-3 px-8 py-4 border border-white/20 text-white rounded-xl text-sm font-semibold tracking-wide hover:bg-white/10 transition-all duration-300"
-              >
-                {t("cta.contact")}
-              </Link>
-            </div>
+            <AnimatedSection delay={0.45}>
+              <div className="flex flex-wrap gap-4">
+                <Link
+                  href="/Products"
+                  className="group inline-flex items-center gap-3 px-8 py-4 bg-emerald-500 text-white rounded-xl text-sm font-semibold tracking-wide hover:bg-emerald-400 transition-all duration-300 shadow-lg shadow-emerald-500/25"
+                >
+                  {t("cta.products")}
+                  <LuArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <Link
+                  href="/Contact"
+                  className="inline-flex items-center gap-3 px-8 py-4 border border-white/20 text-white rounded-xl text-sm font-semibold tracking-wide hover:bg-white/10 transition-all duration-300"
+                >
+                  {t("cta.contact")}
+                </Link>
+              </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>

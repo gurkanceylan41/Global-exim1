@@ -9,8 +9,8 @@
 
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
-import { products } from "../data/productsData";
-import CategoryPageClient from "../components/products/CategoryPageClient";
+import { products } from "@/lib/data/productsData";
+import CategoryPageClient from "@/components/products/CategoryPageClient";
 
 /**
  * Generate page-specific metadata for SEO

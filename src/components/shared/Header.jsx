@@ -25,6 +25,26 @@ import {
   FaChevronDown,
 } from "react-icons/fa6";
 
+// Static data - outside component to prevent recreation
+const NAV_ITEMS = [
+  { href: "/", labelKey: "home" },
+  { href: "/About", labelKey: "about" },
+  { href: "/Contact", labelKey: "contact" },
+];
+
+const PRODUCT_SUB_ITEMS = [
+  { href: "/Wafers", labelKey: "productCategories.wafers" },
+  { href: "/Oils", labelKey: "productCategories.oils" },
+  { href: "/MilkPowder", labelKey: "productCategories.milkPowder" },
+  { href: "/Nuts", labelKey: "productCategories.nuts" },
+];
+
+const LANGUAGES = [
+  { code: "tr", labelKey: "turkish", flag: "🇹🇷" },
+  { code: "ru", labelKey: "russian", flag: "🇷🇺" },
+  { code: "en", labelKey: "english", flag: "🇬🇧" },
+];
+
 const Header = () => {
   // State for mobile menu toggle
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -66,30 +86,8 @@ const Header = () => {
     setIsLangDropdownOpen(false);
   };
 
-  // Navigation items configuration
-  const navItems = [
-    { href: "/", label: t("home") },
-    { href: "/About", label: t("about") },
-    { href: "/Contact", label: t("contact") },
-  ];
-
-  // Product subcategories for dropdown
-  const productSubItems = [
-    { href: "/Wafers", label: t("productCategories.wafers") },
-    { href: "/Oils", label: t("productCategories.oils") },
-    { href: "/MilkPowder", label: t("productCategories.milkPowder") },
-    { href: "/Nuts", label: t("productCategories.nuts") },
-  ];
-
-  // Language options
-  const languages = [
-    { code: "tr", label: tLang("turkish"), flag: "🇹🇷" },
-    { code: "ru", label: tLang("russian"), flag: "🇷🇺" },
-    { code: "en", label: tLang("english"), flag: "🇬🇧" },
-  ];
-
   // Get current language info
-  const currentLang = languages.find((lang) => lang.code === locale);
+  const currentLang = LANGUAGES.find((lang) => lang.code === locale);
 
   return (
     <header className="w-full bg-black/50 text-white fixed top-0 left-0 z-50 backdrop-blur-xl border-b border-white/[0.08]">
@@ -157,13 +155,13 @@ const Header = () => {
               }`}
             >
               <div className="bg-black/90 backdrop-blur-xl border border-white/10 rounded-sm min-w-[200px] py-2">
-                {productSubItems.map((item) => (
+                {PRODUCT_SUB_ITEMS.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
                     className="block px-5 py-2.5 text-[12px] tracking-[0.1em] uppercase font-light text-white/70 hover:text-white hover:bg-white/5 transition-all duration-300"
                   >
-                    {item.label}
+                    {t(item.labelKey)}
                   </Link>
                 ))}
               </div>
@@ -183,7 +181,7 @@ const Header = () => {
 
           {/* Language Switcher - inline buttons */}
           <div className="flex items-center gap-1">
-            {languages.map((lang) => (
+            {LANGUAGES.map((lang) => (
               <button
                 key={lang.code}
                 onClick={() => handleLanguageChange(lang.code)}
@@ -237,7 +235,7 @@ const Header = () => {
         <div className="flex items-center gap-3 lg:hidden shrink-0">
           {/* Mobile Language Switcher */}
           <div className="flex items-center gap-1">
-            {languages.map((lang) => (
+            {LANGUAGES.map((lang) => (
               <button
                 key={lang.code}
                 onClick={() => handleLanguageChange(lang.code)}
@@ -307,14 +305,14 @@ const Header = () => {
               }`}
             >
               <div className="pl-4 border-l border-white/10 ml-4 mt-1 mb-2">
-                {productSubItems.map((item) => (
+                {PRODUCT_SUB_ITEMS.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
                     onClick={closeMobileMenu}
                     className="block py-2.5 px-4 text-[12px] tracking-[0.1em] uppercase font-light text-white/60 hover:text-white transition-all duration-300"
                   >
-                    {item.label}
+                    {t(item.labelKey)}
                   </Link>
                 ))}
               </div>

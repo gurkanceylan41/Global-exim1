@@ -6,7 +6,7 @@
 
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
-import ContactClient from "../components/contact/ContactClient";
+import ContactClient from "@/components/contact/ContactClient";
 
 /**
  * Generate page-specific metadata for SEO

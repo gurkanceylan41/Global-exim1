@@ -6,7 +6,7 @@
 
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
-import MilkPowderClient from "../components/milkpowder/MilkPowderClient";
+import MilkPowderClient from "@/components/milkpowder/MilkPowderClient";
 
 /**
  * Generate page-specific metadata for SEO

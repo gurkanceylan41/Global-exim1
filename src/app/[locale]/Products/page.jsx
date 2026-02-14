@@ -6,7 +6,7 @@
 
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
-import ProductsClient from "../components/products/ProductsClient";
+import ProductsClient from "@/components/products/ProductsClient";
 
 /**
  * Generate page-specific metadata for SEO

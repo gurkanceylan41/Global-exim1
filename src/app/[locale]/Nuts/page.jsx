@@ -6,7 +6,7 @@
 
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
-import NutsClient from "../components/nuts/NutsClient";
+import NutsClient from "@/components/nuts/NutsClient";
 
 /**
  * Generate page-specific metadata for SEO

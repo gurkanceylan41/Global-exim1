@@ -8,13 +8,13 @@
 
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
-import HeroSection from "../components/about/HeroSection";
-import MissionVisionSection from "../components/about/MissionVisionSection";
-import ValuesSection from "../components/about/ValuesSection";
-import TimelineSection from "../components/about/TimelineSection";
-import WhyChooseUsSection from "../components/about/WhyChooseUsSection";
-import TestimonialsSection from "../components/about/TestimonialsSection";
-import CTASection from "../components/about/CTASection";
+import HeroSection from "@/components/about/HeroSection";
+import MissionVisionSection from "@/components/about/MissionVisionSection";
+import ValuesSection from "@/components/about/ValuesSection";
+import TimelineSection from "@/components/about/TimelineSection";
+import WhyChooseUsSection from "@/components/about/WhyChooseUsSection";
+import TestimonialsSection from "@/components/about/TestimonialsSection";
+import CTASection from "@/components/about/CTASection";
 
 /**
  * Generate page-specific metadata for SEO

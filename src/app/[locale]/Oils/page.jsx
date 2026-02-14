@@ -6,7 +6,7 @@
 
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
-import OilsClient from "../components/oils/OilsClient";
+import OilsClient from "@/components/oils/OilsClient";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
