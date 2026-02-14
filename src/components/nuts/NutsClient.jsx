@@ -169,7 +169,7 @@ export default function NutsClient() {
           </div>
         </AnimatedSection>
 
-        <div className="absolute inset-0 flex flex-col justify-center px-6 md:px-12 lg:px-24">
+        <div className="absolute inset-0 flex flex-col justify-center px-6 md:px-12 lg:px-24 pointer-events-none">
           <AnimatedSection className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 mb-8">
               <LuLeaf className="w-4 h-4 text-emerald-400" />

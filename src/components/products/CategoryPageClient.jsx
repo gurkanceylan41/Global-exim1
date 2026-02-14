@@ -124,8 +124,8 @@ export default function CategoryPageClient({
             </AnimatedSection>
           )}
 
-          {/* Hero content */}
-          <div className="absolute inset-0 flex flex-col justify-center px-6 md:px-12 lg:px-24">
+          {/* Hero content - pointer-events-none allows FloatingCards to receive hover */}
+          <div className="absolute inset-0 flex flex-col justify-center px-6 md:px-12 lg:px-24 pointer-events-none">
             <AnimatedSection className="max-w-3xl">
               <div
                 className={`inline-flex items-center gap-2 px-4 py-2 rounded-full ${accent.badgeBg} backdrop-blur-sm mb-8`}
